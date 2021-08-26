@@ -1,5 +1,5 @@
 {
-  "name": "@salesforce/plugin-template",
+  "name": "@salesforce/plugin-community",
   "description": "A template repository for sfdx plugins",
   "version": "1.0.0",
   "author": "Salesforce",
@@ -56,7 +56,7 @@
     "/messages",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/salesforcecli/plugin-template",
+  "homepage": "https://github.com/salesforcecli/plugin-community",
   "keywords": [
     "force",
     "salesforce",
@@ -79,7 +79,7 @@
       }
     }
   },
-  "repository": "salesforcecli/plugin-template",
+  "repository": "salesforcecli/plugin-community",
   "scripts": {
     "build": "sf-build",
     "clean": "sf-clean",
@@ -99,13 +99,6 @@
     "test:deprecation-policy": "./bin/run snapshot:compare",
     "test:nuts": "nyc mocha \"**/*.nut.ts\" --slow 4500 --timeout 600000 --parallel",
     "version": "oclif-dev readme"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "sf-husky-pre-commit",
-      "commit-msg": "sf-husky-commit-msg",
-      "pre-push": "sf-husky-pre-push"
-    }
   },
   "publishConfig": {
     "access": "public"
