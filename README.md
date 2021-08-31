@@ -4,7 +4,7 @@
 
 # plugin-&lt;REPLACE ME&gt;
 
-[![NPM](https://img.shields.io/npm/v/@salesforce/plugin-template.svg?label=@salesforce/plugin-template)](https://www.npmjs.com/package/@salesforce/plugin-template) [![CircleCI](https://circleci.com/gh/salesforcecli/plugin-template/tree/main.svg?style=shield)](https://circleci.com/gh/salesforcecli/plugin-template/tree/main) [![Downloads/week](https://img.shields.io/npm/dw/@salesforce/plugin-template.svg)](https://npmjs.org/package/@salesforce/plugin-template) [![License](https://img.shields.io/badge/License-BSD%203--Clause-brightgreen.svg)](https://raw.githubusercontent.com/salesforcecli/plugin-template/main/LICENSE.txt)
+[![NPM](https://img.shields.io/npm/v/@salesforce/plugin-community.svg?label=@salesforce/plugin-community)](https://www.npmjs.com/package/@salesforce/plugin-community) [![CircleCI](https://circleci.com/gh/salesforcecli/plugin-community/tree/main.svg?style=shield)](https://circleci.com/gh/salesforcecli/plugin-community/tree/main) [![Downloads/week](https://img.shields.io/npm/dw/@salesforce/plugin-community.svg)](https://npmjs.org/package/@salesforce/plugin-community) [![License](https://img.shields.io/badge/License-BSD%203--Clause-brightgreen.svg)](https://raw.githubusercontent.com/salesforcecli/plugin-community/main/LICENSE.txt)
 
 Change above to <REPLACE_ME> before finalizing
 
@@ -22,7 +22,7 @@ This repository provides a template for creating a plugin for the Salesforce CLI
 
 &lt;REPLACE ME DESCRIPTION END&gt;
 
-## Learn about the plugin-template
+## Learn about the plugin-community
 
 Salesforce CLI plugins are based on the [oclif plugin framework](<(https://oclif.io/docs/introduction.html)>). Read the [plugin developer guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_plugins.meta/sfdx_cli_plugins/cli_plugins_architecture_sf_cli.htm) to learn about Salesforce CLI plugin development.
 
