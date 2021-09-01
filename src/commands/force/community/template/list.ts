@@ -12,7 +12,7 @@ import { ConnectExecutor } from '../../../../lib/connect/services/ConnectExecuto
 import { CommunityTemplatesListResponse } from '../../../../lib/community/defs/CommunityTemplatesListResponse';
 
 Messages.importMessagesDirectory(__dirname);
-const community = Messages.loadMessages('salesforce-alm', 'community_commands');
+const community = Messages.loadMessages('@salesforce/plugin-community', 'community_commands');
 
 /**
  * A command to fetch available community templates a community. This is just an sfdx wrapper around

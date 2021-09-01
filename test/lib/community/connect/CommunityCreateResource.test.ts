@@ -4,17 +4,17 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { CommunityCreateResource } from '../../../../lib/community/connect/CommunityCreateResource';
-import { CommunityCreateResponse } from '../../../../lib/community/defs/CommunityCreateResponse';
-import { UX } from '@salesforce/command/lib/ux';
+import * as sinon from 'sinon';
 import { AnyJson, JsonMap, JsonCollection } from '@salesforce/ts-types';
-import { CommunityCreateParams } from '../../../../lib/community/defs/CommunityCreateParams';
+import { expect } from 'chai';
 import { Messages } from '@salesforce/core';
-const sinon = require('sinon');
-const { expect } = require('chai');
+import { UX } from '@salesforce/command/lib/ux';
+import { CommunityCreateParams } from '../../../../src/lib/community/defs/CommunityCreateParams';
+import { CommunityCreateResource } from '../../../../src/lib/community/connect/CommunityCreateResource';
+import { CommunityCreateResponse } from '../../../../src/lib/community/defs/CommunityCreateResponse';
 
 Messages.importMessagesDirectory(__dirname);
-const communityMessages = Messages.loadMessages('salesforce-alm', 'community_commands');
+const communityMessages = Messages.loadMessages('@salesforce/plugin-community', 'community_commands');
 
 describe('CommunityCreateResource', () => {
   let communityCreateResource: CommunityCreateResource;
@@ -36,7 +36,7 @@ describe('CommunityCreateResource', () => {
   });
   describe('fetchRelativeConnectUrl', () => {
     it('should return the expected URL', async () => {
-      let url = await communityCreateResource.fetchRelativeConnectUrl();
+      const url = await communityCreateResource.fetchRelativeConnectUrl();
       const RELATIVE_URL = '/connect/communities';
       expect(url).to.equal(RELATIVE_URL);
     });
@@ -49,7 +49,7 @@ describe('CommunityCreateResource', () => {
   });
 
   describe('fetchPostParams', () => {
-    let expectedPostParams: CommunityCreateParams = {
+    const expectedPostParams: CommunityCreateParams = {
       name: communityName,
       urlPathPrefix,
       templateName,
@@ -128,7 +128,7 @@ describe('CommunityCreateResource with templateParams', () => {
   });
 
   describe('fetchPostParamsWithTemplateParams', () => {
-    let expectedPostParams: CommunityCreateParams = {
+    const expectedPostParams: CommunityCreateParams = {
       name: communityName,
       urlPathPrefix,
       templateName,
@@ -137,7 +137,7 @@ describe('CommunityCreateResource with templateParams', () => {
     };
 
     it('should have proper post params that contain templateParams', async () => {
-      let communityCreateResource: CommunityCreateResource = getCommunityCreateResourceWithParams({
+      const communityCreateResource: CommunityCreateResource = getCommunityCreateResourceWithParams({
         templateParams,
       });
       const params = await communityCreateResource.fetchPostParams();
@@ -147,7 +147,7 @@ describe('CommunityCreateResource with templateParams', () => {
   });
 
   describe('fetchPostParamsWithUnsupportedParams', () => {
-    let expectedPostParams: CommunityCreateParams = {
+    const expectedPostParams: CommunityCreateParams = {
       name: communityName,
       urlPathPrefix,
       templateName,
@@ -155,7 +155,7 @@ describe('CommunityCreateResource with templateParams', () => {
     };
 
     it('should not have invalid or unsupported post params', async () => {
-      let communityCreateResource: CommunityCreateResource = getCommunityCreateResourceWithParams({
+      const communityCreateResource: CommunityCreateResource = getCommunityCreateResourceWithParams({
         random: 'this should not show up',
         nested: {
           invalid: 'Should not be included',

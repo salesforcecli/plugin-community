@@ -13,7 +13,7 @@ import { CommunityCreateParams } from '../defs/CommunityCreateParams';
 import { ConnectResource } from '../../connect/services/ConnectResource';
 
 Messages.importMessagesDirectory(__dirname);
-const communityMessages = Messages.loadMessages('salesforce-alm', 'community_commands');
+const communityMessages = Messages.loadMessages('@salesforce/plugin-community', 'community_commands');
 
 const MESSAGE_KEY = 'message';
 const NAME_KEY = 'name';

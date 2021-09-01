@@ -6,13 +6,15 @@
  */
 /* eslint-disable @typescript-eslint/require-await */
 
+import { expect } from 'chai';
+
 import { Messages } from '@salesforce/core';
 import { JsonMap } from '@salesforce/ts-types';
-import { CommunityNameValueParser } from '../../../../lib/community/commands/CommunityNameValueParser';
-const { expect } = require('chai');
+
+import { CommunityNameValueParser } from '../../../../src/lib/community/commands/CommunityNameValueParser';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.loadMessages('salesforce-alm', 'community_commands');
+const messages = Messages.loadMessages('@salesforce/plugin-community', 'community_commands');
 
 describe('CommunityNameValueParser (Unit Test)', () => {
   describe('Using the default validation pattern', () => {

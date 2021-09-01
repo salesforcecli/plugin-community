@@ -4,22 +4,20 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { CommunitiesServices } from '../../../../lib/community/service/CommunitiesServices';
-import { CommunityPublishResource } from '../../../../lib/community/connect/CommunityPublishResource';
+
+import * as util from 'util';
+import * as sinon from 'sinon';
+import { expect } from 'chai';
 import { Org } from '@salesforce/core/lib/org';
 import { UX } from '@salesforce/command/lib/ux';
-import { CommunityPublishResponse } from '../../../../lib/community/defs/CommunityPublishResponse';
 import { JsonCollection } from '@salesforce/ts-types';
 import { Messages } from '@salesforce/core';
-import util = require('util');
-
-const sinon = require('sinon');
-const chai = require('chai');
-const expect = chai.expect;
-chai.use(require('chai-as-promised'));
+import { CommunitiesServices } from '../../../../src/lib/community/service/CommunitiesServices';
+import { CommunityPublishResource } from '../../../../src/lib/community/connect/CommunityPublishResource';
+import { CommunityPublishResponse } from '../../../../src/lib/community/defs/CommunityPublishResponse';
 
 Messages.importMessagesDirectory(__dirname);
-const communityMessages = Messages.loadMessages('salesforce-alm', 'community_commands');
+const communityMessages = Messages.loadMessages('@salesforce/plugin-community', 'community_commands');
 
 describe('CommunityPublishResource', () => {
   let org: Org;
@@ -52,9 +50,17 @@ describe('CommunityPublishResource', () => {
 
     it('should throw when invalid id is given', async () => {
       communitiesServices.returns(Promise.resolve(undefined));
-      await expect(communityPublishResource.fetchRelativeConnectUrl()).to.be.rejectedWith(
-        util.format(communityMessages.getMessage('publish.error.communityNotExists'), communityName)
-      );
+
+      try {
+        await communityPublishResource.fetchRelativeConnectUrl();
+      } catch (err) {
+        const errorMessage = util.format(
+          communityMessages.getMessage('publish.error.communityNotExists'),
+          communityName
+        );
+        expect(err.name).to.equal('publish.error.communityNotExists');
+        expect(err.message).to.equal(errorMessage);
+      }
     });
 
     it('should return relative url with community id', async () => {

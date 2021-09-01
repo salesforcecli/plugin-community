@@ -10,7 +10,7 @@ import { ConnectResource } from '../../connect/services/ConnectResource';
 import { CommunityTemplatesListResponse } from '../defs/CommunityTemplatesListResponse';
 
 Messages.importMessagesDirectory(__dirname);
-const community = Messages.loadMessages('salesforce-alm', 'community_commands');
+const community = Messages.loadMessages('@salesforce/plugin-community', 'community_commands');
 
 /**
  * A connect api resource for fetching community templates available to context user

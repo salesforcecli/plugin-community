@@ -4,10 +4,10 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { ConnectResource } from './ConnectResource';
-import { Org } from '@salesforce/core/lib/org';
+
 import { RequestInfo } from 'jsforce';
-import { SfdxError } from '@salesforce/core';
+import { Org, SfdxError } from '@salesforce/core';
+import { ConnectResource } from './ConnectResource';
 
 /**
  * An executor which calls a connect api for the given org
@@ -34,7 +34,7 @@ export class ConnectExecutor<T> {
 
   public async fetchRequestInfo(): Promise<RequestInfo> {
     const connectUrl: string = encodeURI(await this.connectService.fetchRelativeConnectUrl());
-    let method = this.connectService.getRequestMethod();
+    const method = this.connectService.getRequestMethod();
     if (method === 'GET') {
       return {
         url: connectUrl,

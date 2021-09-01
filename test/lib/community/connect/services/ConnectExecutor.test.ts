@@ -5,17 +5,13 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
+import * as sinon from 'sinon';
+import { expect } from 'chai';
 import { Org, Connection } from '@salesforce/core';
 import { Result } from '@salesforce/command';
 import { RequestInfo } from 'jsforce/connection';
-import { ConnectExecutor } from '../../../../../lib/connect/services/ConnectExecutor';
-import { ConnectResource } from '../../../../../lib/connect/services/ConnectResource';
-
-const sinon = require('sinon');
-const chai = require('chai');
-const expect = chai.expect;
-const should = chai.should();
-chai.use(require('chai-as-promised'));
+import { ConnectExecutor } from '../../../../../src/lib/connect/services/ConnectExecutor';
+import { ConnectResource } from '../../../../../src/lib/connect/services/ConnectResource';
 
 describe('ConnectExecutor', () => {
   const relativeUrl = '/relativeUrl/';
@@ -73,17 +69,17 @@ describe('ConnectExecutor', () => {
       const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyGetConnectResource(), new Org(null));
       // If fetchPostParams was called, it will throw an exception
       const ri: RequestInfo = await executor.fetchRequestInfo();
-      should.exist(ri);
+      expect(ri).to.exist;
       expect(ri.url).to.be.equal(relativeUrl + 'GET');
       expect(ri.method).to.be.equal('GET');
       expect(ri.body).to.be.equal(null);
-      should.not.exist(ri.headers);
+      expect(ri.headers).to.be.undefined;
     });
 
     it('should call fetchPostParams for a POST call', async () => {
       const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyPostConnectResource(), new Org(null));
       const ri: RequestInfo = await executor.fetchRequestInfo();
-      should.exist(ri);
+      expect(ri).to.exist;
       expect(ri.url).to.be.equal(relativeUrl + 'POST');
       expect(ri.method).to.be.equal('POST');
       expect(ri.body).to.be.equal(
@@ -91,12 +87,18 @@ describe('ConnectExecutor', () => {
           param: 'value',
         })
       );
-      should.not.exist(ri.headers);
+      expect(ri.headers).to.be.undefined;
     });
 
     it('should throw for unsupported method calls', async () => {
       const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyPatchConnectResource(), new Org(null));
-      await expect(executor.fetchRequestInfo()).to.be.rejectedWith('Unsupported method is given: PATCH');
+
+      try {
+        await executor.fetchRequestInfo();
+      } catch (err) {
+        expect(err.name).to.equal('UNSUPPORTED_OPERATION');
+        expect(err.message).to.equal('Unsupported method is given: PATCH');
+      }
     });
   });
 
@@ -126,7 +128,13 @@ describe('ConnectExecutor', () => {
         return connection;
       });
       const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyGetConnectResource(), org);
-      await expect(executor.callConnectApi()).to.be.rejectedWith('handleError is called');
+
+      try {
+        await executor.callConnectApi();
+      } catch (err) {
+        expect(err.name).to.equal('Error');
+        expect(err.message).to.equal('handleError is called');
+      }
     });
   });
 });

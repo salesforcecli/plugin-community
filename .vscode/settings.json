@@ -7,7 +7,7 @@
     "**/.DS_Store": true
   },
   "search.exclude": {
-    "**/lib": true,
+    "./lib": true,
     "**/bin": true
   },
   "editor.tabSize": 2,

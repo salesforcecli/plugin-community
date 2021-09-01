@@ -14,7 +14,7 @@ import { CommunityCreateResource } from '../../../lib/community/connect/Communit
 import { CommunityCreateResponse } from '../../../lib/community/defs/CommunityCreateResponse';
 
 Messages.importMessagesDirectory(__dirname);
-const communityMessages = Messages.loadMessages('salesforce-alm', 'community_commands');
+const communityMessages = Messages.loadMessages('@salesforce/plugin-community', 'community_commands');
 /**
  * A command to create a community.
  * This is just an sfdx wrapper around the community create connect endpoint
@@ -64,8 +64,13 @@ export class CommunityCreateCommand extends SfdxCommand {
     'templateParams(\\.\\w+)+',
   ];
 
+  public async run(): Promise<CommunityCreateResponse | Error> {
+    const createCommand = new CommunityCreateResource(this.flags, this.varargs, this.ux);
+    return new ConnectExecutor(createCommand, this.org).callConnectApi();
+  }
+
   protected parseVarargs(args?: string[]): JsonMap {
-    this.logger.debug('parseVarargs(' + args + ')');
+    this.logger.debug(`parseVarargs(${args})`);
 
     // It never looks like args is ever undefined as long as varargs is turned on for the command...
     // But since the signature says it's optional, we should probably gate this even though it's unnecessary right now.
@@ -78,10 +83,5 @@ export class CommunityCreateCommand extends SfdxCommand {
 
     this.logger.debug('parseVarargs result:' + JSON.stringify(values));
     return values;
-  }
-
-  public async run(): Promise<CommunityCreateResponse | Error> {
-    const createCommand = new CommunityCreateResource(this.flags, this.varargs, this.ux);
-    return new ConnectExecutor(createCommand, this.org).callConnectApi();
   }
 }

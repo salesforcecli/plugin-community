@@ -4,30 +4,28 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { CommunitiesServices } from '../../../../lib/community/service/CommunitiesServices';
+import * as sinon from 'sinon';
+import { expect } from 'chai';
 import { Org } from '@salesforce/core';
-import { CommunityInfo } from '../../../../lib/community/defs/CommunityInfo';
-
-const sinon = require('sinon');
-const { expect } = require('chai');
-const should = require('chai').should();
+import { CommunitiesServices } from '../../../../src/lib/community/service/CommunitiesServices';
+import { CommunityInfo } from '../../../../src/lib/community/defs/CommunityInfo';
 
 describe('CommunitiesServices', () => {
   describe('runQuery', () => {
     it('should return undefined when no query is passed', async () => {
-      should.not.exist(await CommunitiesServices.runQuery(null, null));
-      should.not.exist(await CommunitiesServices.runQuery(null, undefined));
+      expect(await CommunitiesServices.runQuery(null, null)).to.be.undefined;
+      expect(await CommunitiesServices.runQuery(null, undefined)).to.be.undefined;
     });
   });
 
   describe('fetchCommunityInfoFromName', () => {
     it('should return undefined when no community name is passed', async () => {
-      should.not.exist(await CommunitiesServices.fetchCommunityInfoFromName(null, null));
-      should.not.exist(await CommunitiesServices.fetchCommunityInfoFromName(null, undefined));
+      expect(await CommunitiesServices.fetchCommunityInfoFromName(null, null)).to.be.undefined;
+      expect(await CommunitiesServices.fetchCommunityInfoFromName(null, undefined)).to.be.undefined;
     });
 
     it('should return CommunityInfo when valid community name is passed', async () => {
-      let runQueryStub = sinon.stub(CommunitiesServices, 'runQuery');
+      const runQueryStub = sinon.stub(CommunitiesServices, 'runQuery');
       runQueryStub.returns(
         Promise.resolve({
           totalSize: 1,
@@ -37,10 +35,11 @@ describe('CommunitiesServices', () => {
               Status: 'UnderConstruction',
             },
           ],
+          done: true,
         })
       );
-      let info: CommunityInfo = await CommunitiesServices.fetchCommunityInfoFromName(new Org(null), 'communityName');
-      should.exist(info);
+      const info: CommunityInfo = await CommunitiesServices.fetchCommunityInfoFromName(new Org(null), 'communityName');
+      expect(info).to.exist;
       expect(info.id).to.equal('0D5000000000000');
       expect(info.status).to.equal('UnderConstruction');
       expect(info.name).to.equal('communityName');
@@ -49,14 +48,15 @@ describe('CommunitiesServices', () => {
     });
 
     it('should return undefined when invalid community name is passed', async () => {
-      let runQueryStub = sinon.stub(CommunitiesServices, 'runQuery');
+      const runQueryStub = sinon.stub(CommunitiesServices, 'runQuery');
       runQueryStub.returns(
         Promise.resolve({
           totalSize: 0,
           records: [],
+          done: true,
         })
       );
-      should.not.exist(await CommunitiesServices.fetchCommunityInfoFromName(new Org(null), 'communityName'));
+      expect(await CommunitiesServices.fetchCommunityInfoFromName(new Org(null), 'communityName')).to.be.undefined;
       runQueryStub.restore();
     });
   });

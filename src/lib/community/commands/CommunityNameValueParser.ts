@@ -8,9 +8,6 @@
 import { isEmpty } from 'lodash';
 import { JsonMap } from '@salesforce/ts-types';
 import { SfdxError } from '@salesforce/core/lib/sfdxError';
-import { Messages } from '@salesforce/core';
-
-Messages.importMessagesDirectory(__dirname);
 
 /**
  * A parser for the CommunityCreateCommand varargs.
@@ -71,7 +68,12 @@ export class CommunityNameValueParser {
       .map(([key, value]) => `${key}="${value}"`);
 
     if (!isEmpty(errors)) {
-      throw SfdxError.create('salesforce-alm', 'community_commands', 'create.error.invalidVarargs', errors);
+      throw SfdxError.create(
+        '@salesforce/plugin-community',
+        'community_commands',
+        'create.error.invalidVarargs',
+        errors
+      );
     }
   }
 

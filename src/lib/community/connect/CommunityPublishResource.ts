@@ -17,7 +17,7 @@ import { CommunitiesServices } from '../service/CommunitiesServices';
 import { ConnectResource } from '../../connect/services/ConnectResource';
 
 Messages.importMessagesDirectory(__dirname);
-const communityMessages = Messages.loadMessages('salesforce-alm', 'community_commands');
+const communityMessages = Messages.loadMessages('@salesforce/plugin-community', 'community_commands');
 
 /**
  * A connect api resource for publishing a community
@@ -67,7 +67,7 @@ export class CommunityPublishResource implements ConnectResource<CommunityPublis
   async fetchCommunityId(): Promise<string> {
     this.info = await CommunitiesServices.fetchCommunityInfoFromName(this.org, this.flags.name);
     if (!this.info) {
-      throw SfdxError.create('salesforce-alm', 'community_commands', 'publish.error.communityNotExists', [
+      throw SfdxError.create('@salesforce/plugin-community', 'community_commands', 'publish.error.communityNotExists', [
         this.flags.name,
       ]);
     }

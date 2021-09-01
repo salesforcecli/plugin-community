@@ -4,13 +4,10 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { CommunityTemplatesResource } from '../../../../lib/community/connect/CommunityTemplatesResource';
 
+import { expect } from 'chai';
 import { UX } from '@salesforce/command/lib/ux';
-import { Messages } from '@salesforce/core';
-const { expect } = require('chai');
-
-Messages.importMessagesDirectory(__dirname);
+import { CommunityTemplatesResource } from '../../../../src/lib/community/connect/CommunityTemplatesResource';
 
 describe('CommunityTemplatesResource', () => {
   let communityTemplatesResource: CommunityTemplatesResource;
@@ -24,7 +21,7 @@ describe('CommunityTemplatesResource', () => {
   });
   describe('getPostParams', () => {
     it('should not have any post params', () => {
-      communityTemplatesResource.fetchPostParams().then((params) => {
+      return communityTemplatesResource.fetchPostParams().then((params) => {
         expect(params).to.equal('{}');
       });
     });
