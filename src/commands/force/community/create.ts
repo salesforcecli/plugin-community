@@ -5,6 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
+import * as os from 'os';
 import { flags, FlagsConfig, SfdxCommand } from '@salesforce/command';
 import { JsonMap } from '@salesforce/ts-types';
 import { Messages } from '@salesforce/core';
@@ -22,32 +23,27 @@ const messages = Messages.loadMessages('@salesforce/plugin-community', 'create')
 export class CommunityCreateCommand extends SfdxCommand {
   public static readonly requiresUsername = true;
   public static readonly varargs = true;
-  public static readonly help = messages.getMessage('help');
-  public static readonly longDescription = messages.getMessage('longDescription');
-  public static readonly description = `${messages.getMessage('description')}\n\n${CommunityCreateCommand.help}`;
+  public static readonly description = messages.getMessage('description');
+  public static readonly examples = messages.getMessage('examples').split(os.EOL);
   public static readonly flagsConfig: FlagsConfig = {
     name: flags.string({
       char: 'n',
       description: messages.getMessage('flags.name.description'),
-      longDescription: messages.getMessage('flags.name.longDescription'),
       required: true,
     }),
     templatename: flags.string({
       char: 't',
       description: messages.getMessage('flags.templateName.description'),
-      longDescription: messages.getMessage('flags.templateName.longDescription'),
       required: true,
     }),
     urlpathprefix: flags.string({
       char: 'p',
       description: messages.getMessage('flags.urlPathPrefix.description'),
-      longDescription: messages.getMessage('flags.urlPathPrefix.longDescription'),
       required: true,
     }),
     description: flags.string({
       char: 'd',
       description: messages.getMessage('flags.description.description'),
-      longDescription: messages.getMessage('flags.description.longDescription'),
     }),
   };
 

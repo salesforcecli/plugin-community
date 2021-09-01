@@ -5,6 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
+import * as os from 'os';
 import { flags, FlagsConfig, SfdxCommand } from '@salesforce/command';
 import { Messages } from '@salesforce/core';
 import { CommunityPublishResource } from '../../../lib/community/connect/CommunityPublishResource';
@@ -20,14 +21,12 @@ const messages = Messages.loadMessages('@salesforce/plugin-community', 'publish'
  */
 export class CommunityPublishCommand extends SfdxCommand {
   public static readonly requiresUsername = true;
-  public static readonly help = messages.getMessage('help');
-  public static readonly longDescription = messages.getMessage('longDescription');
-  public static readonly description = `${messages.getMessage('description')}\n\n${CommunityPublishCommand.help}`;
+  public static readonly description = messages.getMessage('description');
+  public static readonly examples = messages.getMessage('examples').split(os.EOL);
   public static readonly flagsConfig: FlagsConfig = {
     name: flags.string({
       char: 'n',
       description: messages.getMessage('flags.name.description'),
-      longDescription: messages.getMessage('flags.name.longDescription'),
       required: true,
     }),
   };
