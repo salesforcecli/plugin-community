@@ -14,7 +14,7 @@ import { JsonMap } from '@salesforce/ts-types';
 import { CommunityNameValueParser } from '../../../../src/lib/community/commands/CommunityNameValueParser';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.loadMessages('@salesforce/plugin-community', 'community_commands');
+const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');
 
 describe('CommunityNameValueParser (Unit Test)', () => {
   describe('Using the default validation pattern', () => {
@@ -112,9 +112,7 @@ describe('CommunityNameValueParser (Unit Test)', () => {
       const input: string[] = ['name=Valid', 'invalid=Should Not Pass Validation', 'also.invalid=Should Fail'];
       const expectedErrorTokens: string[] = ['invalid="Should Not Pass Validation"', 'also.invalid="Should Fail"'];
 
-      expect(() => parser.parse(input)).to.throw(
-        messages.getMessage('create.error.invalidVarargs', expectedErrorTokens)
-      );
+      expect(() => parser.parse(input)).to.throw(messages.getMessage('error.invalidVarargs', expectedErrorTokens));
     });
   });
 
@@ -169,7 +167,7 @@ describe('CommunityNameValueParser (Unit Test)', () => {
         'manyLevels="fail"',
       ];
 
-      expect(() => parser.parse(input)).to.throw(messages.getMessage('create.error.invalidVarargs', expectedTokens));
+      expect(() => parser.parse(input)).to.throw(messages.getMessage('error.invalidVarargs', expectedTokens));
     });
 
     it('Cannot clobber', async () => {

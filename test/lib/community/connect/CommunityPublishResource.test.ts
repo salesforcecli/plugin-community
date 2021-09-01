@@ -17,7 +17,7 @@ import { CommunityPublishResource } from '../../../../src/lib/community/connect/
 import { CommunityPublishResponse } from '../../../../src/lib/community/defs/CommunityPublishResponse';
 
 Messages.importMessagesDirectory(__dirname);
-const communityMessages = Messages.loadMessages('@salesforce/plugin-community', 'community_commands');
+const messages = Messages.loadMessages('@salesforce/plugin-community', 'publish');
 
 describe('CommunityPublishResource', () => {
   let org: Org;
@@ -54,11 +54,8 @@ describe('CommunityPublishResource', () => {
       try {
         await communityPublishResource.fetchRelativeConnectUrl();
       } catch (err) {
-        const errorMessage = util.format(
-          communityMessages.getMessage('publish.error.communityNotExists'),
-          communityName
-        );
-        expect(err.name).to.equal('publish.error.communityNotExists');
+        const errorMessage = util.format(messages.getMessage('error.communityNotExists'), communityName);
+        expect(err.name).to.equal('error.communityNotExists');
         expect(err.message).to.equal(errorMessage);
       }
     });

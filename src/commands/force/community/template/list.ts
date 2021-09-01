@@ -12,7 +12,7 @@ import { ConnectExecutor } from '../../../../lib/connect/services/ConnectExecuto
 import { CommunityTemplatesListResponse } from '../../../../lib/community/defs/CommunityTemplatesListResponse';
 
 Messages.importMessagesDirectory(__dirname);
-const community = Messages.loadMessages('@salesforce/plugin-community', 'community_commands');
+const messages = Messages.loadMessages('@salesforce/plugin-community', 'template.list');
 
 /**
  * A command to fetch available community templates a community. This is just an sfdx wrapper around
@@ -20,10 +20,9 @@ const community = Messages.loadMessages('@salesforce/plugin-community', 'communi
  */
 export class CommunityListTemplatesCommand extends SfdxCommand {
   public static readonly requiresUsername = true;
-  public static readonly help = community.getMessage('list.help');
-  public static readonly description =
-    community.getMessage('list.description') + '\n\n' + CommunityListTemplatesCommand.help;
-  public static readonly longDescription = community.getMessage('list.longDescription');
+  public static readonly help = messages.getMessage('help');
+  public static readonly description = `${messages.getMessage('description')}\n\n${CommunityListTemplatesCommand.help}`;
+  public static readonly longDescription = messages.getMessage('longDescription');
 
   public async run(): Promise<CommunityTemplatesListResponse | Error> {
     const listTemplateCommand = new CommunityTemplatesResource(this.ux);

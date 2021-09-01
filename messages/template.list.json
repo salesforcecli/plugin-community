@@ -1,0 +1,9 @@
+{
+  "description": "retrieves the list of templates available in your org",
+  "longDescription": "Retrieves the list of templates available in your org for creating an Experience Cloud site.",
+  "help": "See \"Which Experience Cloud Template Should I Use?\" in Salesforce Help for more information about the different template types available for Experience Cloud.\n\nExample:\n   $ sfdx force:community:template:list",
+  "response": {
+    "styledHeader": "Site list template result",
+    "TotalField": "Total "
+  }
+}

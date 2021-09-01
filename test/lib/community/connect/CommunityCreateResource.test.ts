@@ -14,7 +14,7 @@ import { CommunityCreateResource } from '../../../../src/lib/community/connect/C
 import { CommunityCreateResponse } from '../../../../src/lib/community/defs/CommunityCreateResponse';
 
 Messages.importMessagesDirectory(__dirname);
-const communityMessages = Messages.loadMessages('@salesforce/plugin-community', 'community_commands');
+const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');
 
 describe('CommunityCreateResource', () => {
   let communityCreateResource: CommunityCreateResource;
@@ -74,9 +74,9 @@ describe('CommunityCreateResource', () => {
       };
 
       const result: CommunityCreateResponse = communityCreateResource.handleSuccess(connectResponse);
-      expect(result.message).to.equal(communityMessages.getMessage('create.response.createMessage'));
+      expect(result.message).to.equal(messages.getMessage('response.createMessage'));
       expect(result.name).to.equal(communityName);
-      expect(result.action).to.equal(communityMessages.getMessage('create.response.action'));
+      expect(result.action).to.equal(messages.getMessage('response.action'));
     });
   });
 

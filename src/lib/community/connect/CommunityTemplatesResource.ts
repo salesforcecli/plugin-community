@@ -10,7 +10,7 @@ import { ConnectResource } from '../../connect/services/ConnectResource';
 import { CommunityTemplatesListResponse } from '../defs/CommunityTemplatesListResponse';
 
 Messages.importMessagesDirectory(__dirname);
-const community = Messages.loadMessages('@salesforce/plugin-community', 'community_commands');
+const messages = Messages.loadMessages('@salesforce/plugin-community', 'template.list');
 
 /**
  * A connect api resource for fetching community templates available to context user
@@ -37,10 +37,10 @@ export class CommunityTemplatesResource implements ConnectResource<CommunityTemp
 
   handleSuccess(result: CommunityTemplatesListResponse): CommunityTemplatesListResponse {
     const columns = ['templateName', 'publisher'];
-    this.ux.styledHeader(community.getMessage('list.response.styledHeader'));
+    this.ux.styledHeader(messages.getMessage('response.styledHeader'));
     this.ux.table(result.templates, columns);
     this.ux.log();
-    this.ux.log(community.getMessage('list.response.TotalField'), result.total.toString());
+    this.ux.log(messages.getMessage('response.TotalField'), result.total.toString());
     return result;
   }
   handleError(error: Error): CommunityTemplatesListResponse {

@@ -13,7 +13,7 @@ import { CommunityCreateParams } from '../defs/CommunityCreateParams';
 import { ConnectResource } from '../../connect/services/ConnectResource';
 
 Messages.importMessagesDirectory(__dirname);
-const communityMessages = Messages.loadMessages('@salesforce/plugin-community', 'community_commands');
+const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');
 
 const MESSAGE_KEY = 'message';
 const NAME_KEY = 'name';
@@ -34,12 +34,12 @@ export class CommunityCreateResource implements ConnectResource<CommunityCreateR
 
   handleSuccess(result: JsonCollection): CommunityCreateResponse {
     const response: CommunityCreateResponse = {
-      message: communityMessages.getMessage('create.response.createMessage'),
+      message: messages.getMessage('response.createMessage'),
       name: result[NAME_KEY],
-      action: communityMessages.getMessage('create.response.action'),
+      action: messages.getMessage('response.action'),
     };
     const columns = [NAME_KEY, MESSAGE_KEY, ACTION_KEY];
-    this.ux.styledHeader(communityMessages.getMessage('create.response.styleHeader'));
+    this.ux.styledHeader(messages.getMessage('response.styleHeader'));
     this.ux.table([response], columns);
     return response;
   }

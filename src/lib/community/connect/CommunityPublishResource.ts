@@ -17,7 +17,7 @@ import { CommunitiesServices } from '../service/CommunitiesServices';
 import { ConnectResource } from '../../connect/services/ConnectResource';
 
 Messages.importMessagesDirectory(__dirname);
-const communityMessages = Messages.loadMessages('@salesforce/plugin-community', 'community_commands');
+const messages = Messages.loadMessages('@salesforce/plugin-community', 'publish');
 
 /**
  * A connect api resource for publishing a community
@@ -50,13 +50,13 @@ export class CommunityPublishResource implements ConnectResource<CommunityPublis
   handleSuccess(result: JsonCollection): CommunityPublishResponse {
     const response: CommunityPublishResponse = {
       id: result['id'],
-      message: communityMessages.getMessage('publish.response.message'),
+      message: messages.getMessage('response.message'),
       name: result['name'],
       status: this.info.status,
       url: new URL(result['url']),
     };
     const columns = ['id', 'message', 'name', 'status', 'url'];
-    this.ux.styledHeader(communityMessages.getMessage('publish.response.styleHeader'));
+    this.ux.styledHeader(messages.getMessage('response.styleHeader'));
     this.ux.table([response], columns);
     return response;
   }
@@ -67,9 +67,7 @@ export class CommunityPublishResource implements ConnectResource<CommunityPublis
   async fetchCommunityId(): Promise<string> {
     this.info = await CommunitiesServices.fetchCommunityInfoFromName(this.org, this.flags.name);
     if (!this.info) {
-      throw SfdxError.create('@salesforce/plugin-community', 'community_commands', 'publish.error.communityNotExists', [
-        this.flags.name,
-      ]);
+      throw SfdxError.create('@salesforce/plugin-community', 'publish', 'error.communityNotExists', [this.flags.name]);
     }
     return this.info.id;
   }

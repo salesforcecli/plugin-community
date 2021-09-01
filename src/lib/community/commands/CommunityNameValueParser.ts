@@ -68,12 +68,7 @@ export class CommunityNameValueParser {
       .map(([key, value]) => `${key}="${value}"`);
 
     if (!isEmpty(errors)) {
-      throw SfdxError.create(
-        '@salesforce/plugin-community',
-        'community_commands',
-        'create.error.invalidVarargs',
-        errors
-      );
+      throw SfdxError.create('@salesforce/plugin-community', 'create', 'error.invalidVarargs', errors);
     }
   }
 

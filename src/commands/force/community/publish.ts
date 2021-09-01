@@ -12,7 +12,7 @@ import { ConnectExecutor } from '../../../lib/connect/services/ConnectExecutor';
 import { CommunityPublishResponse } from '../../../lib/community/defs/CommunityPublishResponse';
 
 Messages.importMessagesDirectory(__dirname);
-const community = Messages.loadMessages('@salesforce/plugin-community', 'community_commands');
+const messages = Messages.loadMessages('@salesforce/plugin-community', 'publish');
 
 /**
  * A command to publish a community. This is just an sfdx wrapper around
@@ -20,15 +20,14 @@ const community = Messages.loadMessages('@salesforce/plugin-community', 'communi
  */
 export class CommunityPublishCommand extends SfdxCommand {
   public static readonly requiresUsername = true;
-  public static readonly help = community.getMessage('publish.help');
-  public static readonly longDescription = community.getMessage('publish.longDescription');
-  public static readonly description =
-    community.getMessage('publish.description') + '\n\n' + CommunityPublishCommand.help;
+  public static readonly help = messages.getMessage('help');
+  public static readonly longDescription = messages.getMessage('longDescription');
+  public static readonly description = `${messages.getMessage('description')}\n\n${CommunityPublishCommand.help}`;
   public static readonly flagsConfig: FlagsConfig = {
     name: flags.string({
       char: 'n',
-      description: community.getMessage('publish.flags.name.description'),
-      longDescription: community.getMessage('publish.flags.name.longDescription'),
+      description: messages.getMessage('flags.name.description'),
+      longDescription: messages.getMessage('flags.name.longDescription'),
       required: true,
     }),
   };

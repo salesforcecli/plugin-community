@@ -14,7 +14,7 @@ import { CommunityCreateResource } from '../../../lib/community/connect/Communit
 import { CommunityCreateResponse } from '../../../lib/community/defs/CommunityCreateResponse';
 
 Messages.importMessagesDirectory(__dirname);
-const communityMessages = Messages.loadMessages('@salesforce/plugin-community', 'community_commands');
+const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');
 /**
  * A command to create a community.
  * This is just an sfdx wrapper around the community create connect endpoint
@@ -22,34 +22,32 @@ const communityMessages = Messages.loadMessages('@salesforce/plugin-community', 
 export class CommunityCreateCommand extends SfdxCommand {
   public static readonly requiresUsername = true;
   public static readonly varargs = true;
-  public static readonly help = communityMessages.getMessage('create.help');
-  public static readonly longDescription = communityMessages.getMessage('create.longDescription');
-  public static readonly description =
-    communityMessages.getMessage('create.description') + '\n\n' + CommunityCreateCommand.help;
+  public static readonly help = messages.getMessage('help');
+  public static readonly longDescription = messages.getMessage('longDescription');
+  public static readonly description = `${messages.getMessage('description')}\n\n${CommunityCreateCommand.help}`;
   public static readonly flagsConfig: FlagsConfig = {
     name: flags.string({
       char: 'n',
-      description: communityMessages.getMessage('create.flags.name.description'),
-      longDescription: communityMessages.getMessage('create.flags.name.longDescription'),
+      description: messages.getMessage('flags.name.description'),
+      longDescription: messages.getMessage('flags.name.longDescription'),
       required: true,
     }),
     templatename: flags.string({
       char: 't',
-      description: communityMessages.getMessage('create.flags.templateName.description'),
-      longDescription: communityMessages.getMessage('create.flags.templateName.longDescription'),
+      description: messages.getMessage('flags.templateName.description'),
+      longDescription: messages.getMessage('flags.templateName.longDescription'),
       required: true,
     }),
     urlpathprefix: flags.string({
       char: 'p',
-      description: communityMessages.getMessage('create.flags.urlPathPrefix.description'),
-      longDescription: communityMessages.getMessage('create.flags.urlPathPrefix.longDescription'),
+      description: messages.getMessage('flags.urlPathPrefix.description'),
+      longDescription: messages.getMessage('flags.urlPathPrefix.longDescription'),
       required: true,
     }),
     description: flags.string({
       char: 'd',
-      description: communityMessages.getMessage('create.flags.description.description'),
-      longDescription: communityMessages.getMessage('create.flags.description.longDescription'),
-      required: false,
+      description: messages.getMessage('flags.description.description'),
+      longDescription: messages.getMessage('flags.description.longDescription'),
     }),
   };
 
