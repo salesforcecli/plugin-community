@@ -1,15 +1,26 @@
 [
   {
-    "command": "hello:org",
+    "command": "force:community:create",
     "plugin": "@salesforce/plugin-community",
     "flags": [
       "apiversion",
-      "force",
+      "description",
       "json",
       "loglevel",
       "name",
-      "targetdevhubusername",
-      "targetusername"
+      "targetusername",
+      "templatename",
+      "urlpathprefix"
     ]
+  },
+  {
+    "command": "force:community:publish",
+    "plugin": "@salesforce/plugin-community",
+    "flags": ["apiversion", "json", "loglevel", "name", "targetusername"]
+  },
+  {
+    "command": "force:community:template:list",
+    "plugin": "@salesforce/plugin-community",
+    "flags": ["apiversion", "json", "loglevel", "targetusername"]
   }
 ]
