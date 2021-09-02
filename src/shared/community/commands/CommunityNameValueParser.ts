@@ -7,7 +7,7 @@
 
 import { isEmpty } from 'lodash';
 import { JsonMap } from '@salesforce/ts-types';
-import { SfdxError } from '@salesforce/core/lib/sfdxError';
+import { SfdxError } from '@salesforce/core';
 
 /**
  * A parser for the CommunityCreateCommand varargs.

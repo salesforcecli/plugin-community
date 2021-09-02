@@ -8,9 +8,9 @@
 import * as os from 'os';
 import { SfdxCommand } from '@salesforce/command';
 import { Messages } from '@salesforce/core';
-import { CommunityTemplatesResource } from '../../../../lib/community/connect/CommunityTemplatesResource';
-import { ConnectExecutor } from '../../../../lib/connect/services/ConnectExecutor';
-import { CommunityTemplatesListResponse } from '../../../../lib/community/defs/CommunityTemplatesListResponse';
+import { CommunityTemplatesResource } from '../../../../shared/community/connect/CommunityTemplatesResource';
+import { ConnectExecutor } from '../../../../shared/connect/services/ConnectExecutor';
+import { CommunityTemplatesListResponse } from '../../../../shared/community/defs/CommunityTemplatesListResponse';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'template.list');

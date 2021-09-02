@@ -9,10 +9,10 @@ import * as os from 'os';
 import { flags, FlagsConfig, SfdxCommand } from '@salesforce/command';
 import { JsonMap } from '@salesforce/ts-types';
 import { Messages } from '@salesforce/core';
-import { CommunityNameValueParser } from '../../../lib/community/commands/CommunityNameValueParser';
-import { ConnectExecutor } from '../../../lib/connect/services/ConnectExecutor';
-import { CommunityCreateResource } from '../../../lib/community/connect/CommunityCreateResource';
-import { CommunityCreateResponse } from '../../../lib/community/defs/CommunityCreateResponse';
+import { CommunityNameValueParser } from '../../../shared/community/commands/CommunityNameValueParser';
+import { ConnectExecutor } from '../../../shared/connect/services/ConnectExecutor';
+import { CommunityCreateResource } from '../../../shared/community/connect/CommunityCreateResource';
+import { CommunityCreateResponse } from '../../../shared/community/defs/CommunityCreateResponse';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');

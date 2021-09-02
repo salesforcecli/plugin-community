@@ -6,8 +6,8 @@
  */
 
 import { expect } from 'chai';
-import { UX } from '@salesforce/command/lib/ux';
-import { CommunityTemplatesResource } from '../../../../src/lib/community/connect/CommunityTemplatesResource';
+import { UX } from '@salesforce/command';
+import { CommunityTemplatesResource } from '../../../../src/shared/community/connect/CommunityTemplatesResource';
 
 describe('CommunityTemplatesResource', () => {
   let communityTemplatesResource: CommunityTemplatesResource;

@@ -11,7 +11,7 @@ import { expect } from 'chai';
 import { Messages } from '@salesforce/core';
 import { JsonMap } from '@salesforce/ts-types';
 
-import { CommunityNameValueParser } from '../../../../src/lib/community/commands/CommunityNameValueParser';
+import { CommunityNameValueParser } from '../../../../src/shared/community/commands/CommunityNameValueParser';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');

@@ -8,9 +8,9 @@
 import * as os from 'os';
 import { flags, FlagsConfig, SfdxCommand } from '@salesforce/command';
 import { Messages } from '@salesforce/core';
-import { CommunityPublishResource } from '../../../lib/community/connect/CommunityPublishResource';
-import { ConnectExecutor } from '../../../lib/connect/services/ConnectExecutor';
-import { CommunityPublishResponse } from '../../../lib/community/defs/CommunityPublishResponse';
+import { CommunityPublishResource } from '../../../shared/community/connect/CommunityPublishResource';
+import { ConnectExecutor } from '../../../shared/connect/services/ConnectExecutor';
+import { CommunityPublishResponse } from '../../../shared/community/defs/CommunityPublishResponse';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'publish');

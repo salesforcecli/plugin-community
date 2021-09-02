@@ -10,8 +10,8 @@ import { expect } from 'chai';
 import { Org, Connection } from '@salesforce/core';
 import { Result } from '@salesforce/command';
 import { RequestInfo } from 'jsforce/connection';
-import { ConnectExecutor } from '../../../../../src/lib/connect/services/ConnectExecutor';
-import { ConnectResource } from '../../../../../src/lib/connect/services/ConnectResource';
+import { ConnectExecutor } from '../../../../../src/shared/connect/services/ConnectExecutor';
+import { ConnectResource } from '../../../../../src/shared/connect/services/ConnectResource';
 
 describe('ConnectExecutor', () => {
   const relativeUrl = '/relativeUrl/';

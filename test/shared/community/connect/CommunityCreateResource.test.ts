@@ -8,10 +8,10 @@ import * as sinon from 'sinon';
 import { AnyJson, JsonMap, JsonCollection } from '@salesforce/ts-types';
 import { expect } from 'chai';
 import { Messages } from '@salesforce/core';
-import { UX } from '@salesforce/command/lib/ux';
-import { CommunityCreateParams } from '../../../../src/lib/community/defs/CommunityCreateParams';
-import { CommunityCreateResource } from '../../../../src/lib/community/connect/CommunityCreateResource';
-import { CommunityCreateResponse } from '../../../../src/lib/community/defs/CommunityCreateResponse';
+import { UX } from '@salesforce/command';
+import { CommunityCreateParams } from '../../../../src/shared/community/defs/CommunityCreateParams';
+import { CommunityCreateResource } from '../../../../src/shared/community/connect/CommunityCreateResource';
+import { CommunityCreateResponse } from '../../../../src/shared/community/defs/CommunityCreateResponse';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');

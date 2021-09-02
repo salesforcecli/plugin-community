@@ -6,11 +6,9 @@
  */
 import { URL } from 'url';
 import { OutputFlags } from '@oclif/parser';
-import { Org } from '@salesforce/core/lib/org';
 import { UX } from '@salesforce/command';
-import { SfdxError } from '@salesforce/core/lib/sfdxError';
 import { JsonCollection } from '@salesforce/ts-types';
-import { Messages } from '@salesforce/core';
+import { Messages, Org, SfdxError } from '@salesforce/core';
 import { CommunityPublishResponse } from '../defs/CommunityPublishResponse';
 import { CommunityInfo } from '../defs/CommunityInfo';
 import { CommunitiesServices } from '../service/CommunitiesServices';

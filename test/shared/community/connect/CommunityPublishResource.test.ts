@@ -8,13 +8,12 @@
 import * as util from 'util';
 import * as sinon from 'sinon';
 import { expect } from 'chai';
-import { Org } from '@salesforce/core/lib/org';
-import { UX } from '@salesforce/command/lib/ux';
+import { UX } from '@salesforce/command';
 import { JsonCollection } from '@salesforce/ts-types';
-import { Messages } from '@salesforce/core';
-import { CommunitiesServices } from '../../../../src/lib/community/service/CommunitiesServices';
-import { CommunityPublishResource } from '../../../../src/lib/community/connect/CommunityPublishResource';
-import { CommunityPublishResponse } from '../../../../src/lib/community/defs/CommunityPublishResponse';
+import { Messages, Org } from '@salesforce/core';
+import { CommunitiesServices } from '../../../../src/shared/community/service/CommunitiesServices';
+import { CommunityPublishResource } from '../../../../src/shared/community/connect/CommunityPublishResource';
+import { CommunityPublishResponse } from '../../../../src/shared/community/defs/CommunityPublishResponse';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'publish');

@@ -7,8 +7,8 @@
 import * as sinon from 'sinon';
 import { expect } from 'chai';
 import { Org } from '@salesforce/core';
-import { CommunitiesServices } from '../../../../src/lib/community/service/CommunitiesServices';
-import { CommunityInfo } from '../../../../src/lib/community/defs/CommunityInfo';
+import { CommunitiesServices } from '../../../../src/shared/community/service/CommunitiesServices';
+import { CommunityInfo } from '../../../../src/shared/community/defs/CommunityInfo';
 
 describe('CommunitiesServices', () => {
   describe('runQuery', () => {
