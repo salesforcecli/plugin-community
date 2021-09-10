@@ -27,6 +27,7 @@ export class CommunityPublishCommand extends SfdxCommand {
     name: flags.string({
       char: 'n',
       description: messages.getMessage('flags.name.description'),
+      longDescription: messages.getMessage('flags.name.longDescription'),
       required: true,
     }),
   };

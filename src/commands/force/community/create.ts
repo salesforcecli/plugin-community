@@ -29,21 +29,25 @@ export class CommunityCreateCommand extends SfdxCommand {
     name: flags.string({
       char: 'n',
       description: messages.getMessage('flags.name.description'),
+      longDescription: messages.getMessage('flags.name.longDescription'),
       required: true,
     }),
     templatename: flags.string({
       char: 't',
       description: messages.getMessage('flags.templateName.description'),
+      longDescription: messages.getMessage('flags.templateName.longDescription'),
       required: true,
     }),
     urlpathprefix: flags.string({
       char: 'p',
       description: messages.getMessage('flags.urlPathPrefix.description'),
+      longDescription: messages.getMessage('flags.urlPathPrefix.longDescription'),
       required: true,
     }),
     description: flags.string({
       char: 'd',
       description: messages.getMessage('flags.description.description'),
+      longDescription: messages.getMessage('flags.description.longDescription'),
     }),
   };
 
