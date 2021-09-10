@@ -22,7 +22,6 @@ const messages = Messages.loadMessages('@salesforce/plugin-community', 'template
 export class CommunityListTemplatesCommand extends SfdxCommand {
   public static readonly requiresUsername = true;
   public static readonly description = messages.getMessage('description');
-  public static readonly longDescription = messages.getMessage('longDescription');
   public static readonly examples = messages.getMessage('examples').split(os.EOL);
 
   public async run(): Promise<CommunityTemplatesListResponse | Error> {
