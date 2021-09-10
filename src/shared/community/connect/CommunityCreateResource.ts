@@ -22,17 +22,9 @@ const ACTION_KEY = 'action';
  * A connect api resource for creating a community
  */
 export class CommunityCreateResource implements ConnectResource<CommunityCreateResponse> {
-  private flags: OutputFlags<any>;
-  private params: AnyJson;
-  private ux: UX;
+  public constructor(private flags: OutputFlags<any>, private params: AnyJson, private ux: UX) {}
 
-  constructor(flags: OutputFlags<any>, params: AnyJson, ux: UX) {
-    this.flags = flags;
-    this.params = params;
-    this.ux = ux;
-  }
-
-  handleSuccess(result: JsonCollection): CommunityCreateResponse {
+  public handleSuccess(result: JsonCollection): CommunityCreateResponse {
     const response: CommunityCreateResponse = {
       message: messages.getMessage('response.createMessage'),
       name: result[NAME_KEY],
@@ -44,21 +36,21 @@ export class CommunityCreateResource implements ConnectResource<CommunityCreateR
     return response;
   }
 
-  handleError(error: Error): CommunityCreateResponse {
+  public handleError(error: Error): CommunityCreateResponse {
     throw error;
   }
 
   // eslint-disable-next-line @typescript-eslint/require-await
-  async fetchRelativeConnectUrl(): Promise<string> {
+  public async fetchRelativeConnectUrl(): Promise<string> {
     return '/connect/communities';
   }
 
-  getRequestMethod(): string {
+  public getRequestMethod(): string {
     return 'POST';
   }
 
   // eslint-disable-next-line @typescript-eslint/require-await
-  async fetchPostParams(): Promise<string> {
+  public async fetchPostParams(): Promise<string> {
     const params: CommunityCreateParams = {
       name: this.flags.name,
       urlPathPrefix: this.flags.urlpathprefix,

@@ -21,31 +21,24 @@ const messages = Messages.loadMessages('@salesforce/plugin-community', 'publish'
  * A connect api resource for publishing a community
  */
 export class CommunityPublishResource implements ConnectResource<CommunityPublishResponse> {
-  private flags: OutputFlags<any>;
-  private org: Org;
-  private ux: UX;
-
   private info: CommunityInfo;
 
-  constructor(flags: OutputFlags<any>, org: Org, ux: UX) {
-    this.flags = flags;
-    this.org = org;
-    this.ux = ux;
-  }
+  public constructor(private flags: OutputFlags<any>, private org: Org, private ux: UX) {}
 
-  async fetchRelativeConnectUrl(): Promise<string> {
+  public async fetchRelativeConnectUrl(): Promise<string> {
     return `/connect/communities/${await this.fetchCommunityId()}/publish`;
   }
 
-  getRequestMethod(): string {
+  public getRequestMethod(): string {
     return 'POST';
   }
 
   // eslint-disable-next-line @typescript-eslint/require-await
-  async fetchPostParams(): Promise<string> {
+  public async fetchPostParams(): Promise<string> {
     return JSON.stringify({});
   }
-  handleSuccess(result: JsonCollection): CommunityPublishResponse {
+
+  public handleSuccess(result: JsonCollection): CommunityPublishResponse {
     const response: CommunityPublishResponse = {
       id: result['id'],
       message: messages.getMessage('response.message'),
@@ -58,11 +51,12 @@ export class CommunityPublishResource implements ConnectResource<CommunityPublis
     this.ux.table([response], columns);
     return response;
   }
-  handleError(error: Error): CommunityPublishResponse {
+
+  public handleError(error: Error): CommunityPublishResponse {
     throw error;
   }
 
-  async fetchCommunityId(): Promise<string> {
+  public async fetchCommunityId(): Promise<string> {
     this.info = await CommunitiesServices.fetchCommunityInfoFromName(this.org, this.flags.name);
     if (!this.info) {
       throw SfdxError.create('@salesforce/plugin-community', 'publish', 'error.communityNotExists', [this.flags.name]);

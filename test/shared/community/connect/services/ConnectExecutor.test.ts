@@ -17,13 +17,15 @@ describe('ConnectExecutor', () => {
   const relativeUrl = '/relativeUrl/';
 
   class DummyPostConnectResource implements ConnectResource<Result> {
-    fetchRelativeConnectUrl(): Promise<string> {
+    public fetchRelativeConnectUrl(): Promise<string> {
       return Promise.resolve(relativeUrl + this.getRequestMethod());
     }
-    getRequestMethod(): string {
+
+    public getRequestMethod(): string {
       return 'POST';
     }
-    fetchPostParams(): Promise<string> {
+
+    public fetchPostParams(): Promise<string> {
       return Promise.resolve(
         JSON.stringify({
           param: 'value',
@@ -31,7 +33,7 @@ describe('ConnectExecutor', () => {
       );
     }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    handleSuccess(result: import('@salesforce/ts-types').JsonCollection): import('@salesforce/command').Result {
+    public handleSuccess(result: import('@salesforce/ts-types').JsonCollection): import('@salesforce/command').Result {
       return {
         data: 'success',
         ux: null,
@@ -40,26 +42,28 @@ describe('ConnectExecutor', () => {
       };
     }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    handleError(error: Error): import('@salesforce/command').Result {
+    public handleError(error: Error): import('@salesforce/command').Result {
       throw new Error('handleError is called');
     }
   }
 
   class DummyGetConnectResource extends DummyPostConnectResource {
-    getRequestMethod(): string {
+    public getRequestMethod(): string {
       return 'GET';
     }
-    fetchPostParams(): Promise<string> {
+
+    public fetchPostParams(): Promise<string> {
       throw new Error('Should not be called');
     }
   }
 
   // Patch operation is not supported yet
   class DummyPatchConnectResource extends DummyPostConnectResource {
-    getRequestMethod(): string {
+    public getRequestMethod(): string {
       return 'PATCH';
     }
-    fetchPostParams(): Promise<string> {
+
+    public fetchPostParams(): Promise<string> {
       throw new Error('Should not be called');
     }
   }

@@ -8,7 +8,6 @@ module.exports = {
   extends: ['eslint-config-salesforce-typescript', 'eslint-config-salesforce-license'],
   rules: {
     // These were disabled in toolbelt, would be worth fixing these at some point
-    '@typescript-eslint/explicit-member-accessibility': 'warn',
     '@typescript-eslint/no-unsafe-assignment': 'warn',
     '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/restrict-template-expressions': 'warn',

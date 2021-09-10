@@ -13,13 +13,7 @@ import { ConnectResource } from './ConnectResource';
  * An executor which calls a connect api for the given org
  */
 export class ConnectExecutor<T> {
-  private connectService: ConnectResource<T>;
-  private org: Org;
-
-  constructor(connectService: ConnectResource<T>, org: Org) {
-    this.connectService = connectService;
-    this.org = org;
-  }
+  public constructor(private connectService: ConnectResource<T>, private org: Org) {}
 
   /**
    * Call the connect resource as defined by the given ConnectResource for the given org

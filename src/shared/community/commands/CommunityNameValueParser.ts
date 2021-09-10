@@ -13,8 +13,6 @@ import { SfdxError } from '@salesforce/core';
  * A parser for the CommunityCreateCommand varargs.
  */
 export class CommunityNameValueParser {
-  private patterns: string[];
-
   /**
    * The caller/creator of the parser needs to pass in some patterns to validate.
    *
@@ -37,9 +35,7 @@ export class CommunityNameValueParser {
    * parser.parse([ "name=Demo", "template=\"Customer Service\"" ]); // fails
    * parser.parse([ "name=Demo", "template.=templateOne" ]); // fails
    */
-  constructor(patternsToValidate: string[] = ['.+']) {
-    this.patterns = patternsToValidate;
-  }
+  public constructor(private patterns: string[] = ['.+']) {}
 
   public parse(args: string[]): JsonMap {
     const mappings: Array<[string, string]> = this.parseKeyValuePairs(args);

@@ -16,26 +16,22 @@ const messages = Messages.loadMessages('@salesforce/plugin-community', 'template
  * A connect api resource for fetching community templates available to context user
  */
 export class CommunityTemplatesResource implements ConnectResource<CommunityTemplatesListResponse> {
-  private ux: UX;
-
-  constructor(ux: UX) {
-    this.ux = ux;
-  }
+  public constructor(private ux: UX) {}
 
   // eslint-disable-next-line @typescript-eslint/require-await
-  async fetchRelativeConnectUrl(): Promise<string> {
+  public async fetchRelativeConnectUrl(): Promise<string> {
     return '/connect/communities/templates';
   }
   // eslint-disable-next-line @typescript-eslint/require-await
-  async fetchPostParams(): Promise<string> {
+  public async fetchPostParams(): Promise<string> {
     return JSON.stringify({});
   }
 
-  getRequestMethod(): string {
+  public getRequestMethod(): string {
     return 'GET';
   }
 
-  handleSuccess(result: CommunityTemplatesListResponse): CommunityTemplatesListResponse {
+  public handleSuccess(result: CommunityTemplatesListResponse): CommunityTemplatesListResponse {
     const columns = ['templateName', 'publisher'];
     this.ux.styledHeader(messages.getMessage('response.styledHeader'));
     this.ux.table(result.templates, columns);
@@ -43,7 +39,8 @@ export class CommunityTemplatesResource implements ConnectResource<CommunityTemp
     this.ux.log(messages.getMessage('response.TotalField'), result.total.toString());
     return result;
   }
-  handleError(error: Error): CommunityTemplatesListResponse {
+
+  public handleError(error: Error): CommunityTemplatesListResponse {
     throw error;
   }
 }
