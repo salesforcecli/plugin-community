@@ -5,14 +5,15 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
+import * as os from 'os';
 import { SfdxCommand } from '@salesforce/command';
 import { Messages } from '@salesforce/core';
-import { CommunityTemplatesResource } from '../../../../lib/community/connect/CommunityTemplatesResource';
-import { ConnectExecutor } from '../../../../lib/connect/services/ConnectExecutor';
-import { CommunityTemplatesListResponse } from '../../../../lib/community/defs/CommunityTemplatesListResponse';
+import { CommunityTemplatesResource } from '../../../../shared/community/connect/CommunityTemplatesResource';
+import { ConnectExecutor } from '../../../../shared/connect/services/ConnectExecutor';
+import { CommunityTemplatesListResponse } from '../../../../shared/community/defs/CommunityTemplatesListResponse';
 
 Messages.importMessagesDirectory(__dirname);
-const community = Messages.loadMessages('salesforce-alm', 'community_commands');
+const messages = Messages.loadMessages('@salesforce/plugin-community', 'template.list');
 
 /**
  * A command to fetch available community templates a community. This is just an sfdx wrapper around
@@ -20,10 +21,8 @@ const community = Messages.loadMessages('salesforce-alm', 'community_commands');
  */
 export class CommunityListTemplatesCommand extends SfdxCommand {
   public static readonly requiresUsername = true;
-  public static readonly help = community.getMessage('list.help');
-  public static readonly description =
-    community.getMessage('list.description') + '\n\n' + CommunityListTemplatesCommand.help;
-  public static readonly longDescription = community.getMessage('list.longDescription');
+  public static readonly description = messages.getMessage('description');
+  public static readonly examples = messages.getMessage('examples').split(os.EOL);
 
   public async run(): Promise<CommunityTemplatesListResponse | Error> {
     const listTemplateCommand = new CommunityTemplatesResource(this.ux);

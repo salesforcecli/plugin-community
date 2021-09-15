@@ -1,36 +1,10 @@
-### Use the [lerna template](https://github.com/salesforcecli/lerna-template) if you need a library and plugin
-
-### This template is useful if the library is already in another repository or the plugin is a wrapper around an API.
-
-# plugin-&lt;REPLACE ME&gt;
+# plugin-community;
 
 [![NPM](https://img.shields.io/npm/v/@salesforce/plugin-community.svg?label=@salesforce/plugin-community)](https://www.npmjs.com/package/@salesforce/plugin-community) [![CircleCI](https://circleci.com/gh/salesforcecli/plugin-community/tree/main.svg?style=shield)](https://circleci.com/gh/salesforcecli/plugin-community/tree/main) [![Downloads/week](https://img.shields.io/npm/dw/@salesforce/plugin-community.svg)](https://npmjs.org/package/@salesforce/plugin-community) [![License](https://img.shields.io/badge/License-BSD%203--Clause-brightgreen.svg)](https://raw.githubusercontent.com/salesforcecli/plugin-community/main/LICENSE.txt)
 
-Change above to <REPLACE_ME> before finalizing
-
-&lt;REPLACE ME DESCRIPTION START&gt;
-
-This repository provides a template for creating a plugin for the Salesforce CLI. To convert this template to a working plugin:
-
-1. Clone this repo
-2. Delete the .git folder
-3. Replace filler values
-   a) Every instance of `<REPLACE_ME>` can be directly substitued for the name of the new plugin. However beware, things like github paths are for the salesforcecli Github organization
-   b) Search for case-matching `REPLACE` to find other filler values, such as for the plugin description
-4. Use `git init` to set up the desired git information
-5. Follow the getting started steps below until the `sfdx hello:org` commmand is functioning
-
-&lt;REPLACE ME DESCRIPTION END&gt;
-
 ## Learn about the plugin-community
 
-Salesforce CLI plugins are based on the [oclif plugin framework](<(https://oclif.io/docs/introduction.html)>). Read the [plugin developer guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_plugins.meta/sfdx_cli_plugins/cli_plugins_architecture_sf_cli.htm) to learn about Salesforce CLI plugin development.
-
-This repository contains a lot of additional scripts and tools to help with general Salesforce node development and enforce coding standards. You should familiarize yourself with some of the [node developer packages](https://github.com/forcedotcom/sfdx-dev-packages/) used by Salesforce. There is also a default circleci config using the [release management orb](https://github.com/forcedotcom/npm-release-management-orb) standards.
-
-Additionally, there are some additional tests that the Salesforce CLI will enforce if this plugin is ever bundled with the CLI. These test are included by default under the `posttest` script and it is recommended to keep these tests active in your plugin, regardless if you plan to have it bundled.
-
-# Everything past here is only a suggestion as to what should be in your specific plugin's description
+Use the community commands to create and publish an Experience Cloud site, and view a list of available templates in you org.
 
 This plugin is bundled with the [Salesforce CLI](https://developer.salesforce.com/tools/sfdxcli). For more information on the CLI, read the [getting started guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm).
 
@@ -39,7 +13,7 @@ We always recommend using the latest version of these commands bundled with the 
 ## Install
 
 ```bash
-sfdx plugins:install <REPLACE_ME>@x.y.z
+sfdx plugins:install community@x.y.z
 ```
 
 ## Issues
@@ -71,7 +45,7 @@ To build the plugin locally, make sure to have yarn installed and run the follow
 
 ```bash
 # Clone the repository
-git clone git@github.com:salesforcecli/plugin-<REPLACE_ME>
+git clone git@github.com:salesforcecli/plugin-community
 
 # Install the dependencies and compile
 yarn install
@@ -82,7 +56,7 @@ To use your plugin, run using the local `./bin/run` or `./bin/run.cmd` file.
 
 ```bash
 # Run using local run file.
-./bin/run <REPLACE_ME>
+./bin/run community
 ```
 
 There should be no differences when running via the Salesforce CLI or using the local run file. However, it can be useful to link the plugin to do some additional testing or run your commands from anywhere on your machine.
@@ -98,26 +72,47 @@ sfdx plugins
 
 <!-- commands -->
 
-- [`sfdx hello:org [-n <string>] [-f] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-helloorg--n-string--f--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
+- [`sfdx force:community:create [name=value...] -n <string> -t <string> -p <string> [-d <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-forcecommunitycreate-namevalue--n-string--t-string--p-string--d-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
+- [`sfdx force:community:publish -n <string> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-forcecommunitypublish--n-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
+- [`sfdx force:community:template:list [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-forcecommunitytemplatelist--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 
-## `sfdx hello:org [-n <string>] [-f] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
+## `sfdx force:community:create [name=value...] -n <string> -t <string> -p <string> [-d <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
-print a greeting and your org IDs
+creates an Experience Cloud site using a template
 
 ```
+creates an Experience Cloud site using a template
+See 'Which Experience Cloud Template Should I Use?' in Salesforce Help for more information about the different template types available for Experience Cloud.
+
+When creating a site with the Build Your Own (LWR) template, you must also specify the AuthenticationType value using the format templateParams.AuthenticationType=value, where value is AUTHENTICATED, UNAUTHENTICATED, or AUTHENTICATED_WITH_PUBLIC_ACCESS. Name and values are case-sensitive. See 'ExperienceBundle' in the Metadata API Developer Guide for more information.
+
+When you execute this command, it creates the site in preview status, which means that it isn’t yet live. After you finish building your site, you can make it live.
+
+If you have an Experience Builder site, publish the site using the sfdx force:community:publish command to make it live.
+
+If you have a Salesforce Tabs + Visualforce site, activate the site to make it live by updating the status field of the Network type in the Metadata API. Alternatively, in Experience Workspaces, go to Administration | Settings, and click Activate.
+
+For Experience Builder sites, activating the site just sends out a welcome email to site members.
+
 USAGE
-  $ sfdx hello:org [-n <string>] [-f] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel
-  trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
+  $ sfdx force:community:create [name=value...] -n <string> -t <string> -p <string> [-d <string>] [-u <string>]
+  [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
 
 OPTIONS
-  -f, --force                                                                       example boolean flag
-  -n, --name=name                                                                   name to print
+  -d, --description=description                                                     description of the site
+
+  -n, --name=name                                                                   (required) name of the site to
+                                                                                    create
+
+  -p, --urlpathprefix=urlpathprefix                                                 (required) URL to append to the
+                                                                                    domain created when Digital
+                                                                                    Experiences was enabled for this org
+
+  -t, --templatename=templatename                                                   (required) template to use to create
+                                                                                    a site
 
   -u, --targetusername=targetusername                                               username or alias for the target
                                                                                     org; overrides default target org
-
-  -v, --targetdevhubusername=targetdevhubusername                                   username or alias for the dev hub
-                                                                                    org; overrides default dev hub org
 
   --apiversion=apiversion                                                           override the api version used for
                                                                                     api requests made by this command
@@ -127,13 +122,121 @@ OPTIONS
   --loglevel=(trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL)  [default: warn] logging level for
                                                                                     this command invocation
 
-EXAMPLES
-  $ sfdx hello:org --targetusername myOrg@example.com --targetdevhubusername devhub@org.com
-     Hello world! This is org: MyOrg and I will be around until Tue Mar 20 2018!
-     My hub org id is: 00Dxx000000001234
+DESCRIPTION
+  See 'Which Experience Cloud Template Should I Use?' in Salesforce Help for more information about the different
+  template types available for Experience Cloud.
 
-  $ sfdx hello:org --name myname --targetusername myOrg@example.com
-     Hello myname! This is org: MyOrg and I will be around until Tue Mar 20 2018!
+  When creating a site with the Build Your Own (LWR) template, you must also specify the AuthenticationType value using
+  the format templateParams.AuthenticationType=value, where value is AUTHENTICATED, UNAUTHENTICATED, or
+  AUTHENTICATED_WITH_PUBLIC_ACCESS. Name and values are case-sensitive. See 'ExperienceBundle' in the Metadata API
+  Developer Guide for more information.
+
+  When you execute this command, it creates the site in preview status, which means that it isn’t yet live. After you
+  finish building your site, you can make it live.
+
+  If you have an Experience Builder site, publish the site using the sfdx force:community:publish command to make it
+  live.
+
+  If you have a Salesforce Tabs + Visualforce site, activate the site to make it live by updating the status field of
+  the Network type in the Metadata API. Alternatively, in Experience Workspaces, go to Administration | Settings, and
+  click Activate.
+
+  For Experience Builder sites, activating the site just sends out a welcome email to site members.
+
+EXAMPLES
+  sfdx force:community:create --name 'My Customer Site' --templatename 'Customer Service' --urlpathprefix customers
+  --description 'My customer site'
+  sfdx force:community:create -n partnercentral -t 'Partner Central' -p partners
+  sfdx force:community:create -n lwrsite -t 'Build Your Own (LWR)' -p lwrsite
+  templateParams.AuthenticatedType=UNAUTHENTICATED
 ```
+
+_See code: [src/commands/force/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.0/src/commands/force/community/create.ts)_
+
+## `sfdx force:community:publish -n <string> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
+
+publishes an Experience Builder site to make it live
+
+```
+publishes an Experience Builder site to make it live
+When you publish an Experience Builder site for the first time, you make the site’s URL live and enable login access for site members.
+
+Additionally, to send a welcome email to all site members, you must activate the site. (Activation is also required to successfully set up SEO for Experience Builder sites.) To activate a site, update the status field of the Network type in the Metadata API. Alternatively, in Experience Workspaces, go to Administration | Settings, and click Activate.
+
+Subsequently, each time you publish the site, you update the live site with all changes made to the site since it was last published.
+
+An email notification informs you when your changes are live.
+
+USAGE
+  $ sfdx force:community:publish -n <string> [-u <string>] [--apiversion <string>] [--json] [--loglevel
+  trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
+
+OPTIONS
+  -n, --name=name                                                                   (required) name of the Experience
+                                                                                    Builder site to publish
+
+  -u, --targetusername=targetusername                                               username or alias for the target
+                                                                                    org; overrides default target org
+
+  --apiversion=apiversion                                                           override the api version used for
+                                                                                    api requests made by this command
+
+  --json                                                                            format output as json
+
+  --loglevel=(trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL)  [default: warn] logging level for
+                                                                                    this command invocation
+
+DESCRIPTION
+  When you publish an Experience Builder site for the first time, you make the site’s URL live and enable login access
+  for site members.
+
+  Additionally, to send a welcome email to all site members, you must activate the site. (Activation is also required to
+  successfully set up SEO for Experience Builder sites.) To activate a site, update the status field of the Network type
+  in the Metadata API. Alternatively, in Experience Workspaces, go to Administration | Settings, and click Activate.
+
+  Subsequently, each time you publish the site, you update the live site with all changes made to the site since it was
+  last published.
+
+  An email notification informs you when your changes are live.
+
+EXAMPLE
+  sfdx force:community:publish --name 'My Customer Site'
+```
+
+_See code: [src/commands/force/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.0/src/commands/force/community/publish.ts)_
+
+## `sfdx force:community:template:list [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
+
+retrieves the list of templates available in your org
+
+```
+retrieves the list of templates available in your org
+See 'Which Experience Cloud Template Should I Use?' in Salesforce Help for more information about the different template types available for Experience Cloud.
+
+USAGE
+  $ sfdx force:community:template:list [-u <string>] [--apiversion <string>] [--json] [--loglevel
+  trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
+
+OPTIONS
+  -u, --targetusername=targetusername                                               username or alias for the target
+                                                                                    org; overrides default target org
+
+  --apiversion=apiversion                                                           override the api version used for
+                                                                                    api requests made by this command
+
+  --json                                                                            format output as json
+
+  --loglevel=(trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL)  [default: warn] logging level for
+                                                                                    this command invocation
+
+DESCRIPTION
+  See 'Which Experience Cloud Template Should I Use?' in Salesforce Help for more information about the different
+  template types available for Experience Cloud.
+
+EXAMPLE
+  sfdx force:community:template:list
+```
+
+_See code: [src/commands/force/community/template/list.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.0/src/commands/force/community/template/list.ts)_
 
 <!-- commandsstop -->

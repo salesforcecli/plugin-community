@@ -5,14 +5,15 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
+import * as os from 'os';
 import { flags, FlagsConfig, SfdxCommand } from '@salesforce/command';
 import { Messages } from '@salesforce/core';
-import { CommunityPublishResource } from '../../../lib/community/connect/CommunityPublishResource';
-import { ConnectExecutor } from '../../../lib/connect/services/ConnectExecutor';
-import { CommunityPublishResponse } from '../../../lib/community/defs/CommunityPublishResponse';
+import { CommunityPublishResource } from '../../../shared/community/connect/CommunityPublishResource';
+import { ConnectExecutor } from '../../../shared/connect/services/ConnectExecutor';
+import { CommunityPublishResponse } from '../../../shared/community/defs/CommunityPublishResponse';
 
 Messages.importMessagesDirectory(__dirname);
-const community = Messages.loadMessages('salesforce-alm', 'community_commands');
+const messages = Messages.loadMessages('@salesforce/plugin-community', 'publish');
 
 /**
  * A command to publish a community. This is just an sfdx wrapper around
@@ -20,15 +21,13 @@ const community = Messages.loadMessages('salesforce-alm', 'community_commands');
  */
 export class CommunityPublishCommand extends SfdxCommand {
   public static readonly requiresUsername = true;
-  public static readonly help = community.getMessage('publish.help');
-  public static readonly longDescription = community.getMessage('publish.longDescription');
-  public static readonly description =
-    community.getMessage('publish.description') + '\n\n' + CommunityPublishCommand.help;
+  public static readonly description = messages.getMessage('description');
+  public static readonly examples = messages.getMessage('examples').split(os.EOL);
   public static readonly flagsConfig: FlagsConfig = {
     name: flags.string({
       char: 'n',
-      description: community.getMessage('publish.flags.name.description'),
-      longDescription: community.getMessage('publish.flags.name.longDescription'),
+      description: messages.getMessage('flags.name.description'),
+      longDescription: messages.getMessage('flags.name.longDescription'),
       required: true,
     }),
   };

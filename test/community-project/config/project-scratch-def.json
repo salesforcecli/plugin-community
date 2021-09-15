@@ -1,0 +1,17 @@
+{
+  "orgName": "nutPluginUser",
+  "edition": "Developer",
+  "description": "nuts for plugin-community",
+  "features": ["EnableSetPasswordInApi", "COMMUNITIES"],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    },
+    "communitiesSettings": {
+      "enableNetworksEnabled": true
+    }
+  }
+}
