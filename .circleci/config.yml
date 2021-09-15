@@ -32,6 +32,7 @@ workflows:
           filters:
             branches:
               only: main
+          context: CLI_CTC
       - release-management/test-nut:
           matrix:
             parameters:
