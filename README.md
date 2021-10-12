@@ -150,7 +150,7 @@ EXAMPLES
   templateParams.AuthenticatedType=UNAUTHENTICATED
 ```
 
-_See code: [src/commands/force/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.0/src/commands/force/community/create.ts)_
+_See code: [src/commands/force/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.1/src/commands/force/community/create.ts)_
 
 ## `sfdx force:community:publish -n <string> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -204,7 +204,7 @@ EXAMPLE
   sfdx force:community:publish --name 'My Customer Site'
 ```
 
-_See code: [src/commands/force/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.0/src/commands/force/community/publish.ts)_
+_See code: [src/commands/force/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.1/src/commands/force/community/publish.ts)_
 
 ## `sfdx force:community:template:list [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -238,5 +238,5 @@ EXAMPLE
   sfdx force:community:template:list
 ```
 
-_See code: [src/commands/force/community/template/list.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.0/src/commands/force/community/template/list.ts)_
+_See code: [src/commands/force/community/template/list.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.1/src/commands/force/community/template/list.ts)_
 <!-- commandsstop -->
