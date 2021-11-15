@@ -3,7 +3,7 @@
   "examples": [
     "sfdx force:community:create --name 'My Customer Site' --templatename 'Customer Service' --urlpathprefix customers --description 'My customer site'",
     "sfdx force:community:create -n partnercentral -t 'Partner Central' -p partners",
-    "sfdx force:community:create -n lwrsite -t 'Build Your Own (LWR)' -p lwrsite templateParams.AuthenticatedType=UNAUTHENTICATED"
+    "sfdx force:community:create -n lwrsite -t 'Build Your Own (LWR)' -p lwrsite templateParams.AuthenticationType=UNAUTHENTICATED"
   ],
   "flags": {
     "name": {
