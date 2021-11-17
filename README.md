@@ -71,10 +71,9 @@ sfdx plugins
 ## Commands
 
 <!-- commands -->
-
-- [`sfdx force:community:create [name=value...] -n <string> -t <string> -p <string> [-d <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-forcecommunitycreate-namevalue--n-string--t-string--p-string--d-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
-- [`sfdx force:community:publish -n <string> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-forcecommunitypublish--n-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
-- [`sfdx force:community:template:list [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-forcecommunitytemplatelist--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
+* [`sfdx force:community:create [name=value...] -n <string> -t <string> -p <string> [-d <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-forcecommunitycreate-namevalue--n-string--t-string--p-string--d-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
+* [`sfdx force:community:publish -n <string> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-forcecommunitypublish--n-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
+* [`sfdx force:community:template:list [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-forcecommunitytemplatelist--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 
 ## `sfdx force:community:create [name=value...] -n <string> -t <string> -p <string> [-d <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -95,7 +94,7 @@ If you have a Salesforce Tabs + Visualforce site, activate the site to make it l
 For Experience Builder sites, activating the site just sends out a welcome email to site members.
 
 USAGE
-  $ sfdx force:community:create [name=value...] -n <string> -t <string> -p <string> [-d <string>] [-u <string>]
+  $ sfdx force:community:create [name=value...] -n <string> -t <string> -p <string> [-d <string>] [-u <string>] 
   [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
 
 OPTIONS
@@ -123,35 +122,35 @@ OPTIONS
                                                                                     this command invocation
 
 DESCRIPTION
-  See 'Which Experience Cloud Template Should I Use?' in Salesforce Help for more information about the different
+  See 'Which Experience Cloud Template Should I Use?' in Salesforce Help for more information about the different 
   template types available for Experience Cloud.
 
-  When creating a site with the Build Your Own (LWR) template, you must also specify the AuthenticationType value using
-  the format templateParams.AuthenticationType=value, where value is AUTHENTICATED, UNAUTHENTICATED, or
-  AUTHENTICATED_WITH_PUBLIC_ACCESS. Name and values are case-sensitive. See 'ExperienceBundle' in the Metadata API
+  When creating a site with the Build Your Own (LWR) template, you must also specify the AuthenticationType value using 
+  the format templateParams.AuthenticationType=value, where value is AUTHENTICATED, UNAUTHENTICATED, or 
+  AUTHENTICATED_WITH_PUBLIC_ACCESS. Name and values are case-sensitive. See 'ExperienceBundle' in the Metadata API 
   Developer Guide for more information.
 
-  When you execute this command, it creates the site in preview status, which means that it isn’t yet live. After you
+  When you execute this command, it creates the site in preview status, which means that it isn’t yet live. After you 
   finish building your site, you can make it live.
 
-  If you have an Experience Builder site, publish the site using the sfdx force:community:publish command to make it
+  If you have an Experience Builder site, publish the site using the sfdx force:community:publish command to make it 
   live.
 
-  If you have a Salesforce Tabs + Visualforce site, activate the site to make it live by updating the status field of
-  the Network type in the Metadata API. Alternatively, in Experience Workspaces, go to Administration | Settings, and
+  If you have a Salesforce Tabs + Visualforce site, activate the site to make it live by updating the status field of 
+  the Network type in the Metadata API. Alternatively, in Experience Workspaces, go to Administration | Settings, and 
   click Activate.
 
   For Experience Builder sites, activating the site just sends out a welcome email to site members.
 
 EXAMPLES
-  sfdx force:community:create --name 'My Customer Site' --templatename 'Customer Service' --urlpathprefix customers
+  sfdx force:community:create --name 'My Customer Site' --templatename 'Customer Service' --urlpathprefix customers 
   --description 'My customer site'
   sfdx force:community:create -n partnercentral -t 'Partner Central' -p partners
-  sfdx force:community:create -n lwrsite -t 'Build Your Own (LWR)' -p lwrsite
+  sfdx force:community:create -n lwrsite -t 'Build Your Own (LWR)' -p lwrsite 
   templateParams.AuthenticationType=UNAUTHENTICATED
 ```
 
-_See code: [src/commands/force/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.1/src/commands/force/community/create.ts)_
+_See code: [src/commands/force/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.2/src/commands/force/community/create.ts)_
 
 ## `sfdx force:community:publish -n <string> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -169,7 +168,7 @@ Subsequently, each time you publish the site, you update the live site with all 
 An email notification informs you when your changes are live.
 
 USAGE
-  $ sfdx force:community:publish -n <string> [-u <string>] [--apiversion <string>] [--json] [--loglevel
+  $ sfdx force:community:publish -n <string> [-u <string>] [--apiversion <string>] [--json] [--loglevel 
   trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
 
 OPTIONS
@@ -189,14 +188,14 @@ OPTIONS
 
 DESCRIPTION
   Each time you publish it, you update the live site with the most recent updates.
-  When you publish an Experience Builder site for the first time, you make the site’s URL live and enable login access
+  When you publish an Experience Builder site for the first time, you make the site’s URL live and enable login access 
   for site members.
 
-  Additionally, to send a welcome email to all site members, you must activate the site. (Activation is also required to
-  successfully set up SEO for Experience Builder sites.) To activate a site, update the status field of the Network type
+  Additionally, to send a welcome email to all site members, you must activate the site. (Activation is also required to 
+  successfully set up SEO for Experience Builder sites.) To activate a site, update the status field of the Network type 
   in the Metadata API. Alternatively, in Experience Workspaces, go to Administration | Settings, and click Activate.
 
-  Subsequently, each time you publish the site, you update the live site with all changes made to the site since it was
+  Subsequently, each time you publish the site, you update the live site with all changes made to the site since it was 
   last published.
 
   An email notification informs you when your changes are live.
@@ -205,7 +204,7 @@ EXAMPLE
   sfdx force:community:publish --name 'My Customer Site'
 ```
 
-_See code: [src/commands/force/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.1/src/commands/force/community/publish.ts)_
+_See code: [src/commands/force/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.2/src/commands/force/community/publish.ts)_
 
 ## `sfdx force:community:template:list [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -216,7 +215,7 @@ retrieves the list of templates available in your org
 See 'Which Experience Cloud Template Should I Use?' in Salesforce Help for more information about the different template types available for Experience Cloud.
 
 USAGE
-  $ sfdx force:community:template:list [-u <string>] [--apiversion <string>] [--json] [--loglevel
+  $ sfdx force:community:template:list [-u <string>] [--apiversion <string>] [--json] [--loglevel 
   trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
 
 OPTIONS
@@ -232,13 +231,12 @@ OPTIONS
                                                                                     this command invocation
 
 DESCRIPTION
-  See 'Which Experience Cloud Template Should I Use?' in Salesforce Help for more information about the different
+  See 'Which Experience Cloud Template Should I Use?' in Salesforce Help for more information about the different 
   template types available for Experience Cloud.
 
 EXAMPLE
   sfdx force:community:template:list
 ```
 
-_See code: [src/commands/force/community/template/list.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.1/src/commands/force/community/template/list.ts)_
-
+_See code: [src/commands/force/community/template/list.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.2/src/commands/force/community/template/list.ts)_
 <!-- commandsstop -->
