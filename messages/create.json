@@ -16,7 +16,7 @@
     },
     "urlPathPrefix": {
       "description": "URL to append to the domain created when Digital Experiences was enabled for this org",
-      "longDescription": "The URL to append to the domain that you created when you enabled Digital Experiences for this org. For example, if your domain name is UniversalTelco.force.com and you’re creating a customer site, enter 'customers' to create the unique URL \nUniversalTelco.force.com/customers."
+      "longDescription": "The URL to append to the domain that you created when you enabled Digital Experiences for this org. For example, if your domain name is https://MyDomainName.my.site.com and you’re creating a customer site, enter 'customers' to create the unique URL \nhttps://MyDomainName.my.site.com/customers."
     },
     "description": {
       "description": "description of the site",
