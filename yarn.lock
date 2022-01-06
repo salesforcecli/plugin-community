@@ -620,10 +620,10 @@
     mv "~2"
     safe-json-stringify "~1"
 
-"@salesforce/cli-plugins-testkit@^1.3.7":
-  version "1.4.24"
-  resolved "https://registry.yarnpkg.com/@salesforce/cli-plugins-testkit/-/cli-plugins-testkit-1.4.24.tgz#032ec0622b811f7aa3e02c8a1056d1f0e6e78a40"
-  integrity sha512-Ivjsv9/+ZO0e8D/0+Xd/sGBGnv7PMhHrsBa6opfeP/wWw9IS/sfaytCJ4u4QqEvP7VvHzm2XXI9P03yxqXFoBw==
+"@salesforce/cli-plugins-testkit@^1.2.1":
+  version "1.4.33"
+  resolved "https://registry.yarnpkg.com/@salesforce/cli-plugins-testkit/-/cli-plugins-testkit-1.4.33.tgz#40f6273681dc83533e31db4b96fc20c9b1dfe888"
+  integrity sha512-Dl2PdOWn7NUxhqJTGWIzxnYy/nB31ZEjVdxngSwSlXYXiVqmhuBDXcDJxUrR9mijraEM34NHU1q9fkwIHPdbWg==
   dependencies:
     "@salesforce/core" "^2.24.0"
     "@salesforce/kit" "^1.5.13"
@@ -725,7 +725,7 @@
     "@salesforce/ts-types" "^1.5.20"
     tslib "^2.2.0"
 
-"@salesforce/plugin-command-reference@^1.3.14":
+"@salesforce/plugin-command-reference@^1.3.4":
   version "1.3.18"
   resolved "https://registry.yarnpkg.com/@salesforce/plugin-command-reference/-/plugin-command-reference-1.3.18.tgz#9bd6f94f36c27b28dae4da4d45076fdf91153d05"
   integrity sha512-U56rm/TLotrRvC0jcpWjCXfOf7idIpwFdHlMMYvY3lDlOLRJxknwA4nVcL2QTcX7H5fBl+ScqddU3aFGt/HzGA==
