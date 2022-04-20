@@ -35,7 +35,9 @@ workflows:
           context:
             - CLI_CTC
             - AWS
+            - release
       - release-management/test-nut:
+          context: na40-auth-url
           matrix:
             parameters:
               os:
@@ -62,6 +64,7 @@ workflows:
     when: << pipeline.parameters.run-just-nuts >>
     jobs:
       - release-management/test-nut:
+          context: na40-auth-url
           name: just-nuts-<< matrix.os >>
           sfdx_version: << pipeline.parameters.sfdx_version >>
           sfdx_executable_path: sfdx
