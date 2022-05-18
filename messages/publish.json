@@ -1,6 +1,6 @@
 {
   "description": "publishes an Experience Builder site to make it live\nEach time you publish it, you update the live site with the most recent updates.\nWhen you publish an Experience Builder site for the first time, you make the site’s URL live and enable login access for site members.\n\nAdditionally, to send a welcome email to all site members, you must activate the site. (Activation is also required to successfully set up SEO for Experience Builder sites.) To activate a site, update the status field of the Network type in the Metadata API. Alternatively, in Experience Workspaces, go to Administration | Settings, and click Activate.\n\nSubsequently, each time you publish the site, you update the live site with all changes made to the site since it was last published.\n\nAn email notification informs you when your changes are live.",
-  "examples": ["sfdx force:community:publish --name 'My Customer Site'"],
+  "examples": ["$ sfdx force:community:publish --name 'My Customer Site'"],
   "flags": {
     "name": {
       "description": "name of the Experience Builder site to publish",
