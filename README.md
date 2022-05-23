@@ -131,14 +131,14 @@ DESCRIPTION
   For Experience Builder sites, activating the site just sends out a welcome email to site members.
 
 EXAMPLES
-  sfdx force:community:create --name 'My Customer Site' --templatename 'Customer Service' --urlpathprefix customers
+  $ sfdx force:community:create --name 'My Customer Site' --templatename 'Customer Service' --urlpathprefix customers
   --description 'My customer site'
-  sfdx force:community:create -n partnercentral -t 'Partner Central' -p partners
-  sfdx force:community:create -n lwrsite -t 'Build Your Own (LWR)' -p lwrsite
+  $ sfdx force:community:create -n partnercentral -t 'Partner Central' -p partners
+  $ sfdx force:community:create -n lwrsite -t 'Build Your Own (LWR)' -p lwrsite
   templateParams.AuthenticationType=UNAUTHENTICATED
 ```
 
-_See code: [src/commands/force/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.3/src/commands/force/community/create.ts)_
+_See code: [src/commands/force/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.4/src/commands/force/community/create.ts)_
 
 ## `sfdx force:community:publish -n <string> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -180,10 +180,10 @@ DESCRIPTION
   An email notification informs you when your changes are live.
 
 EXAMPLE
-  sfdx force:community:publish --name 'My Customer Site'
+  $ sfdx force:community:publish --name 'My Customer Site'
 ```
 
-_See code: [src/commands/force/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.3/src/commands/force/community/publish.ts)_
+_See code: [src/commands/force/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.4/src/commands/force/community/publish.ts)_
 
 ## `sfdx force:community:template:list [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -211,9 +211,9 @@ DESCRIPTION
   template types available for Experience Cloud.
 
 EXAMPLE
-  sfdx force:community:template:list
+  $ sfdx force:community:template:list
 ```
 
-_See code: [src/commands/force/community/template/list.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.3/src/commands/force/community/template/list.ts)_
+_See code: [src/commands/force/community/template/list.ts](https://github.com/salesforcecli/plugin-community/blob/v1.1.4/src/commands/force/community/template/list.ts)_
 
 <!-- commandsstop -->
