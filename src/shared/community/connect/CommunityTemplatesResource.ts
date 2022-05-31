@@ -6,6 +6,7 @@
  */
 import { UX } from '@salesforce/command';
 import { Messages } from '@salesforce/core';
+import { HttpMethods } from 'jsforce';
 import { ConnectResource } from '../../connect/services/ConnectResource';
 import { CommunityTemplatesListResponse } from '../defs/CommunityTemplatesListResponse';
 
@@ -27,12 +28,15 @@ export class CommunityTemplatesResource implements ConnectResource<CommunityTemp
     return JSON.stringify({});
   }
 
-  public getRequestMethod(): string {
+  public getRequestMethod(): HttpMethods {
     return 'GET';
   }
 
   public handleSuccess(result: CommunityTemplatesListResponse): CommunityTemplatesListResponse {
-    const columns = ['templateName', 'publisher'];
+    const columns = {
+      templateName: { header: 'Template Name' },
+      publisher: { header: 'Publisher' },
+    };
     this.ux.styledHeader(messages.getMessage('response.styledHeader'));
     this.ux.table(result.templates, columns);
     this.ux.log();

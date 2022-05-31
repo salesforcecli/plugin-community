@@ -5,6 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { JsonCollection } from '@salesforce/ts-types';
+import { HttpMethods } from 'jsforce';
 
 /**
  * Describe of a connect api resource
@@ -17,9 +18,9 @@ export interface ConnectResource<T> {
   fetchRelativeConnectUrl(): Promise<string>;
 
   /**
-   * 'GET' or 'POST'
+   * HttpMethods
    */
-  getRequestMethod(): string;
+  getRequestMethod(): HttpMethods;
 
   /**
    * This will be called only when this#getRequestMethod() is 'POST'

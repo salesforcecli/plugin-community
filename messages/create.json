@@ -1,5 +1,5 @@
 {
-  "description": "creates an Experience Cloud site using a template\nSee 'Which Experience Cloud Template Should I Use?' in Salesforce Help for more information about the different template types available for Experience Cloud.\n\nWhen creating a site with the Build Your Own (LWR) template, you must also specify the AuthenticationType value using the format templateParams.AuthenticationType=value, where value is AUTHENTICATED, UNAUTHENTICATED, or AUTHENTICATED_WITH_PUBLIC_ACCESS. Name and values are case-sensitive. See 'ExperienceBundle' in the Metadata API Developer Guide for more information.\n\nWhen you execute this command, it creates the site in preview status, which means that it isn’t yet live. After you finish building your site, you can make it live.\n\nIf you have an Experience Builder site, publish the site using the sfdx force:community:publish command to make it live.\n\nIf you have a Salesforce Tabs + Visualforce site, activate the site to make it live by updating the status field of the Network type in the Metadata API. Alternatively, in Experience Workspaces, go to Administration | Settings, and click Activate.\n\nFor Experience Builder sites, activating the site just sends out a welcome email to site members.",
+  "description": "creates an Experience Cloud site using a template\nSee 'Which Experience Cloud Template Should I Use?' in Salesforce Help for more information about the different template types available for Experience Cloud.\n\nWhen creating a site with the Build Your Own (LWR) template, you must also specify the AuthenticationType value using the format templateParams.AuthenticationType=value, where value is AUTHENTICATED, UNAUTHENTICATED, or AUTHENTICATED_WITH_PUBLIC_ACCESS. Name and values are case-sensitive. See 'ExperienceBundle' in the Metadata API Developer Guide for more information.\n\nWhen you execute this command, it creates the site in preview status, which means that it isn't yet live. After you finish building your site, you can make it live.\n\nIf you have an Experience Builder site, publish the site using the sfdx force:community:publish command to make it live.\n\nIf you have a Salesforce Tabs + Visualforce site, activate the site to make it live by updating the status field of the Network type in the Metadata API. Alternatively, in Experience Workspaces, go to Administration | Settings, and click Activate.\n\nFor Experience Builder sites, activating the site just sends out a welcome email to site members.",
   "examples": [
     "$ sfdx force:community:create --name 'My Customer Site' --templatename 'Customer Service' --urlpathprefix customers --description 'My customer site'",
     "$ sfdx force:community:create -n partnercentral -t 'Partner Central' -p partners",
@@ -16,7 +16,7 @@
     },
     "urlPathPrefix": {
       "description": "URL to append to the domain created when Digital Experiences was enabled for this org",
-      "longDescription": "The URL to append to the domain that you created when you enabled Digital Experiences for this org. For example, if your domain name is https://MyDomainName.my.site.com and you’re creating a customer site, enter 'customers' to create the unique URL \nhttps://MyDomainName.my.site.com/customers."
+      "longDescription": "The URL to append to the domain that you created when you enabled Digital Experiences for this org. For example, if your domain name is https://MyDomainName.my.site.com and you're creating a customer site, enter 'customers' to create the unique URL \nhttps://MyDomainName.my.site.com/customers."
     },
     "description": {
       "description": "description of the site",
@@ -24,7 +24,7 @@
     }
   },
   "response": {
-    "action": "We’re creating your site. Run sfdx force:org:open -p _ui/networks/setup/SetupNetworksPage to view a list of your sites, and to confirm when this site is ready.",
+    "action": "We're creating your site. Run sfdx force:org:open -p _ui/networks/setup/SetupNetworksPage to view a list of your sites, and to confirm when this site is ready.",
     "styleHeader": "Create Site Result",
     "createMessage": "Your Site is being created."
   },

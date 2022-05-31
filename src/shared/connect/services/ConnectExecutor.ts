@@ -5,8 +5,9 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { RequestInfo } from 'jsforce';
-import { Org, SfdxError } from '@salesforce/core';
+import { JsonCollection } from '@salesforce/ts-types';
+import { Org, SfError } from '@salesforce/core';
+import { HttpRequest } from 'jsforce';
 import { ConnectResource } from './ConnectResource';
 
 /**
@@ -22,11 +23,11 @@ export class ConnectExecutor<T> {
     return this.org
       .getConnection()
       .request(await this.fetchRequestInfo())
-      .then((result) => this.connectService.handleSuccess(result))
+      .then((result) => this.connectService.handleSuccess(result as JsonCollection))
       .catch((err) => this.connectService.handleError(err));
   }
 
-  public async fetchRequestInfo(): Promise<RequestInfo> {
+  public async fetchRequestInfo(): Promise<HttpRequest> {
     const connectUrl: string = encodeURI(await this.connectService.fetchRelativeConnectUrl());
     const method = this.connectService.getRequestMethod();
     if (method === 'GET') {
@@ -42,7 +43,7 @@ export class ConnectExecutor<T> {
         body: await this.connectService.fetchPostParams(),
       };
     } else {
-      throw new SfdxError(`Unsupported method is given: ${method}`, 'UNSUPPORTED_OPERATION');
+      throw new SfError(`Unsupported method is given: ${method}`, 'UNSUPPORTED_OPERATION');
     }
   }
 }

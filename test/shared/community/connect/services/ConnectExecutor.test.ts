@@ -7,9 +7,10 @@
 
 import * as sinon from 'sinon';
 import { expect } from 'chai';
+import { stubMethod } from '@salesforce/ts-sinon';
 import { Org, Connection } from '@salesforce/core';
 import { Result } from '@salesforce/command';
-import { RequestInfo } from 'jsforce/connection';
+import { HttpMethods, HttpRequest } from 'jsforce';
 import { ConnectExecutor } from '../../../../../src/shared/connect/services/ConnectExecutor';
 import { ConnectResource } from '../../../../../src/shared/connect/services/ConnectResource';
 
@@ -21,7 +22,7 @@ describe('ConnectExecutor', () => {
       return Promise.resolve(relativeUrl + this.getRequestMethod());
     }
 
-    public getRequestMethod(): string {
+    public getRequestMethod(): HttpMethods {
       return 'POST';
     }
 
@@ -48,7 +49,7 @@ describe('ConnectExecutor', () => {
   }
 
   class DummyGetConnectResource extends DummyPostConnectResource {
-    public getRequestMethod(): string {
+    public getRequestMethod(): HttpMethods {
       return 'GET';
     }
 
@@ -59,7 +60,7 @@ describe('ConnectExecutor', () => {
 
   // Patch operation is not supported yet
   class DummyPatchConnectResource extends DummyPostConnectResource {
-    public getRequestMethod(): string {
+    public getRequestMethod(): HttpMethods {
       return 'PATCH';
     }
 
@@ -72,7 +73,7 @@ describe('ConnectExecutor', () => {
     it('should not call fetchPostParams for a GET call', async () => {
       const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyGetConnectResource(), new Org(null));
       // If fetchPostParams was called, it will throw an exception
-      const ri: RequestInfo = await executor.fetchRequestInfo();
+      const ri: HttpRequest = await executor.fetchRequestInfo();
       expect(ri).to.exist;
       expect(ri.url).to.be.equal(relativeUrl + 'GET');
       expect(ri.method).to.be.equal('GET');
@@ -82,7 +83,7 @@ describe('ConnectExecutor', () => {
 
     it('should call fetchPostParams for a POST call', async () => {
       const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyPostConnectResource(), new Org(null));
-      const ri: RequestInfo = await executor.fetchRequestInfo();
+      const ri: HttpRequest = await executor.fetchRequestInfo();
       expect(ri).to.exist;
       expect(ri.url).to.be.equal(relativeUrl + 'POST');
       expect(ri.method).to.be.equal('POST');
@@ -100,44 +101,47 @@ describe('ConnectExecutor', () => {
       try {
         await executor.fetchRequestInfo();
       } catch (err) {
-        expect(err.name).to.equal('UNSUPPORTED_OPERATION');
-        expect(err.message).to.equal('Unsupported method is given: PATCH');
+        const error = err as Error;
+        expect(error.name).to.equal('UNSUPPORTED_OPERATION');
+        expect(error.message).to.equal('Unsupported method is given: PATCH');
       }
     });
   });
 
   describe('callConnectApi', () => {
+    const sandbox = sinon.createSandbox();
+    const connectionStub = sinon.createStubInstance(Connection);
+
+    beforeEach(() => {
+      stubMethod(sandbox, Org, 'create').resolves(Org.prototype);
+      stubMethod(sandbox, Org.prototype, 'getConnection').returns(connectionStub);
+    });
+
+    afterEach(() => {
+      sandbox.restore();
+    });
+
     it('should call handleSuccess on success response', async () => {
-      const org = new Org(null);
-      sinon.stub(org, 'getConnection').callsFake(() => {
-        const connection = new Connection({
-          authInfo: null,
-        });
-        sinon.stub(connection, 'request').callsFake(() => Promise.resolve('success'));
-        return connection;
-      });
-      const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyGetConnectResource(), org);
+      connectionStub.request.resolves('yay');
+
+      const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyGetConnectResource(), Org.prototype);
       const response: Result = await executor.callConnectApi();
       expect(response.data).to.be.equal('success');
       expect(response.ux).to.be.equal(null);
     });
 
     it('should call handleError on error response', async () => {
-      const org = new Org(null);
-      sinon.stub(org, 'getConnection').callsFake(() => {
-        const connection = new Connection({
-          authInfo: null,
-        });
-        sinon.stub(connection, 'request').callsFake(() => Promise.reject('error'));
-        return connection;
-      });
-      const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyGetConnectResource(), org);
+      connectionStub.request.rejects('nay');
+
+      const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyGetConnectResource(), Org.prototype);
 
       try {
         await executor.callConnectApi();
+        expect('uh oh...').to.equal('this code should not be reached');
       } catch (err) {
-        expect(err.name).to.equal('Error');
-        expect(err.message).to.equal('handleError is called');
+        const error = err as Error;
+        expect(error.name).to.equal('Error');
+        expect(error.message).to.equal('handleError is called');
       }
     });
   });

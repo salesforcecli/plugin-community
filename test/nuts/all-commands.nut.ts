@@ -20,7 +20,7 @@ const siteName = 'my-site';
 
 const commonRequiredFlagError = {
   status: 1,
-  name: 'Error',
+  name: 'SfError',
   exitCode: 1,
   warnings: [],
 };
@@ -60,6 +60,7 @@ describe('plugin-commuity commands', () => {
       expect(output).to.deep.equal({
         message: 'Missing required flag:\n -n, --name NAME  name of the site to create\nSee more help with --help',
         commandName: 'CommunityCreateCommand',
+        context: 'CommunityCreateCommand',
         ...commonRequiredFlagError,
       });
     });
@@ -75,6 +76,7 @@ describe('plugin-commuity commands', () => {
           'Missing required flag:\n -t, --templatename TEMPLATENAME  template to use to create a site\nSee more help with --help', // eslint-disable-line prettier/prettier
         exitCode: 1,
         commandName: 'CommunityCreateCommand',
+        context: 'CommunityCreateCommand',
         ...commonRequiredFlagError,
       });
     });
@@ -89,6 +91,7 @@ describe('plugin-commuity commands', () => {
         message:
           'Missing required flag:\n -p, --urlpathprefix URLPATHPREFIX  URL to append to the domain created when\n                                    Digital Experiences was enabled for this org\nSee more help with --help', // eslint-disable-line prettier/prettier
         commandName: 'CommunityCreateCommand',
+        context: 'CommunityCreateCommand',
         ...commonRequiredFlagError,
       });
     });
@@ -105,6 +108,7 @@ describe('plugin-commuity commands', () => {
         message: 'The URL can only contain alphanumeric characters.',
         exitCode: 1,
         commandName: 'CommunityCreateCommand',
+        context: 'CommunityCreateCommand',
         warnings: [],
       });
     });
@@ -130,6 +134,7 @@ describe('plugin-commuity commands', () => {
         message:
           'Missing required flag:\n -n, --name NAME  name of the Experience Builder site to publish\nSee more help with --help', // eslint-disable-line prettier/prettier
         commandName: 'CommunityPublishCommand',
+        context: 'CommunityPublishCommand',
         ...commonRequiredFlagError,
       });
     });
@@ -139,7 +144,7 @@ describe('plugin-commuity commands', () => {
       const output = execCmd<CommunityPublishResponse>(cmd, { ensureExitCode: 1 }).jsonOutput;
 
       expect(output.status).to.equal(1);
-      expect(output.name).to.equal('error.communityNotExists');
+      expect(output.name).to.equal('CommunityNotExists');
       expect(output.message).to.equal(
         `The ${siteName} site doesn't exist. Verify the site name and try publishing it again.`
       );
@@ -148,7 +153,7 @@ describe('plugin-commuity commands', () => {
     });
 
     it('publishes a created community', async () => {
-      const maxRetries = 10;
+      const maxRetries = 15;
       let sleepFor = 4;
       const retryRate = 1.5;
 
@@ -158,7 +163,7 @@ describe('plugin-commuity commands', () => {
 
         if (output.result) {
           return output.result;
-        } else if (output.name === 'error.communityNotExists') {
+        } else if (output.name === 'CommunityNotExists') {
           if (retry <= 0) {
             throw new Error(`Max retries (${maxRetries}) reached attempting to run 'force:community:publish'`);
           }
@@ -174,7 +179,7 @@ describe('plugin-commuity commands', () => {
 
       expect(result.id).to.have.length(18);
       expect(result.message).to.equal(
-        'We’re publishing your changes now. You’ll receive an email confirmation when your changes are live.'
+        "We're publishing your changes now. You'll receive an email confirmation when your changes are live."
       ); // eslint-disable-line prettier/prettier
       expect(result.name).to.equal(siteName);
       expect(result.status).to.equal('UnderConstruction');

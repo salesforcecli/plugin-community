@@ -53,9 +53,10 @@ describe('CommunityPublishResource', () => {
       try {
         await communityPublishResource.fetchRelativeConnectUrl();
       } catch (err) {
+        const error = err as Error;
         const errorMessage = util.format(messages.getMessage('error.communityNotExists'), communityName);
-        expect(err.name).to.equal('error.communityNotExists');
-        expect(err.message).to.equal(errorMessage);
+        expect(error.name).to.equal('CommunityNotExistsError');
+        expect(error.message).to.equal(errorMessage);
       }
     });
 
@@ -110,7 +111,7 @@ describe('CommunityPublishResource', () => {
       const result: CommunityPublishResponse = communityPublishResource.handleSuccess(connectResponse);
       expect(result.id).to.equal(validCommunityId);
       expect(result.message).to.equal(
-        'We’re publishing your changes now. You’ll receive an email confirmation when your changes are live.'
+        "We're publishing your changes now. You'll receive an email confirmation when your changes are live."
       );
       expect(result.name).to.equal(communityName);
       expect(result.status).to.equal('UnderConstruction');

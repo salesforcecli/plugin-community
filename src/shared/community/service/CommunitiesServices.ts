@@ -7,6 +7,7 @@
 import { Org } from '@salesforce/core';
 import { QueryResult } from 'jsforce';
 import { CommunityInfo } from '../defs/CommunityInfo';
+import { CommunityStatus } from '../defs/CommunityStatusEnum';
 
 /**
  * Helper services for Communities
@@ -20,11 +21,14 @@ export class CommunitiesServices {
    *
    * @returns - the community id for the given name
    */
-  public static async fetchCommunityInfoFromName(org: Org, name: string): Promise<CommunityInfo> {
+  public static async fetchCommunityInfoFromName(org: Org, name: string): Promise<CommunityInfo | undefined> {
     if (!name) {
-      return Promise.resolve(undefined);
+      return undefined;
     }
-    const result: QueryResult<any> = await CommunitiesServices.runQuery(
+
+    type record = { Id: string; Status: CommunityStatus };
+
+    const result: QueryResult<record> = await CommunitiesServices.runQuery(
       org,
       `SELECT Id, Status FROM NETWORK WHERE NAME = '${name}'`
     );
