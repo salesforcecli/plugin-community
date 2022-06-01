@@ -23,8 +23,8 @@ describe('CommunityPublishResource', () => {
   let communityPublishResource: CommunityPublishResource;
   const communityName = 'communityName';
   const validCommunityId = '0DB0000000000';
-  let table;
-  let styledHeader;
+  let table: sinon.SinonStub;
+  let styledHeader: sinon.SinonStub;
 
   before(() => {
     org = new Org(null);
@@ -39,7 +39,7 @@ describe('CommunityPublishResource', () => {
   });
 
   describe('fetchRelativeConnectUrl', () => {
-    let communitiesServices;
+    let communitiesServices: sinon.SinonStub;
     beforeEach(() => {
       communitiesServices = sinon.stub(CommunitiesServices, 'fetchCommunityInfoFromName');
     });
@@ -53,9 +53,10 @@ describe('CommunityPublishResource', () => {
       try {
         await communityPublishResource.fetchRelativeConnectUrl();
       } catch (err) {
+        const error = err as Error;
         const errorMessage = util.format(messages.getMessage('error.communityNotExists'), communityName);
-        expect(err.name).to.equal('error.communityNotExists');
-        expect(err.message).to.equal(errorMessage);
+        expect(error.name).to.equal('CommunityNotExistsError');
+        expect(error.message).to.equal(errorMessage);
       }
     });
 
@@ -84,7 +85,7 @@ describe('CommunityPublishResource', () => {
   });
 
   describe('handleSuccess', () => {
-    let communitiesServices;
+    let communitiesServices: sinon.SinonStub;
     beforeEach(() => {
       communitiesServices = sinon.stub(CommunitiesServices, 'fetchCommunityInfoFromName');
     });

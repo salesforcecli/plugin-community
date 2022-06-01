@@ -68,7 +68,7 @@ export class CommunityCreateCommand extends SfdxCommand {
   }
 
   protected parseVarargs(args?: string[]): JsonMap {
-    this.logger.debug(`parseVarargs(${args})`);
+    this.logger.debug(`parseVarargs([${args.join(', ')}])`);
 
     // It never looks like args is ever undefined as long as varargs is turned on for the command...
     // But since the signature says it's optional, we should probably gate this even though it's unnecessary right now.

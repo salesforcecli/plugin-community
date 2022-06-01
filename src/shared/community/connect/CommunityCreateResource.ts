@@ -5,9 +5,10 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { OutputFlags } from '@oclif/parser';
-import { JsonCollection, AnyJson } from '@salesforce/ts-types';
+import { JsonCollection, AnyJson, JsonMap } from '@salesforce/ts-types';
 import { UX } from '@salesforce/command';
 import { Messages } from '@salesforce/core';
+import { HttpMethods } from 'jsforce';
 import { CommunityCreateResponse } from '../defs/CommunityCreateResponse';
 import { CommunityCreateParams } from '../defs/CommunityCreateParams';
 import { ConnectResource } from '../../connect/services/ConnectResource';
@@ -24,13 +25,17 @@ const ACTION_KEY = 'action';
 export class CommunityCreateResource implements ConnectResource<CommunityCreateResponse> {
   public constructor(private flags: OutputFlags<any>, private params: AnyJson, private ux: UX) {}
 
-  public handleSuccess(result: JsonCollection): CommunityCreateResponse {
+  public handleSuccess(result: JsonCollection & { [NAME_KEY]?: string }): CommunityCreateResponse {
     const response: CommunityCreateResponse = {
       message: messages.getMessage('response.createMessage'),
       name: result[NAME_KEY],
       action: messages.getMessage('response.action'),
     };
-    const columns = [NAME_KEY, MESSAGE_KEY, ACTION_KEY];
+    const columns = {
+      [NAME_KEY]: { header: 'Name' },
+      [MESSAGE_KEY]: { header: 'Message' },
+      [ACTION_KEY]: { header: 'Action' },
+    };
     this.ux.styledHeader(messages.getMessage('response.styleHeader'));
     this.ux.table([response], columns);
     return response;
@@ -45,18 +50,18 @@ export class CommunityCreateResource implements ConnectResource<CommunityCreateR
     return '/connect/communities';
   }
 
-  public getRequestMethod(): string {
+  public getRequestMethod(): HttpMethods {
     return 'POST';
   }
 
   // eslint-disable-next-line @typescript-eslint/require-await
   public async fetchPostParams(): Promise<string> {
     const params: CommunityCreateParams = {
-      name: this.flags.name,
-      urlPathPrefix: this.flags.urlpathprefix,
-      templateName: this.flags.templatename,
-      description: this.flags.description,
-      templateParams: this.params['templateParams'],
+      name: this.flags.name as string,
+      urlPathPrefix: this.flags.urlpathprefix as string,
+      templateName: this.flags.templatename as string,
+      description: this.flags.description as string,
+      templateParams: this.params['templateParams'] as JsonMap,
     };
 
     return JSON.stringify(params);

@@ -32,8 +32,9 @@ describe('CommunityTemplatesResource', () => {
       try {
         communityTemplatesResource.handleError(new Error(errorMsg));
         throw new Error('Should have thrown an error here');
-      } catch (e) {
-        expect(e.message).to.equal(errorMsg);
+      } catch (err) {
+        const error = err as Error;
+        expect(error.message).to.equal(errorMsg);
       }
     });
   });

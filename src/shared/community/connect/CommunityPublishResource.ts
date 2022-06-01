@@ -8,7 +8,8 @@ import { URL } from 'url';
 import { OutputFlags } from '@oclif/parser';
 import { UX } from '@salesforce/command';
 import { JsonCollection } from '@salesforce/ts-types';
-import { Messages, Org, SfdxError } from '@salesforce/core';
+import { Messages, Org } from '@salesforce/core';
+import { HttpMethods } from 'jsforce';
 import { CommunityPublishResponse } from '../defs/CommunityPublishResponse';
 import { CommunityInfo } from '../defs/CommunityInfo';
 import { CommunitiesServices } from '../service/CommunitiesServices';
@@ -20,6 +21,7 @@ const messages = Messages.loadMessages('@salesforce/plugin-community', 'publish'
 /**
  * A connect api resource for publishing a community
  */
+
 export class CommunityPublishResource implements ConnectResource<CommunityPublishResponse> {
   private info: CommunityInfo;
 
@@ -29,7 +31,7 @@ export class CommunityPublishResource implements ConnectResource<CommunityPublis
     return `/connect/communities/${await this.fetchCommunityId()}/publish`;
   }
 
-  public getRequestMethod(): string {
+  public getRequestMethod(): HttpMethods {
     return 'POST';
   }
 
@@ -38,15 +40,23 @@ export class CommunityPublishResource implements ConnectResource<CommunityPublis
     return JSON.stringify({});
   }
 
-  public handleSuccess(result: JsonCollection): CommunityPublishResponse {
+  public handleSuccess(
+    result: JsonCollection & { id?: string; name?: string; url?: string }
+  ): CommunityPublishResponse {
     const response: CommunityPublishResponse = {
-      id: result['id'],
+      id: result.id,
       message: messages.getMessage('response.message'),
-      name: result['name'],
+      name: result.name,
       status: this.info.status,
-      url: new URL(result['url']),
+      url: new URL(result.url).toString(),
     };
-    const columns = ['id', 'message', 'name', 'status', 'url'];
+    const columns = {
+      id: { header: 'Id' },
+      message: { header: 'Message' },
+      name: { header: 'Name' },
+      status: { header: 'Status' },
+      url: { header: 'Url' },
+    };
     this.ux.styledHeader(messages.getMessage('response.styleHeader'));
     this.ux.table([response], columns);
     return response;
@@ -59,7 +69,7 @@ export class CommunityPublishResource implements ConnectResource<CommunityPublis
   public async fetchCommunityId(): Promise<string> {
     this.info = await CommunitiesServices.fetchCommunityInfoFromName(this.org, this.flags.name);
     if (!this.info) {
-      throw SfdxError.create('@salesforce/plugin-community', 'publish', 'error.communityNotExists', [this.flags.name]);
+      throw messages.createError('error.communityNotExists', [this.flags.name]);
     }
     return this.info.id;
   }

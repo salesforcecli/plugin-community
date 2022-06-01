@@ -7,7 +7,10 @@
 
 import { isEmpty } from 'lodash';
 import { JsonMap } from '@salesforce/ts-types';
-import { SfdxError } from '@salesforce/core';
+import { Messages } from '@salesforce/core';
+
+Messages.importMessagesDirectory(__dirname);
+const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');
 
 /**
  * A parser for the CommunityCreateCommand varargs.
@@ -64,7 +67,7 @@ export class CommunityNameValueParser {
       .map(([key, value]) => `${key}="${value}"`);
 
     if (!isEmpty(errors)) {
-      throw SfdxError.create('@salesforce/plugin-community', 'create', 'error.invalidVarargs', errors);
+      throw messages.createError('error.invalidVarargs', errors);
     }
   }
 

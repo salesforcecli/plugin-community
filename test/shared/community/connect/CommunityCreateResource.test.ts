@@ -22,8 +22,8 @@ describe('CommunityCreateResource', () => {
   const urlPathPrefix = 'urlPathPrefix';
   const templateName = 'templateName';
   const description = 'description';
-  let table;
-  let styledHeader;
+  let table: sinon.SinonStub;
+  let styledHeader: sinon.SinonStub;
 
   before(() => {
     communityCreateResource = getCommunityCreateResource();
@@ -58,7 +58,7 @@ describe('CommunityCreateResource', () => {
 
     it('should have proper post params', async () => {
       const params = await communityCreateResource.fetchPostParams();
-      const paramsObject: CommunityCreateParams = JSON.parse(params);
+      const paramsObject = JSON.parse(params) as CommunityCreateParams;
       expect(paramsObject.name).to.equal(expectedPostParams.name);
       expect(paramsObject.templateName).to.equal(expectedPostParams.templateName);
       expect(paramsObject.description).to.equal(expectedPostParams.description);
@@ -86,8 +86,9 @@ describe('CommunityCreateResource', () => {
       try {
         communityCreateResource.handleError(new Error(errorMsg));
         throw new Error('Should have thrown an error here');
-      } catch (e) {
-        expect(e.message).to.equal(errorMsg);
+      } catch (err) {
+        const error = err as Error;
+        expect(error.message).to.equal(errorMsg);
       }
     });
   });
@@ -115,8 +116,8 @@ describe('CommunityCreateResource with templateParams', () => {
     optional1: 'This is optional',
     optional2: 'This is also optional',
   };
-  let table;
-  let styledHeader;
+  let table: sinon.SinonStub;
+  let styledHeader: sinon.SinonStub;
 
   before(() => {
     table = sinon.stub(UX.prototype, 'table');
@@ -141,7 +142,7 @@ describe('CommunityCreateResource with templateParams', () => {
         templateParams,
       });
       const params = await communityCreateResource.fetchPostParams();
-      const paramsObject: CommunityCreateParams = JSON.parse(params);
+      const paramsObject = JSON.parse(params) as CommunityCreateParams;
       expect(JSON.stringify(paramsObject)).to.equal(JSON.stringify(expectedPostParams));
     });
   });
@@ -162,7 +163,7 @@ describe('CommunityCreateResource with templateParams', () => {
         },
       });
       const params = await communityCreateResource.fetchPostParams();
-      const paramsObject: CommunityCreateParams = JSON.parse(params);
+      const paramsObject = JSON.parse(params) as CommunityCreateParams;
       expect(JSON.stringify(paramsObject)).to.equal(JSON.stringify(expectedPostParams));
     });
   });
