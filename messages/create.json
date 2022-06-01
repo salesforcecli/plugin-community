@@ -16,7 +16,7 @@
     },
     "urlPathPrefix": {
       "description": "URL to append to the domain created when Digital Experiences was enabled for this org",
-      "longDescription": "The URL to append to the domain that you created when you enabled Digital Experiences for this org. For example, if your domain name is https://MyDomainName.my.site.com and you're creating a customer site, enter 'customers' to create the unique URL \nhttps://MyDomainName.my.site.com/customers."
+      "longDescription": "The URL to append to the domain that you created when you enabled Digital Experiences for this org. For example, if your domain name is https://MyDomainName.my.site.com and you’re creating a customer site, enter 'customers' to create the unique URL \nhttps://MyDomainName.my.site.com/customers."
     },
     "description": {
       "description": "description of the site",
@@ -24,7 +24,7 @@
     }
   },
   "response": {
-    "action": "We're creating your site. Run sfdx force:org:open -p _ui/networks/setup/SetupNetworksPage to view a list of your sites, and to confirm when this site is ready.",
+    "action": "We’re creating your site. Run sfdx force:org:open -p _ui/networks/setup/SetupNetworksPage to view a list of your sites, and to confirm when this site is ready.",
     "styleHeader": "Create Site Result",
     "createMessage": "Your Site is being created."
   },

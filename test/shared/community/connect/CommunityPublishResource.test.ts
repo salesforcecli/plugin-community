@@ -111,7 +111,7 @@ describe('CommunityPublishResource', () => {
       const result: CommunityPublishResponse = communityPublishResource.handleSuccess(connectResponse);
       expect(result.id).to.equal(validCommunityId);
       expect(result.message).to.equal(
-        "We're publishing your changes now. You'll receive an email confirmation when your changes are live."
+        'We’re publishing your changes now. You’ll receive an email confirmation when your changes are live.'
       );
       expect(result.name).to.equal(communityName);
       expect(result.status).to.equal('UnderConstruction');

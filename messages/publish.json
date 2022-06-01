@@ -9,7 +9,7 @@
   },
   "response": {
     "styleHeader": "Publish Site Result",
-    "message": "We're publishing your changes now. You'll receive an email confirmation when your changes are live."
+    "message": "We’re publishing your changes now. You’ll receive an email confirmation when your changes are live."
   },
   "error": {
     "communityNotExists": "The %s site doesn't exist. Verify the site name and try publishing it again."

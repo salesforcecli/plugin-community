@@ -179,7 +179,7 @@ describe('plugin-commuity commands', () => {
 
       expect(result.id).to.have.length(18);
       expect(result.message).to.equal(
-        "We're publishing your changes now. You'll receive an email confirmation when your changes are live."
+        'We’re publishing your changes now. You’ll receive an email confirmation when your changes are live.'
       ); // eslint-disable-line prettier/prettier
       expect(result.name).to.equal(siteName);
       expect(result.status).to.equal('UnderConstruction');
