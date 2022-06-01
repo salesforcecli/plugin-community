@@ -40,13 +40,15 @@ export class CommunityPublishResource implements ConnectResource<CommunityPublis
     return JSON.stringify({});
   }
 
-  public handleSuccess(result: JsonCollection & { id?: string; name?: string }): CommunityPublishResponse {
+  public handleSuccess(
+    result: JsonCollection & { id?: string; name?: string; url?: string }
+  ): CommunityPublishResponse {
     const response: CommunityPublishResponse = {
-      id: result['id'],
+      id: result.id,
       message: messages.getMessage('response.message'),
-      name: result['name'],
+      name: result.name,
       status: this.info.status,
-      url: new URL(result['url']).toString(),
+      url: new URL(result.url).toString(),
     };
     const columns = {
       id: { header: 'Id' },

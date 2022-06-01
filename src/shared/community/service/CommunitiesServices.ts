@@ -26,9 +26,7 @@ export class CommunitiesServices {
       return undefined;
     }
 
-    type record = { Id: string; Status: CommunityStatus };
-
-    const result: QueryResult<record> = await CommunitiesServices.runQuery(
+    const result: QueryResult<{ Id: string; Status: CommunityStatus }> = await CommunitiesServices.runQuery(
       org,
       `SELECT Id, Status FROM NETWORK WHERE NAME = '${name}'`
     );
@@ -36,8 +34,8 @@ export class CommunitiesServices {
       const record = result.records[0];
       return {
         name,
-        id: record['Id'],
-        status: record['Status'],
+        id: record.Id,
+        status: record.Status,
       };
     }
   }

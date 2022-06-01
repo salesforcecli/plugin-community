@@ -5,7 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { OutputFlags } from '@oclif/parser';
-import { JsonCollection, AnyJson } from '@salesforce/ts-types';
+import { JsonCollection, AnyJson, JsonMap } from '@salesforce/ts-types';
 import { UX } from '@salesforce/command';
 import { Messages } from '@salesforce/core';
 import { HttpMethods } from 'jsforce';
@@ -57,11 +57,11 @@ export class CommunityCreateResource implements ConnectResource<CommunityCreateR
   // eslint-disable-next-line @typescript-eslint/require-await
   public async fetchPostParams(): Promise<string> {
     const params: CommunityCreateParams = {
-      name: this.flags.name,
-      urlPathPrefix: this.flags.urlpathprefix,
-      templateName: this.flags.templatename,
-      description: this.flags.description,
-      templateParams: this.params['templateParams'],
+      name: this.flags.name as string,
+      urlPathPrefix: this.flags.urlpathprefix as string,
+      templateName: this.flags.templatename as string,
+      description: this.flags.description as string,
+      templateParams: this.params['templateParams'] as JsonMap,
     };
 
     return JSON.stringify(params);
