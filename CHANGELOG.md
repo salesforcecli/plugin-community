@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/salesforcecli/plugin-community/compare/v1.1.5...v2.0.0) (2022-06-01)
+
+### Bug Fixes
+
+- fix bin cmds ([a6f65fc](https://github.com/salesforcecli/plugin-community/commit/a6f65fc1bd29175a25b00eeff3bd988d18adb91d))
+- parking orbit changes ([2f7f93e](https://github.com/salesforcecli/plugin-community/commit/2f7f93e293dbb6e1926c64afab44b38a63ac88fe))
+
 ### [1.1.5](https://github.com/salesforcecli/plugin-community/compare/v1.1.4...v1.1.5) (2022-05-23)
 
 ### Bug Fixes
