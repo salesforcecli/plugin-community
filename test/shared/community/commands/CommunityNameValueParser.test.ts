@@ -101,7 +101,7 @@ describe('CommunityNameValueParser (Unit Test)', () => {
         template: 'Some Template',
         path: '/path/to/me',
         param: {
-          sub: 'Some Sub Param',
+          sub: 'Some Sub Param nooooooooooooo',
         },
       };
 
