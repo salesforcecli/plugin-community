@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  release-management: salesforce/npm-release-management@4
+  release-management: salesforce/npm-release-management@dev:b4f56d2
 workflows:
   version: 2
   test-and-release:
@@ -19,6 +19,8 @@ workflows:
                 - latest
                 - lts
                 - maintenance
+              command:
+                - node node_modules/mocha/bin/mocha 'test/**/*.test.ts' --reporter mocha-junit-reporter
             exclude:
               - os: windows
                 node_version: lts
