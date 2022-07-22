@@ -20,7 +20,7 @@ workflows:
                 - lts
                 - maintenance
               command:
-                - node node_modules/mocha/bin/mocha 'test/**/*.test.ts' --reporter mocha-jenkins-reporter --reporter-options junit_report_path=reports/unit/test-results.xml
+                - node node_modules/mocha/bin/mocha 'test/**/*.test.ts' --colors --reporter mocha-jenkins-reporter --reporter-options junit_report_path=reports/unit/test-results.xml,junit_report_stack=1
             exclude:
               - os: windows
                 node_version: lts
