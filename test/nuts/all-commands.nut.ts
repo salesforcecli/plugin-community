@@ -18,13 +18,6 @@ let session: TestSession;
 
 const siteName = 'my-site';
 
-const commonRequiredFlagError = {
-  status: 1,
-  name: 'SfError',
-  exitCode: 1,
-  warnings: [],
-};
-
 describe('plugin-commuity commands', () => {
   before(async () => {
     session = await TestSession.create({
@@ -51,68 +44,6 @@ describe('plugin-commuity commands', () => {
   });
 
   describe('community:create', () => {
-    it('requires --name flag', () => {
-      const cmd = 'force:community:create --json';
-      const output = execCmd<CommunityCreateResponse>(cmd, { ensureExitCode: 1 }).jsonOutput;
-
-      expect(output.stack).to.include('--name');
-      delete output.stack;
-      expect(output).to.deep.equal({
-        message: 'Missing required flag:\n -n, --name NAME  name of the site to create\nSee more help with --help',
-        commandName: 'CommunityCreateCommand',
-        context: 'CommunityCreateCommand',
-        ...commonRequiredFlagError,
-      });
-    });
-
-    it('requires --templatename flag', () => {
-      const cmd = `force:community:create --name "${siteName}" --json`;
-      const output = execCmd<CommunityCreateResponse>(cmd, { ensureExitCode: 1 }).jsonOutput;
-
-      expect(output.stack).to.include('--templatename');
-      delete output.stack;
-      expect(output).to.deep.equal({
-        message:
-          'Missing required flag:\n -t, --templatename TEMPLATENAME  template to use to create a site\nSee more help with --help', // eslint-disable-line prettier/prettier
-        exitCode: 1,
-        commandName: 'CommunityCreateCommand',
-        context: 'CommunityCreateCommand',
-        ...commonRequiredFlagError,
-      });
-    });
-
-    it('requires --urlpathprefix flag', () => {
-      const cmd = `force:community:create --name "${siteName}" --templatename "Aloha" --json`;
-      const output = execCmd<CommunityCreateResponse>(cmd, { ensureExitCode: 1 }).jsonOutput;
-
-      expect(output.stack).to.include('--urlpathprefix');
-      delete output.stack;
-      expect(output).to.deep.equal({
-        message:
-          'Missing required flag:\n -p, --urlpathprefix URLPATHPREFIX  URL to append to the domain created when\n                                    Digital Experiences was enabled for this org\nSee more help with --help', // eslint-disable-line prettier/prettier
-        commandName: 'CommunityCreateCommand',
-        context: 'CommunityCreateCommand',
-        ...commonRequiredFlagError,
-      });
-    });
-
-    it('requires alphanumeric for --urlpathprefix flag', () => {
-      const cmd = `force:community:create --name "${siteName}" --templatename "Aloha" --urlpathprefix "my-bad-prefix" --json`;
-      const output = execCmd<CommunityCreateResponse>(cmd, { ensureExitCode: 1 }).jsonOutput;
-
-      expect(output.stack).to.include('INVALID_INPUT');
-      delete output.stack;
-      expect(output).to.deep.equal({
-        status: 1,
-        name: 'INVALID_INPUT',
-        message: 'The URL can only contain alphanumeric characters.',
-        exitCode: 1,
-        commandName: 'CommunityCreateCommand',
-        context: 'CommunityCreateCommand',
-        warnings: [],
-      });
-    });
-
     it('creates a new community', () => {
       const cmd = `force:community:create --name "${siteName}" --templatename "Aloha" --urlpathprefix "myprefix" --json`;
       const output = execCmd<CommunityCreateResponse>(cmd, { ensureExitCode: 0 }).jsonOutput;
@@ -124,21 +55,6 @@ describe('plugin-commuity commands', () => {
   });
 
   describe('community:publish', () => {
-    it('requires --name flag', () => {
-      const cmd = 'force:community:publish --json';
-      const output = execCmd<CommunityPublishResponse>(cmd, { ensureExitCode: 1 }).jsonOutput;
-
-      expect(output.stack).to.include('--name');
-      delete output.stack;
-      expect(output).to.deep.equal({
-        message:
-          'Missing required flag:\n -n, --name NAME  name of the Experience Builder site to publish\nSee more help with --help', // eslint-disable-line prettier/prettier
-        commandName: 'CommunityPublishCommand',
-        context: 'CommunityPublishCommand',
-        ...commonRequiredFlagError,
-      });
-    });
-
     it('throws an error if published too early', () => {
       const cmd = `force:community:publish --name "${siteName}" --json`;
       const output = execCmd<CommunityPublishResponse>(cmd, { ensureExitCode: 1 }).jsonOutput;
