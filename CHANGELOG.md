@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/salesforcecli/plugin-community/compare/v2.0.0...v2.0.1) (2022-08-26)
+
+### Bug Fixes
+
+- removing nuts that really just test oclif ([fa2164e](https://github.com/salesforcecli/plugin-community/commit/fa2164ebff20f1eeab3c75f6b03f09f0b1d9a3c6))
+
 ## [2.0.0](https://github.com/salesforcecli/plugin-community/compare/v1.1.5...v2.0.0) (2022-06-01)
 
 ### Bug Fixes
