@@ -20,11 +20,9 @@ describe('CommunityTemplatesResource', () => {
     });
   });
   describe('getPostParams', () => {
-    it('should not have any post params', () => {
-      return communityTemplatesResource.fetchPostParams().then((params) => {
+    it('should not have any post params', () => communityTemplatesResource.fetchPostParams().then((params) => {
         expect(params).to.equal('{}');
-      });
-    });
+      }));
   });
   describe('handleError', () => {
     it('should throw an error', () => {

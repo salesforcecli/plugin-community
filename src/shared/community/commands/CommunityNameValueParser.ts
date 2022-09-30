@@ -50,11 +50,11 @@ export class CommunityNameValueParser {
   }
 
   private parseKeyValuePairs(args: string[]): Array<[string, string]> {
-    const keyValues = args.reduce(function (collection, terms) {
+    const keyValues = args.reduce<Array<[string, string]>>((collection, terms) => {
       const [key, value]: string[] = terms.split(/=(.*)/);
       collection.push([key, value]);
       return collection;
-    }, [] as Array<[string, string]>);
+    }, []);
     return keyValues;
   }
 
