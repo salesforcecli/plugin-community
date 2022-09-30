@@ -41,21 +41,12 @@ export class CommunityNameValueParser {
   public constructor(private patterns: string[] = ['.+']) {}
 
   public parse(args: string[]): JsonMap {
-    const mappings: Array<[string, string]> = this.parseKeyValuePairs(args);
+    const mappings: Array<[string, string]> = parseKeyValuePairs(args);
     this.validate(mappings);
 
-    const values: JsonMap = this.buildJsonMapFromKeyValues(mappings);
+    const values: JsonMap = buildJsonMapFromKeyValues(mappings);
 
     return values;
-  }
-
-  private parseKeyValuePairs(args: string[]): Array<[string, string]> {
-    const keyValues = args.reduce<Array<[string, string]>>((collection, terms) => {
-      const [key, value]: string[] = terms.split(/=(.*)/);
-      collection.push([key, value]);
-      return collection;
-    }, []);
-    return keyValues;
   }
 
   private validate(parsedArgs: Array<[string, string]>): void {
@@ -67,27 +58,37 @@ export class CommunityNameValueParser {
       .map(([key, value]) => `${key}="${value}"`);
 
     if (!isEmpty(errors)) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       throw messages.createError('error.invalidVarargs', errors);
     }
   }
-
-  private buildJsonMapFromKeyValues(keyValues: Array<[string, string]>): JsonMap {
-    let results: JsonMap = {};
-    keyValues.forEach(([key, value]) => {
-      results = this.setValue(key, value, results);
-    });
-    return results;
-  }
-
-  private setValue(hyperKey: string, value: string, json: JsonMap = {}): JsonMap {
-    const keys: string[] = hyperKey.split('.');
-    const lastKey: string = keys[keys.length - 1];
-
-    const last = keys
-      .slice(0, -1)
-      .reduce((map, index) => (map[index] = map[index] === undefined ? {} : map[index]), json);
-    last[lastKey] = value;
-
-    return json;
-  }
 }
+
+const parseKeyValuePairs = (args: string[]): Array<[string, string]> => {
+  const keyValues = args.reduce<Array<[string, string]>>((collection, terms) => {
+    const [key, value]: string[] = terms.split(/=(.*)/);
+    collection.push([key, value]);
+    return collection;
+  }, []);
+  return keyValues;
+};
+
+const setValue = (hyperKey: string, value: string, json: JsonMap = {}): JsonMap => {
+  const keys: string[] = hyperKey.split('.');
+  const lastKey: string = keys[keys.length - 1];
+
+  const last = keys
+    .slice(0, -1)
+    .reduce((map, index) => (map[index] = map[index] === undefined ? {} : map[index]), json);
+  last[lastKey] = value;
+
+  return json;
+};
+
+const buildJsonMapFromKeyValues = (keyValues: Array<[string, string]>): JsonMap => {
+  let results: JsonMap = {};
+  keyValues.forEach(([key, value]) => {
+    results = setValue(key, value, results);
+  });
+  return results;
+};

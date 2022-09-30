@@ -23,6 +23,7 @@ const ACTION_KEY = 'action';
  * A connect api resource for creating a community
  */
 export class CommunityCreateResource implements ConnectResource<CommunityCreateResponse> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public constructor(private flags: OutputFlags<any>, private params: AnyJson, private ux: UX) {}
 
   public handleSuccess(result: JsonCollection & { [NAME_KEY]?: string }): CommunityCreateResponse {
@@ -41,15 +42,17 @@ export class CommunityCreateResource implements ConnectResource<CommunityCreateR
     return response;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   public handleError(error: Error): CommunityCreateResponse {
     throw error;
   }
 
-  // eslint-disable-next-line @typescript-eslint/require-await
+  // eslint-disable-next-line @typescript-eslint/require-await, class-methods-use-this
   public async fetchRelativeConnectUrl(): Promise<string> {
     return '/connect/communities';
   }
 
+  // eslint-disable-next-line class-methods-use-this
   public getRequestMethod(): HttpMethods {
     return 'POST';
   }

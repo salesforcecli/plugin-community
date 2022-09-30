@@ -18,7 +18,7 @@ let session: TestSession;
 
 const siteName = 'my-site';
 
-describe('plugin-commuity commands', () => {
+describe('plugin-community commands', () => {
   before(async () => {
     session = await TestSession.create({
       project: {
@@ -65,7 +65,7 @@ describe('plugin-commuity commands', () => {
         `The ${siteName} site doesn't exist. Verify the site name and try publishing it again.`
       );
       expect(output.exitCode).to.equal(1);
-      expect(output.commandName).to.equal('CommunityPublishCommand');
+      // expect(output.commandName).to.equal('CommunityPublishCommand');
     });
 
     it('publishes a created community', async () => {
@@ -96,7 +96,7 @@ describe('plugin-commuity commands', () => {
       expect(result.id).to.have.length(18);
       expect(result.message).to.equal(
         'We’re publishing your changes now. You’ll receive an email confirmation when your changes are live.'
-      ); // eslint-disable-line prettier/prettier
+      );
       expect(result.name).to.equal(siteName);
       expect(result.status).to.equal('UnderConstruction');
       expect(result.url).to.contain('https');

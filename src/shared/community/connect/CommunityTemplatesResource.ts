@@ -19,15 +19,16 @@ const messages = Messages.loadMessages('@salesforce/plugin-community', 'template
 export class CommunityTemplatesResource implements ConnectResource<CommunityTemplatesListResponse> {
   public constructor(private ux: UX) {}
 
-  // eslint-disable-next-line @typescript-eslint/require-await
+  // eslint-disable-next-line @typescript-eslint/require-await, class-methods-use-this
   public async fetchRelativeConnectUrl(): Promise<string> {
     return '/connect/communities/templates';
   }
-  // eslint-disable-next-line @typescript-eslint/require-await
+  // eslint-disable-next-line @typescript-eslint/require-await, class-methods-use-this
   public async fetchPostParams(): Promise<string> {
     return JSON.stringify({});
   }
 
+  // eslint-disable-next-line class-methods-use-this
   public getRequestMethod(): HttpMethods {
     return 'GET';
   }
@@ -44,6 +45,7 @@ export class CommunityTemplatesResource implements ConnectResource<CommunityTemp
     return result;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   public handleError(error: Error): CommunityTemplatesListResponse {
     throw error;
   }
