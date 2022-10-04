@@ -18,18 +18,24 @@ let session: TestSession;
 
 const siteName = 'my-site';
 
-describe('plugin-commuity commands', () => {
+describe('plugin-community commands', () => {
   before(async () => {
     session = await TestSession.create({
       project: {
         sourceDir: path.join('test', 'community-project'),
       },
-      // create org and push source to get a permset
-      setupCommands: [
-        `sfdx force:org:create -d 1 -s -f ${path.join('config', 'project-scratch-def.json')}`,
-        'sfdx force:source:push',
+      devhubAuthStrategy: 'AUTO',
+      scratchOrgs: [
+        {
+          executable: 'sfdx',
+          duration: 1,
+          setDefault: true,
+          config: path.join('config', 'project-scratch-def.json'),
+        },
       ],
     });
+
+    execCmd('force:source:push', { cli: 'sfdx' });
   });
 
   describe('community:template:list', () => {
@@ -58,13 +64,14 @@ describe('plugin-commuity commands', () => {
     it('throws an error if published too early', () => {
       const cmd = `force:community:publish --name "${siteName}" --json`;
       const output = execCmd<CommunityPublishResponse>(cmd, { ensureExitCode: 1 }).jsonOutput;
-
       expect(output.status).to.equal(1);
       expect(output.name).to.equal('CommunityNotExists');
       expect(output.message).to.equal(
         `The ${siteName} site doesn't exist. Verify the site name and try publishing it again.`
       );
       expect(output.exitCode).to.equal(1);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       expect(output.commandName).to.equal('CommunityPublishCommand');
     });
 
