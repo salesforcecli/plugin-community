@@ -25,17 +25,19 @@ const messages = Messages.loadMessages('@salesforce/plugin-community', 'publish'
 export class CommunityPublishResource implements ConnectResource<CommunityPublishResponse> {
   private info: CommunityInfo;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public constructor(private flags: OutputFlags<any>, private org: Org, private ux: UX) {}
 
   public async fetchRelativeConnectUrl(): Promise<string> {
     return `/connect/communities/${await this.fetchCommunityId()}/publish`;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   public getRequestMethod(): HttpMethods {
     return 'POST';
   }
 
-  // eslint-disable-next-line @typescript-eslint/require-await
+  // eslint-disable-next-line @typescript-eslint/require-await, class-methods-use-this
   public async fetchPostParams(): Promise<string> {
     return JSON.stringify({});
   }
@@ -62,14 +64,16 @@ export class CommunityPublishResource implements ConnectResource<CommunityPublis
     return response;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   public handleError(error: Error): CommunityPublishResponse {
     throw error;
   }
 
   public async fetchCommunityId(): Promise<string> {
-    this.info = await CommunitiesServices.fetchCommunityInfoFromName(this.org, this.flags.name);
+    this.info = await CommunitiesServices.fetchCommunityInfoFromName(this.org, this.flags.name as string);
     if (!this.info) {
-      throw messages.createError('error.communityNotExists', [this.flags.name]);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      throw messages.createError('error.communityNotExists', [this.flags.name as string]);
     }
     return this.info.id;
   }

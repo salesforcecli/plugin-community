@@ -4,6 +4,9 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
 import * as sinon from 'sinon';
 import { expect } from 'chai';
@@ -19,9 +22,11 @@ describe('ConnectExecutor', () => {
 
   class DummyPostConnectResource implements ConnectResource<Result> {
     public fetchRelativeConnectUrl(): Promise<string> {
-      return Promise.resolve(relativeUrl + this.getRequestMethod());
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      return Promise.resolve(`${relativeUrl}${this.getRequestMethod()}`);
     }
 
+    // eslint-disable-next-line class-methods-use-this
     public getRequestMethod(): HttpMethods {
       return 'POST';
     }
@@ -42,7 +47,7 @@ describe('ConnectExecutor', () => {
         display: () => {},
       };
     }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars, class-methods-use-this
     public handleError(error: Error): import('@salesforce/command').Result {
       throw new Error('handleError is called');
     }
