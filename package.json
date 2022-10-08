@@ -7,7 +7,7 @@
   "dependencies": {
     "@oclif/core": "^1.16.4",
     "@salesforce/command": "^5.2.11",
-    "@salesforce/core": "^3.30.10",
+    "@salesforce/core": "^3.30.12",
     "tslib": "^2"
   },
   "devDependencies": {
@@ -20,7 +20,7 @@
     "@salesforce/prettier-config": "^0.0.2",
     "@salesforce/ts-sinon": "1.4.0",
     "@typescript-eslint/eslint-plugin": "^5.33.0",
-    "@typescript-eslint/parser": "^5.33.0",
+    "@typescript-eslint/parser": "^5.39.0",
     "chai": "^4.3.6",
     "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
