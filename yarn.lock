@@ -564,7 +564,7 @@
     is-wsl "^2.1.1"
     tslib "^2.3.1"
 
-"@oclif/core@^1.14.1", "@oclif/core@^1.16.4", "@oclif/core@^1.16.5", "@oclif/core@^1.19.1", "@oclif/core@^1.3.6":
+"@oclif/core@^1.16.5", "@oclif/core@^1.18.0", "@oclif/core@^1.19.1":
   version "1.19.1"
   resolved "https://registry.yarnpkg.com/@oclif/core/-/core-1.19.1.tgz#6dba92cfb7f1412e43068db3e9716215786f85a3"
   integrity sha512-+LtMYQNzfLoYUcBTsWSFQ/4mqiA70XRU6tP+lDNmQQTrB5FHzDoBbyYvdjvMeS42izg78gjlN++rLUaAUCloNw==
@@ -688,13 +688,6 @@
     widest-line "^3.1.0"
     wrap-ansi "^6.2.0"
 
-"@oclif/plugin-help@^5.1.11":
-  version "5.1.12"
-  resolved "https://registry.yarnpkg.com/@oclif/plugin-help/-/plugin-help-5.1.12.tgz#24a18631eb9b22cb55e1a3b8e4f6039fd42727e6"
-  integrity sha512-HvH/RubJxqCinP0vUWQLTOboT+SfjfL8h40s+PymkWaldIcXlpoRaJX50vz+SjZIs7uewZwEk8fzLqpF/BWXlg==
-  dependencies:
-    "@oclif/core" "^1.3.6"
-
 "@oclif/screen@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@oclif/screen/-/screen-1.0.4.tgz#b740f68609dfae8aa71c3a6cab15d816407ba493"
@@ -705,13 +698,13 @@
   resolved "https://registry.yarnpkg.com/@oclif/screen/-/screen-3.0.2.tgz#969054308fe98d130c02844a45cc792199b75670"
   integrity sha512-S/SF/XYJeevwIgHFmVDAFRUvM3m+OjhvCAYMk78ZJQCYCQ5wS7j+LTt1ZEv2jpEEGg2tx/F6TYYWxddNAYHrFQ==
 
-"@oclif/test@^2.1.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@oclif/test/-/test-2.2.0.tgz#70b1b8b4c5a2272e9cef5108f8e52f1afab8e6b6"
-  integrity sha512-hykwoXt8Ml+J+mwr9cJ+xl+84gSKdF+S7MKCjM5cPGMg6uhXBuzXtMlVK91s4bZh0uPYUioYJWAeptAgTHfgHQ==
+"@oclif/test@^2.2.0":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@oclif/test/-/test-2.2.4.tgz#30c29cb4a0cd370e8d95280fe40097473edbd884"
+  integrity sha512-bLaapIKHWyeuWCbD64uUCJCH+OJHFlEi6u/3sRPgi00kEyP95mM23IvkggDWEzQNh92IFj1xx5Bg8qnp0E2tjw==
   dependencies:
-    "@oclif/core" "^1.16.4"
-    fancy-test "^2.0.0"
+    "@oclif/core" "^1.18.0"
+    fancy-test "^2.0.4"
 
 "@salesforce/bunyan@^2.0.0":
   version "2.0.0"
@@ -740,14 +733,13 @@
     strip-ansi "6.0.1"
     ts-retry-promise "^0.7.0"
 
-"@salesforce/command@^5.2.11", "@salesforce/command@^5.2.12":
-  version "5.2.12"
-  resolved "https://registry.yarnpkg.com/@salesforce/command/-/command-5.2.12.tgz#89e29e267366ef4840c8633d5c8be2bc22506ded"
-  integrity sha512-BPYbj9rxySO1egpmtOsEzaic6kWRG8PRL2v732KXrC5lrplvkZAovbOd84bz1HVWO4Knbj28N+iV4qXXfrhPAA==
+"@salesforce/command@^5.2.11", "@salesforce/command@^5.2.13":
+  version "5.2.13"
+  resolved "https://registry.yarnpkg.com/@salesforce/command/-/command-5.2.13.tgz#9bd019bc997a9619977362a7348af1b65b1800c0"
+  integrity sha512-+7+ZWjB3kQqJtcJpqiSrhW8mclgEmy+d26kDch0YUCxhUvoWQjCk23D4jDkZrFPJrv7sudeQXLSosqEIGppF3w==
   dependencies:
-    "@oclif/core" "^1.14.1"
-    "@oclif/plugin-help" "^5.1.11"
-    "@oclif/test" "^2.1.0"
+    "@oclif/core" "^1.18.0"
+    "@oclif/test" "^2.2.0"
     "@salesforce/core" "^3.31.9"
     "@salesforce/kit" "^1.6.1"
     "@salesforce/ts-types" "^1.5.21"
@@ -2590,10 +2582,10 @@ extract-stack@^2.0.0:
   resolved "https://registry.yarnpkg.com/extract-stack/-/extract-stack-2.0.0.tgz#11367bc865bfcd9bc0db3123e5edb57786f11f9b"
   integrity sha512-AEo4zm+TenK7zQorGK1f9mJ8L14hnTDi2ZQPR+Mub1NX8zimka1mXpV5LpH8x9HoUmFSHZCfLHqWvp0Y4FxxzQ==
 
-fancy-test@^2.0.0:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/fancy-test/-/fancy-test-2.0.2.tgz#640879553d3fd7f6ec3aab101544bc1b74e453ad"
-  integrity sha512-Feo+Hkj/sd85buCbweWrTWAntZZfAL+3v7vZ0JgV/VgpZN9+3bmIErF+mtNT+a3Ubo5Smfa30G2oLAtmMXudJw==
+fancy-test@^2.0.4:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/fancy-test/-/fancy-test-2.0.5.tgz#eb39e10b77e476147aa4ed5a81e14e809b46aaae"
+  integrity sha512-ASPLNVkHSSIdRI/uLlK+XGhf1ul/MpRN9VE84ehXL+FOprQjXrDXX3wW1wqKvtcTTC+AW0E0RxdpJ5IEopjhQA==
   dependencies:
     "@types/chai" "*"
     "@types/lodash" "*"
