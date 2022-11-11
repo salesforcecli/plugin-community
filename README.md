@@ -1,6 +1,6 @@
 # plugin-community;
 
-[![NPM](https://img.shields.io/npm/v/@salesforce/plugin-community.svg?label=@salesforce/plugin-community)](https://www.npmjs.com/package/@salesforce/plugin-community) [![CircleCI](https://circleci.com/gh/salesforcecli/plugin-community/tree/main.svg?style=shield)](https://circleci.com/gh/salesforcecli/plugin-community/tree/main) [![Downloads/week](https://img.shields.io/npm/dw/@salesforce/plugin-community.svg)](https://npmjs.org/package/@salesforce/plugin-community) [![License](https://img.shields.io/badge/License-BSD%203--Clause-brightgreen.svg)](https://raw.githubusercontent.com/salesforcecli/plugin-community/main/LICENSE.txt)
+[![NPM](https://img.shields.io/npm/v/@salesforce/plugin-community.svg?label=@salesforce/plugin-community)](https://www.npmjs.com/package/@salesforce/plugin-community) [![Downloads/week](https://img.shields.io/npm/dw/@salesforce/plugin-community.svg)](https://npmjs.org/package/@salesforce/plugin-community) [![License](https://img.shields.io/badge/License-BSD%203--Clause-brightgreen.svg)](https://raw.githubusercontent.com/salesforcecli/plugin-community/main/LICENSE.txt)
 
 ## Learn about the plugin-community
 
