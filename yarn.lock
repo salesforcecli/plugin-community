@@ -658,12 +658,12 @@
     chalk "^4.1.0"
     tslib "^2.3.1"
 
-"@oclif/plugin-command-snapshot@^3.2.8":
-  version "3.2.8"
-  resolved "https://registry.yarnpkg.com/@oclif/plugin-command-snapshot/-/plugin-command-snapshot-3.2.8.tgz#f34fd6dbace0f270cf2cf1f22f7fe226972065c7"
-  integrity sha512-9/9Vw+ZHEEByqnv0EHPl68yvO8rTTuiIMCS/oZG+fVsGD48QrnxgAlDstcAzFwFavqx0tJJeo+Rhe2+Q3CoPGA==
+"@oclif/plugin-command-snapshot@^3.2.9":
+  version "3.2.9"
+  resolved "https://registry.yarnpkg.com/@oclif/plugin-command-snapshot/-/plugin-command-snapshot-3.2.9.tgz#e2c733a5160e8b39ec7eb20f2405cf37f8c74c3e"
+  integrity sha512-la7Qh+M9FsPd0UY7ylsLBXsp1nH05W5gSsyTA7SWIStz8gc5VDP4BBQlgc8B3YpLpeRT0D2jbcce5QIw0xoAbw==
   dependencies:
-    "@oclif/core" "^1.20.0"
+    "@oclif/core" "^1.20.2"
     chalk "^4.1.2"
     just-diff "^5.1.1"
     lodash "^4.17.21"
