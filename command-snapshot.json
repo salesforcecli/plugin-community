@@ -11,16 +11,19 @@
       "targetusername",
       "templatename",
       "urlpathprefix"
-    ]
+    ],
+    "alias": []
   },
   {
     "command": "force:community:publish",
     "plugin": "@salesforce/plugin-community",
-    "flags": ["apiversion", "json", "loglevel", "name", "targetusername"]
+    "flags": ["apiversion", "json", "loglevel", "name", "targetusername"],
+    "alias": []
   },
   {
     "command": "force:community:template:list",
     "plugin": "@salesforce/plugin-community",
-    "flags": ["apiversion", "json", "loglevel", "targetusername"]
+    "flags": ["apiversion", "json", "loglevel", "targetusername"],
+    "alias": []
   }
 ]
