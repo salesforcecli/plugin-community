@@ -11,11 +11,14 @@
 import * as sinon from 'sinon';
 import { expect } from 'chai';
 import { stubMethod } from '@salesforce/ts-sinon';
-import { Org, Connection } from '@salesforce/core';
-import { Result } from '@salesforce/command';
+import { Connection, Org } from '@salesforce/core';
 import { HttpMethods, HttpRequest } from 'jsforce';
 import { ConnectExecutor } from '../../../../../src/shared/connect/services/ConnectExecutor';
 import { ConnectResource } from '../../../../../src/shared/connect/services/ConnectResource';
+
+type Result = {
+  data: string;
+};
 
 describe('ConnectExecutor', () => {
   const relativeUrl = '/relativeUrl/';
@@ -38,17 +41,16 @@ describe('ConnectExecutor', () => {
         })
       );
     }
+
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public handleSuccess(result: import('@salesforce/ts-types').JsonCollection): import('@salesforce/command').Result {
+    public handleSuccess(result: import('@salesforce/ts-types').JsonCollection): Result {
       return {
         data: 'success',
-        ux: null,
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        display: () => {},
       };
     }
+
     // eslint-disable-next-line @typescript-eslint/no-unused-vars, class-methods-use-this
-    public handleError(error: Error): import('@salesforce/command').Result {
+    public handleError(error: Error): Result {
       throw new Error('handleError is called');
     }
   }
@@ -132,7 +134,6 @@ describe('ConnectExecutor', () => {
       const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyGetConnectResource(), Org.prototype);
       const response: Result = await executor.callConnectApi();
       expect(response.data).to.be.equal('success');
-      expect(response.ux).to.be.equal(null);
     });
 
     it('should call handleError on error response', async () => {

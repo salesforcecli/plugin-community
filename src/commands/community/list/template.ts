@@ -6,11 +6,11 @@
  */
 
 import * as os from 'os';
-import { SfdxCommand } from '@salesforce/command';
 import { Messages } from '@salesforce/core';
-import { CommunityTemplatesResource } from '../../../../shared/community/connect/CommunityTemplatesResource';
-import { ConnectExecutor } from '../../../../shared/connect/services/ConnectExecutor';
-import { CommunityTemplatesListResponse } from '../../../../shared/community/defs/CommunityTemplatesListResponse';
+import { requiredOrgFlagWithDeprecations, SfCommand } from '@salesforce/sf-plugins-core';
+import { CommunityTemplatesResource } from '../../../shared/community/connect/CommunityTemplatesResource';
+import { ConnectExecutor } from '../../../shared/connect/services/ConnectExecutor';
+import { CommunityTemplatesListResponse } from '../../../shared/community/defs/CommunityTemplatesListResponse';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'template.list');
@@ -19,14 +19,19 @@ const messages = Messages.loadMessages('@salesforce/plugin-community', 'template
  * A command to fetch available community templates a community. This is just an sfdx wrapper around
  * the get available community templates connect endpoint
  */
-export class CommunityListTemplatesCommand extends SfdxCommand {
-  public static readonly requiresUsername = true;
+export class CommunityListTemplatesCommand extends SfCommand<CommunityTemplatesListResponse> {
+  public static readonly aliases = ['force:community:template:list', 'community:template:list'];
+  public static readonly summary = messages.getMessage('summary');
   public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessage('examples').split(os.EOL);
+  public static readonly flags = {
+    'target-org': requiredOrgFlagWithDeprecations,
+  };
 
-  public async run(): Promise<CommunityTemplatesListResponse | Error> {
+  public async run(): Promise<CommunityTemplatesListResponse> {
+    const { flags } = await this.parse(CommunityListTemplatesCommand);
     const listTemplateCommand = new CommunityTemplatesResource();
-    return new ConnectExecutor(listTemplateCommand, this.org)
+    return new ConnectExecutor(listTemplateCommand, flags['target-org'])
       .callConnectApi()
       .then((results: CommunityTemplatesListResponse) => {
         this.displayResults(results);
@@ -39,9 +44,9 @@ export class CommunityListTemplatesCommand extends SfdxCommand {
       templateName: { header: 'Template Name' },
       publisher: { header: 'Publisher' },
     };
-    this.ux.styledHeader(messages.getMessage('response.styledHeader'));
-    this.ux.table(results.templates, columns);
-    this.ux.log();
-    this.ux.log(messages.getMessage('response.TotalField'), results.total.toString());
+    this.styledHeader(messages.getMessage('response.styledHeader'));
+    this.table(results.templates, columns);
+    this.log();
+    this.log(messages.getMessage('response.TotalField'), results.total.toString());
   }
 }

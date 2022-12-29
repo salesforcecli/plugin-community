@@ -8,7 +8,7 @@ import * as path from 'path';
 import { expect } from 'chai';
 import { Duration, sleep } from '@salesforce/kit';
 
-import { TestSession, execCmd } from '@salesforce/cli-plugins-testkit';
+import { execCmd, TestSession } from '@salesforce/cli-plugins-testkit';
 
 import { CommunityCreateResponse } from '../../src/shared/community/defs/CommunityCreateResponse';
 import { CommunityPublishResponse } from '../../src/shared/community/defs/CommunityPublishResponse';
@@ -51,7 +51,7 @@ describe('plugin-community commands', () => {
 
   describe('community:create', () => {
     it('creates a new community', () => {
-      const cmd = `force:community:create --name "${siteName}" --templatename "Aloha" --urlpathprefix "myprefix" --json`;
+      const cmd = `force:community:create --name "${siteName}" --template-name "Aloha" --url-path-prefix "myprefix" --json`;
       const output = execCmd<CommunityCreateResponse>(cmd, { ensureExitCode: 0 }).jsonOutput;
 
       expect(output.result).to.have.all.keys(['message', 'name', 'action']);
@@ -65,14 +65,11 @@ describe('plugin-community commands', () => {
       const cmd = `force:community:publish --name "${siteName}" --json`;
       const output = execCmd<CommunityPublishResponse>(cmd, { ensureExitCode: 1 }).jsonOutput;
       expect(output.status).to.equal(1);
-      expect(output.name).to.equal('CommunityNotExists');
+      expect(output.name).to.equal('CommunityNotExistsError');
       expect(output.message).to.equal(
         `The ${siteName} site doesn't exist. Verify the site name and try publishing it again.`
       );
       expect(output.exitCode).to.equal(1);
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      expect(output.commandName).to.equal('CommunityPublishCommand');
     });
 
     it('publishes a created community', async () => {
@@ -86,7 +83,7 @@ describe('plugin-community commands', () => {
 
         if (output.result) {
           return output.result;
-        } else if (output.name === 'CommunityNotExists') {
+        } else if (output.name === 'CommunityNotExistsError') {
           if (retry <= 0) {
             throw new Error(`Max retries (${maxRetries}) reached attempting to run 'force:community:publish'`);
           }

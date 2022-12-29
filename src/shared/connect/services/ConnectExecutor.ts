@@ -5,9 +5,12 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { JsonCollection } from '@salesforce/ts-types';
-import { Org, SfError } from '@salesforce/core';
+import { Messages, Org, SfError } from '@salesforce/core';
 import { HttpRequest } from 'jsforce';
 import { ConnectResource } from './ConnectResource';
+
+Messages.importMessagesDirectory(__dirname);
+const messages = Messages.loadMessages('@salesforce/plugin-community', 'connect-executor');
 
 /**
  * An executor which calls a connect api for the given org
@@ -42,7 +45,7 @@ export class ConnectExecutor<T> {
         body: await this.connectService.fetchPostParams(),
       };
     } else {
-      throw new SfError(`Unsupported method is given: ${method}`, 'UNSUPPORTED_OPERATION');
+      throw new SfError(messages.getMessage('unsupportedOperation', [method]), 'UNSUPPORTED_OPERATION');
     }
   }
 }

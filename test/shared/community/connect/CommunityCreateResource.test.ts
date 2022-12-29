@@ -8,7 +8,7 @@ import * as sinon from 'sinon';
 import { AnyJson, JsonCollection, JsonMap } from '@salesforce/ts-types';
 import { expect } from 'chai';
 import { Messages } from '@salesforce/core';
-import { UX } from '@salesforce/command';
+import { SfCommand } from '@salesforce/sf-plugins-core';
 import { CommunityCreateParams } from '../../../../src/shared/community/defs/CommunityCreateParams';
 import { CommunityCreateResource } from '../../../../src/shared/community/connect/CommunityCreateResource';
 import { CommunityCreateResponse } from '../../../../src/shared/community/defs/CommunityCreateResponse';
@@ -27,8 +27,8 @@ describe('CommunityCreateResource', () => {
 
   before(() => {
     communityCreateResource = getCommunityCreateResource();
-    table = sinon.stub(UX.prototype, 'table');
-    styledHeader = sinon.stub(UX.prototype, 'styledHeader');
+    table = sinon.stub(SfCommand.prototype, 'table');
+    styledHeader = sinon.stub(SfCommand.prototype, 'styledHeader');
   });
   after(() => {
     table.restore();
@@ -116,8 +116,8 @@ describe('CommunityCreateResource with templateParams', () => {
   let styledHeader: sinon.SinonStub;
 
   before(() => {
-    table = sinon.stub(UX.prototype, 'table');
-    styledHeader = sinon.stub(UX.prototype, 'styledHeader');
+    table = sinon.stub(SfCommand.prototype, 'table');
+    styledHeader = sinon.stub(SfCommand.prototype, 'styledHeader');
   });
   after(() => {
     table.restore();
