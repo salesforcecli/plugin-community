@@ -8,7 +8,8 @@
 /**
  * SFDX command output when listing available community templates
  */
-import { CommunityTemplates } from '../defs/CommunityTemplates';
+import { CommunityTemplates } from './CommunityTemplates';
+
 export type CommunityTemplatesListResponse = {
   /**
    * list of templates

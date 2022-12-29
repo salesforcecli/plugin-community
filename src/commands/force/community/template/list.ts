@@ -25,7 +25,23 @@ export class CommunityListTemplatesCommand extends SfdxCommand {
   public static readonly examples = messages.getMessage('examples').split(os.EOL);
 
   public async run(): Promise<CommunityTemplatesListResponse | Error> {
-    const listTemplateCommand = new CommunityTemplatesResource(this.ux);
-    return new ConnectExecutor(listTemplateCommand, this.org).callConnectApi();
+    const listTemplateCommand = new CommunityTemplatesResource();
+    return new ConnectExecutor(listTemplateCommand, this.org)
+      .callConnectApi()
+      .then((results: CommunityTemplatesListResponse) => {
+        this.displayResults(results);
+        return results;
+      });
+  }
+
+  private displayResults(results: CommunityTemplatesListResponse): void {
+    const columns = {
+      templateName: { header: 'Template Name' },
+      publisher: { header: 'Publisher' },
+    };
+    this.ux.styledHeader(messages.getMessage('response.styledHeader'));
+    this.ux.table(results.templates, columns);
+    this.ux.log();
+    this.ux.log(messages.getMessage('response.TotalField'), results.total.toString());
   }
 }

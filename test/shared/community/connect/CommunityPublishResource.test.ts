@@ -127,12 +127,9 @@ describe('CommunityPublishResource', () => {
   });
 
   function getCommunityPublishResource(): CommunityPublishResource {
-    return new CommunityPublishResource(
-      {
-        name: communityName,
-      },
+    return new CommunityPublishResource({
+      name: communityName,
       org,
-      new UX(null)
-    );
+    });
   }
 });

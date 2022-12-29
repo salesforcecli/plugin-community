@@ -28,24 +28,20 @@ export class ConnectExecutor<T> {
 
   public async fetchRequestInfo(): Promise<HttpRequest> {
     const connectUrl = encodeURI(await this.connectService.fetchRelativeConnectUrl());
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const method = this.connectService.getRequestMethod();
     if (method === 'GET') {
       return {
         url: connectUrl,
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         method,
         body: null,
       };
     } else if (method === 'POST') {
       return {
         url: connectUrl,
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         method,
         body: await this.connectService.fetchPostParams(),
       };
     } else {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/restrict-template-expressions
       throw new SfError(`Unsupported method is given: ${method}`, 'UNSUPPORTED_OPERATION');
     }
   }

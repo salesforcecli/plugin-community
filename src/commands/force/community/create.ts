@@ -16,6 +16,11 @@ import { CommunityCreateResponse } from '../../../shared/community/defs/Communit
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');
+
+const MESSAGE_KEY = 'message';
+const NAME_KEY = 'name';
+const ACTION_KEY = 'action';
+
 /**
  * A command to create a community.
  * This is just an sfdx wrapper around the community create connect endpoint
@@ -63,8 +68,17 @@ export class CommunityCreateCommand extends SfdxCommand {
   ];
 
   public async run(): Promise<CommunityCreateResponse | Error> {
-    const createCommand = new CommunityCreateResource(this.flags, this.varargs, this.ux);
-    return new ConnectExecutor(createCommand, this.org).callConnectApi();
+    const createCommand = new CommunityCreateResource({
+      name: this.flags.name as string,
+      urlPathPrefix: this.flags.urlpathprefix as string,
+      templateName: this.flags.templatename as string,
+      description: this.flags.description as string,
+      templateParams: this.varargs['templateParams'] as JsonMap,
+    });
+    return new ConnectExecutor(createCommand, this.org).callConnectApi().then((results) => {
+      this.displayResults(results);
+      return results;
+    });
   }
 
   protected parseVarargs(args?: string[]): JsonMap {
@@ -81,5 +95,15 @@ export class CommunityCreateCommand extends SfdxCommand {
 
     this.logger.debug('parseVarargs result:' + JSON.stringify(values));
     return values;
+  }
+
+  private displayResults(results: CommunityCreateResponse): void {
+    const columns = {
+      [NAME_KEY]: { header: 'Name' },
+      [MESSAGE_KEY]: { header: 'Message' },
+      [ACTION_KEY]: { header: 'Action' },
+    };
+    this.ux.styledHeader(messages.getMessage('response.styleHeader'));
+    this.ux.table([results], columns);
   }
 }

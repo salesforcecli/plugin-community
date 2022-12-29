@@ -5,7 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import * as sinon from 'sinon';
-import { AnyJson, JsonMap, JsonCollection } from '@salesforce/ts-types';
+import { AnyJson, JsonCollection, JsonMap } from '@salesforce/ts-types';
 import { expect } from 'chai';
 import { Messages } from '@salesforce/core';
 import { UX } from '@salesforce/command';
@@ -94,16 +94,12 @@ describe('CommunityCreateResource', () => {
   });
 
   function getCommunityCreateResource(): CommunityCreateResource {
-    return new CommunityCreateResource(
-      {
-        name: communityName,
-        urlpathprefix: urlPathPrefix,
-        templatename: templateName,
-        description,
-      },
-      {},
-      new UX(null)
-    );
+    return new CommunityCreateResource({
+      name: communityName,
+      urlPathPrefix,
+      templateName,
+      description,
+    });
   }
 });
 
@@ -169,15 +165,12 @@ describe('CommunityCreateResource with templateParams', () => {
   });
 
   function getCommunityCreateResourceWithParams(params: AnyJson): CommunityCreateResource {
-    return new CommunityCreateResource(
-      {
-        name: communityName,
-        urlpathprefix: urlPathPrefix,
-        templatename: templateName,
-        description,
-      },
-      params,
-      new UX(null)
-    );
+    return new CommunityCreateResource({
+      name: communityName,
+      urlPathPrefix,
+      templateName,
+      description,
+      ...Object.fromEntries(Object.entries(params)),
+    });
   }
 });

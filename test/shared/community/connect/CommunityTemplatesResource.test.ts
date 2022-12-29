@@ -6,7 +6,6 @@
  */
 
 import { expect } from 'chai';
-import { UX } from '@salesforce/command';
 import { CommunityTemplatesResource } from '../../../../src/shared/community/connect/CommunityTemplatesResource';
 
 describe('CommunityTemplatesResource', () => {
@@ -20,7 +19,8 @@ describe('CommunityTemplatesResource', () => {
     });
   });
   describe('getPostParams', () => {
-    it('should not have any post params', () => communityTemplatesResource.fetchPostParams().then((params) => {
+    it('should not have any post params', () =>
+      communityTemplatesResource.fetchPostParams().then((params) => {
         expect(params).to.equal('{}');
       }));
   });
@@ -36,7 +36,8 @@ describe('CommunityTemplatesResource', () => {
       }
     });
   });
+
   function getCommunityTemplatesResource(): CommunityTemplatesResource {
-    return new CommunityTemplatesResource(new UX(null));
+    return new CommunityTemplatesResource();
   }
 });

@@ -33,7 +33,25 @@ export class CommunityPublishCommand extends SfdxCommand {
   };
 
   public async run(): Promise<CommunityPublishResponse | Error> {
-    const publishCommand = new CommunityPublishResource(this.flags, this.org, this.ux);
-    return new ConnectExecutor(publishCommand, this.org).callConnectApi();
+    const publishCommand = new CommunityPublishResource({
+      name: this.flags.name as string,
+      org: this.org,
+    });
+    return new ConnectExecutor(publishCommand, this.org).callConnectApi().then((results: CommunityPublishResponse) => {
+      this.displayResults(results);
+      return results;
+    });
+  }
+
+  private displayResults(results: CommunityPublishResponse): void {
+    const columns = {
+      id: { header: 'Id' },
+      message: { header: 'Message' },
+      name: { header: 'Name' },
+      status: { header: 'Status' },
+      url: { header: 'Url' },
+    };
+    this.ux.styledHeader(messages.getMessage('response.styleHeader'));
+    this.ux.table([results], columns);
   }
 }
