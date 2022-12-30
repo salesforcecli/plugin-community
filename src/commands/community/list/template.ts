@@ -5,12 +5,17 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import * as os from 'os';
 import { Messages } from '@salesforce/core';
-import { requiredOrgFlagWithDeprecations, SfCommand } from '@salesforce/sf-plugins-core';
+import {
+  loglevel,
+  orgApiVersionFlagWithDeprecations,
+  requiredOrgFlagWithDeprecations,
+  SfCommand,
+} from '@salesforce/sf-plugins-core';
 import { CommunityTemplatesResource } from '../../../shared/community/connect/CommunityTemplatesResource';
 import { ConnectExecutor } from '../../../shared/connect/services/ConnectExecutor';
 import { CommunityTemplatesListResponse } from '../../../shared/community/defs/CommunityTemplatesListResponse';
+import { applyApiVersionToOrg } from '../../../shared/utils';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'template.list');
@@ -23,15 +28,20 @@ export class CommunityListTemplatesCommand extends SfCommand<CommunityTemplatesL
   public static readonly aliases = ['force:community:template:list', 'community:template:list'];
   public static readonly summary = messages.getMessage('summary');
   public static readonly description = messages.getMessage('description');
-  public static readonly examples = messages.getMessage('examples').split(os.EOL);
+  public static readonly examples = messages.getMessages('examples');
   public static readonly flags = {
     'target-org': requiredOrgFlagWithDeprecations,
+    'api-version': orgApiVersionFlagWithDeprecations,
+    loglevel,
   };
 
   public async run(): Promise<CommunityTemplatesListResponse> {
     const { flags } = await this.parse(CommunityListTemplatesCommand);
     const listTemplateCommand = new CommunityTemplatesResource();
-    return new ConnectExecutor(listTemplateCommand, flags['target-org'])
+    return new ConnectExecutor(
+      listTemplateCommand,
+      await applyApiVersionToOrg(flags['target-org'], flags['api-version'])
+    )
       .callConnectApi()
       .then((results: CommunityTemplatesListResponse) => {
         this.displayResults(results);

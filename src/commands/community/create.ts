@@ -5,14 +5,20 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import * as os from 'os';
 import { JsonMap } from '@salesforce/ts-types';
 import { Logger, Messages } from '@salesforce/core';
-import { Flags, loglevel, requiredOrgFlagWithDeprecations, SfCommand } from '@salesforce/sf-plugins-core';
+import {
+  Flags,
+  loglevel,
+  orgApiVersionFlagWithDeprecations,
+  requiredOrgFlagWithDeprecations,
+  SfCommand,
+} from '@salesforce/sf-plugins-core';
 import { CommunityNameValueParser } from '../../shared/community/commands/CommunityNameValueParser';
 import { ConnectExecutor } from '../../shared/connect/services/ConnectExecutor';
 import { CommunityCreateResource } from '../../shared/community/connect/CommunityCreateResource';
 import { CommunityCreateResponse } from '../../shared/community/defs/CommunityCreateResponse';
+import { applyApiVersionToOrg } from '../../shared/utils';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');
@@ -29,7 +35,7 @@ export class CommunityCreateCommand extends SfCommand<CommunityCreateResponse> {
   public static readonly aliases = ['force:community:create'];
   public static readonly summary = messages.getMessage('summary');
   public static readonly description = messages.getMessage('description');
-  public static readonly examples = messages.getMessage('examples').split(os.EOL);
+  public static readonly examples = messages.getMessages('examples');
   public static readonly flags = {
     name: Flags.string({
       char: 'n',
@@ -58,7 +64,7 @@ export class CommunityCreateCommand extends SfCommand<CommunityCreateResponse> {
     }),
     'target-org': requiredOrgFlagWithDeprecations,
     loglevel,
-    'api-version': Flags.orgApiVersion(),
+    'api-version': orgApiVersionFlagWithDeprecations,
   };
 
   public static readonly validationPatterns: string[] = [
@@ -84,10 +90,12 @@ export class CommunityCreateCommand extends SfCommand<CommunityCreateResponse> {
       description: flags.description,
       templateParams: varargs['templateParams'] as JsonMap,
     });
-    return new ConnectExecutor(createCommand, flags['target-org']).callConnectApi().then((results) => {
-      this.displayResults(results);
-      return results;
-    });
+    return new ConnectExecutor(createCommand, await applyApiVersionToOrg(flags['target-org'], flags['api-version']))
+      .callConnectApi()
+      .then((results) => {
+        this.displayResults(results);
+        return results;
+      });
   }
 
   protected parseVarargs(args?: string[]): JsonMap {

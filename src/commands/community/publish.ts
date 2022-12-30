@@ -5,7 +5,6 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import * as os from 'os';
 import { Messages } from '@salesforce/core';
 import {
   Flags,
@@ -17,6 +16,7 @@ import {
 import { CommunityPublishResource } from '../../shared/community/connect/CommunityPublishResource';
 import { ConnectExecutor } from '../../shared/connect/services/ConnectExecutor';
 import { CommunityPublishResponse } from '../../shared/community/defs/CommunityPublishResponse';
+import { applyApiVersionToOrg } from '../../shared/utils';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'publish');
@@ -29,7 +29,7 @@ export class CommunityPublishCommand extends SfCommand<CommunityPublishResponse>
   public static readonly aliases = ['force:community:publish'];
   public static readonly summary = messages.getMessage('summary');
   public static readonly description = messages.getMessage('description');
-  public static readonly examples = messages.getMessage('examples').split(os.EOL);
+  public static readonly examples = messages.getMessages('examples');
   public static readonly flags = {
     name: Flags.string({
       char: 'n',
@@ -48,7 +48,7 @@ export class CommunityPublishCommand extends SfCommand<CommunityPublishResponse>
       name: flags.name,
       org: flags['target-org'],
     });
-    return new ConnectExecutor(publishCommand, flags['target-org'])
+    return new ConnectExecutor(publishCommand, await applyApiVersionToOrg(flags['target-org'], flags['api-version']))
       .callConnectApi()
       .then((results: CommunityPublishResponse) => {
         this.displayResults(results);

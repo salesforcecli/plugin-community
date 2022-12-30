@@ -19,7 +19,7 @@ An email notification informs you when your changes are live.
 
 # examples
 
-- $ sfdx force:community:publish --name 'My Customer Site'
+- $ <%= config.bin %> <%= command.id %> --name 'My Customer Site'
 
 # flags.name.description
 

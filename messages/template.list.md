@@ -9,7 +9,7 @@ types available for Experience Cloud.
 
 # examples
 
-- $ sfdx force:community:template:list
+- $ <%= config.bin %> <%= command.id %>
 
 # response.styledHeader
 

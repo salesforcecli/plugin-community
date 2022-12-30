@@ -17,7 +17,7 @@
   {
     "command": "community:list:template",
     "plugin": "@salesforce/plugin-community",
-    "flags": ["json", "target-org"],
+    "flags": ["api-version", "json", "loglevel", "target-org"],
     "alias": ["force:community:template:list", "community:template:list"]
   },
   {

@@ -25,12 +25,12 @@ For Experience Builder sites, activating the site just sends out a welcome email
 
 # examples
 
-- $ sfdx force:community:create --name 'My Customer Site' --template-name 'Customer Service' --url-path-prefix customers
-  --description 'My customer site'
+- $ <%= config.bin %> <%= command.id %> --name 'My Customer Site' --template-name 'Customer Service' --url-path-prefix
+  customers --description 'My customer site'
 
-- $ sfdx force:community:create -n partnercentral -t 'Partner Central' -p partners
+- $ <%= config.bin %> <%= command.id %> -n partnercentral -t 'Partner Central' -p partners
 
-- $ sfdx force:community:create -n lwrsite -t 'Build Your Own (LWR)' -p lwrsite
+- $ <%= config.bin %> <%= command.id %> -n lwrsite -t 'Build Your Own (LWR)' -p lwrsite
   templateParams.AuthenticationType=UNAUTHENTICATED
 
 # flags.name.description
