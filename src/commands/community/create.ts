@@ -36,6 +36,7 @@ export class CommunityCreateCommand extends SfCommand<CommunityCreateResponse> {
   public static readonly summary = messages.getMessage('summary');
   public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
+  public static readonly strict = false;
   public static readonly flags = {
     name: Flags.string({
       char: 'n',
