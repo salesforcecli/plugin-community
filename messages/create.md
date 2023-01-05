@@ -1,74 +1,63 @@
 # summary
 
-creates an Experience Cloud site using a template
+Create an Experience Cloud site using a template.
 
 # description
 
-See 'Which Experience Cloud Template Should I Use?' in Salesforce Help for more information about the different template
+See 'Which Experience Cloud Template Should I Use?' (https://help.salesforce.com/s/articleView?id=sf.siteforce_commtemp_intro.htm&type=5) in Salesforce Help for more information about the different template
 types available for Experience Cloud.
 
-When creating a site with the Build Your Own (LWR) template, you must also specify the AuthenticationType value using
-the format templateParams.AuthenticationType=value, where value is AUTHENTICATED, UNAUTHENTICATED, or
-AUTHENTICATED_WITH_PUBLIC_ACCESS. Name and values are case-sensitive. See 'ExperienceBundle' in the Metadata API
-Developer Guide for more information.
+When creating a site with the Build Your Own (LWR) template, you must also specify the AuthenticationType value using the format templateParams.AuthenticationType=value, where value is AUTHENTICATED, UNAUTHENTICATED, or AUTHENTICATED_WITH_PUBLIC_ACCESS. Name and values are case-sensitive. See 'ExperienceBundle' in the Metadata API Developer Guide for more information. (https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_experiencebundle.htm)
 
-When you execute this command, it creates the site in preview status, which means that it isn't yet live. After you
-finish building your site, you can make it live.
+When you execute this command, it creates the site in preview status, which means that it isn't yet live. After you finish building your site, you can make it live.
 
-If you have an Experience Builder site, publish the site using the sfdx force:community:publish command to make it live.
+If you have an Experience Builder site, publish the site using the "community publish" command to make it live.
 
-If you have a Salesforce Tabs + Visualforce site, activate the site to make it live by updating the status field of the
-Network type in the Metadata API. Alternatively, in Experience Workspaces, go to Administration | Settings, and click
-Activate.
+If you have a Salesforce Tabs + Visualforce site, activate the site to make it live by updating the status field of the Network type in the Metadata API. Alternatively, in Experience Workspaces, go to Administration | Settings, and click Activate.
 
 For Experience Builder sites, activating the site just sends out a welcome email to site members.
 
 # examples
 
-- $ <%= config.bin %> <%= command.id %> --name 'My Customer Site' --template-name 'Customer Service' --url-path-prefix
-  customers --description 'My customer site'
+- Create an Experience Cloud site using template 'Customer Service' and URL path prefix 'customers':
 
-- $ <%= config.bin %> <%= command.id %> -n partnercentral -t 'Partner Central' -p partners
+  <%= config.bin %> <%= command.id %> --name 'My Customer Site' --template-name 'Customer Service' --url-path-prefix customers --description 'My customer site'
 
-- $ <%= config.bin %> <%= command.id %> -n lwrsite -t 'Build Your Own (LWR)' -p lwrsite
-  templateParams.AuthenticationType=UNAUTHENTICATED
+- Create a site using 'Partner Central' template:
 
-# flags.name.description
+  <%= config.bin %> <%= command.id %> --name partnercentral --template-name 'Partner Central' --url-path-prefix partners
 
-name of the site to create
+- Create a site using the 'Build Your Own (LWR)' template with authentication type of UNAUTHENTICATED:
 
-# flags.name.longDescription
+  <%= config.bin %> <%= command.id %> --name lwrsite --template-name 'Build Your Own (LWR)' --url-path-prefix lwrsite templateParams.AuthenticationType=UNAUTHENTICATED
 
-The name of the site to create.
+# flags.name.summary
+
+Name of the site to create.
+
+# flags.templateName.summary
+
+Template to use to create a site.
 
 # flags.templateName.description
 
-template to use to create a site
+An example of a template is Customer Service. Run the "community template list" command to see which templates are available in your org.
 
-# flags.templateName.longDescription
+# flags.urlPathPrefix.summary
 
-The template to use to create the site, such as the Customer Service template. Run force:community:template:list to see
-which templates are available in your org.
+URL to append to the domain created when Digital Experiences was enabled for this org.
 
 # flags.urlPathPrefix.description
 
-URL to append to the domain created when Digital Experiences was enabled for this org
+For example, if your domain name is https://MyDomainName.my.site.com and you create a customer site, enter 'customers' to create the unique URL https://MyDomainName.my.site.com/customers.
 
-# flags.urlPathPrefix.longDescription
+# flags.description.summary
 
-The URL to append to the domain that you created when you enabled Digital Experiences for this org. For example, if your
-domain name is https://MyDomainName.my.site.com and you’re creating a customer site, enter 'customers' to create the
-unique URL
-https://MyDomainName.my.site.com/customers.
+Description of the site.
 
 # flags.description.description
 
-description of the site
-
-# flags.description.longDescription
-
-The description of the site. The description displays in Digital Experiences - All Sites in Setup and helps with site
-identification.
+The description displays in Digital Experiences - All Sites in Setup and helps with site identification.
 
 # response.action
 

@@ -1,15 +1,16 @@
 # summary
 
-retrieves the list of templates available in your org
+Retrieve the list of templates available in your org.
 
 # description
 
-See 'Which Experience Cloud Template Should I Use?' in Salesforce Help for more information about the different template
-types available for Experience Cloud.
+See 'Which Experience Cloud Template Should I Use?' (https://help.salesforce.com/s/articleView?id=sf.siteforce_commtemp_intro.htm&type=5) in Salesforce Help for more information about the different template types available for Experience Cloud.
 
 # examples
 
-- $ <%= config.bin %> <%= command.id %>
+- Retrieve the template list from an org with alias my-scratch-org:
+
+  <%= config.bin %> <%= command.id %> --target-org my-scratch-org
 
 # response.styledHeader
 
