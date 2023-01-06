@@ -1,33 +1,26 @@
 # summary
 
-publishes an Experience Builder site to make it live
+Publish an Experience Builder site to make it live.
 
 # description
 
-Each time you publish it, you update the live site with the most recent updates.
-When you publish an Experience Builder site for the first time, you make the site's URL live and enable login access for
-site members.
+Each time you publish it, you update the live site with the most recent updates. When you publish an Experience Builder site for the first time, you make the site's URL live and enable login access for site members.
 
-Additionally, to send a welcome email to all site members, you must activate the site. (Activation is also required to
-successfully set up SEO for Experience Builder sites.) To activate a site, update the status field of the Network type
-in the Metadata API. Alternatively, in Experience Workspaces, go to Administration | Settings, and click Activate.
+Additionally, to send a welcome email to all site members, you must activate the site. (Activation is also required to successfully set up SEO for Experience Builder sites.) To activate a site, update the status field of the Network type in the Metadata API. Alternatively, in Experience Workspaces, go to Administration | Settings, and click Activate.
 
-Subsequently, each time you publish the site, you update the live site with all changes made to the site since it was
-last published.
+Subsequently, each time you publish the site, you update the live site with all changes made to the site since it was last published.
 
 An email notification informs you when your changes are live.
 
 # examples
 
-- $ <%= config.bin %> <%= command.id %> --name 'My Customer Site'
+- Publish the Experience Builder site with name "My Customer Site':
 
-# flags.name.description
+  <%= config.bin %> <%= command.id %> --name 'My Customer Site'
 
-name of the Experience Builder site to publish
+# flags.name.summary
 
-# flags.name.longDescription
-
-The name of the Experience Builder site that you want to publish.
+Name of the Experience Builder site to publish.
 
 # response.styleHeader
 

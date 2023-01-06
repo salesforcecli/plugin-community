@@ -33,8 +33,7 @@ export class CommunityPublishCommand extends SfCommand<CommunityPublishResponse>
   public static readonly flags = {
     name: Flags.string({
       char: 'n',
-      summary: messages.getMessage('flags.name.description'),
-      description: messages.getMessage('flags.name.longDescription'),
+      summary: messages.getMessage('flags.name.summary'),
       required: true,
     }),
     'target-org': requiredOrgFlagWithDeprecations,
