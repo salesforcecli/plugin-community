@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CommunityTemplatesListResponse",
+  "definitions": {
+    "CommunityTemplatesListResponse": {
+      "type": "object",
+      "properties": {
+        "templates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CommunityTemplates"
+          },
+          "description": "list of templates"
+        },
+        "total": {
+          "type": "number"
+        }
+      },
+      "required": ["templates", "total"],
+      "additionalProperties": false
+    },
+    "CommunityTemplates": {
+      "type": "object",
+      "properties": {
+        "templateName": {
+          "type": "string",
+          "description": "name of template"
+        },
+        "publisher": {
+          "type": "string",
+          "description": "publisher for the template"
+        }
+      },
+      "required": ["templateName", "publisher"],
+      "additionalProperties": false,
+      "description": "Definition of a community template"
+    }
+  }
+}

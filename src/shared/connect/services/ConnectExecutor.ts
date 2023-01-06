@@ -5,9 +5,12 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { JsonCollection } from '@salesforce/ts-types';
-import { Org, SfError } from '@salesforce/core';
+import { Messages, Org, SfError } from '@salesforce/core';
 import { HttpRequest } from 'jsforce';
 import { ConnectResource } from './ConnectResource';
+
+Messages.importMessagesDirectory(__dirname);
+const messages = Messages.loadMessages('@salesforce/plugin-community', 'connect-executor');
 
 /**
  * An executor which calls a connect api for the given org
@@ -28,25 +31,21 @@ export class ConnectExecutor<T> {
 
   public async fetchRequestInfo(): Promise<HttpRequest> {
     const connectUrl = encodeURI(await this.connectService.fetchRelativeConnectUrl());
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const method = this.connectService.getRequestMethod();
     if (method === 'GET') {
       return {
         url: connectUrl,
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         method,
         body: null,
       };
     } else if (method === 'POST') {
       return {
         url: connectUrl,
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         method,
         body: await this.connectService.fetchPostParams(),
       };
     } else {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/restrict-template-expressions
-      throw new SfError(`Unsupported method is given: ${method}`, 'UNSUPPORTED_OPERATION');
+      throw new SfError(messages.getMessage('unsupportedOperation', [method]), 'UNSUPPORTED_OPERATION');
     }
   }
 }

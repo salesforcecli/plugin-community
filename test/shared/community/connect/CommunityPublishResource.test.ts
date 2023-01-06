@@ -8,9 +8,9 @@
 import * as util from 'util';
 import * as sinon from 'sinon';
 import { expect } from 'chai';
-import { UX } from '@salesforce/command';
 import { JsonCollection } from '@salesforce/ts-types';
 import { Messages, Org } from '@salesforce/core';
+import { SfCommand } from '@salesforce/sf-plugins-core';
 import { CommunitiesServices } from '../../../../src/shared/community/service/CommunitiesServices';
 import { CommunityPublishResource } from '../../../../src/shared/community/connect/CommunityPublishResource';
 import { CommunityPublishResponse } from '../../../../src/shared/community/defs/CommunityPublishResponse';
@@ -28,8 +28,8 @@ describe('CommunityPublishResource', () => {
 
   before(() => {
     org = new Org(null);
-    table = sinon.stub(UX.prototype, 'table');
-    styledHeader = sinon.stub(UX.prototype, 'styledHeader');
+    table = sinon.stub(SfCommand.prototype, 'table');
+    styledHeader = sinon.stub(SfCommand.prototype, 'styledHeader');
     communityPublishResource = getCommunityPublishResource();
   });
 
@@ -127,12 +127,9 @@ describe('CommunityPublishResource', () => {
   });
 
   function getCommunityPublishResource(): CommunityPublishResource {
-    return new CommunityPublishResource(
-      {
-        name: communityName,
-      },
+    return new CommunityPublishResource({
+      name: communityName,
       org,
-      new UX(null)
-    );
+    });
   }
 });

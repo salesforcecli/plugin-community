@@ -4,9 +4,7 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-module.exports = {
-  extends: ['eslint-config-salesforce-typescript', 'eslint-config-salesforce-license', 'plugin:sf-plugin/migration'],
-  rules: {
-    '@typescript-eslint/no-explicit-any': 'warn',
-  },
-};
+import { Org } from '@salesforce/core';
+
+export const applyApiVersionToOrg = (org: Org, apiVersion: string): Promise<Org> =>
+  Org.create({ connection: org.getConnection(apiVersion) });

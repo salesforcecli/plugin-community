@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CommunityCreateResponse",
+  "definitions": {
+    "CommunityCreateResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "output message"
+        },
+        "name": {
+          "type": "string",
+          "description": "name of the community"
+        },
+        "action": {
+          "type": "string",
+          "description": "the next actions that user can do to check, if community is created or not."
+        }
+      },
+      "required": ["message", "name", "action"],
+      "additionalProperties": false,
+      "description": "SFDX command output when creating a community"
+    }
+  }
+}

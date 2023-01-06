@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CommunityPublishResponse",
+  "definitions": {
+    "CommunityPublishResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "community ID"
+        },
+        "message": {
+          "type": "string",
+          "description": "output message"
+        },
+        "name": {
+          "type": "string",
+          "description": "name of the community"
+        },
+        "status": {
+          "$ref": "#/definitions/CommunityStatus",
+          "description": "community status (Active/Inactive/DownForMaintainance)"
+        },
+        "url": {
+          "type": "string",
+          "description": "url to access the community"
+        }
+      },
+      "required": ["id", "message", "name", "url"],
+      "additionalProperties": false,
+      "description": "SFDX command output when publishing a community"
+    },
+    "CommunityStatus": {
+      "type": "object",
+      "properties": {
+        "UnderConstruction": {
+          "type": "string",
+          "const": "UnderConstruction",
+          "description": "Community is still in development"
+        },
+        "Live": {
+          "type": "string",
+          "const": "Live",
+          "description": "Community is live"
+        },
+        "DownForMaintenance": {
+          "type": "string",
+          "const": "DownForMaintenance",
+          "description": "Community is inactive"
+        }
+      },
+      "required": ["UnderConstruction", "Live", "DownForMaintenance"],
+      "additionalProperties": false,
+      "description": "Community status"
+    }
+  }
+}

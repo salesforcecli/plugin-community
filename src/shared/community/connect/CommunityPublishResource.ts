@@ -5,8 +5,6 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { URL } from 'url';
-import { OutputFlags } from '@oclif/parser';
-import { UX } from '@salesforce/command';
 import { JsonCollection } from '@salesforce/ts-types';
 import { Messages, Org } from '@salesforce/core';
 import { HttpMethods } from 'jsforce';
@@ -22,11 +20,15 @@ const messages = Messages.loadMessages('@salesforce/plugin-community', 'publish'
  * A connect api resource for publishing a community
  */
 
+export type CommunityPublishResourceOptions = {
+  name: string;
+  org: Org;
+};
+
 export class CommunityPublishResource implements ConnectResource<CommunityPublishResponse> {
   private info: CommunityInfo;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public constructor(private flags: OutputFlags<any>, private org: Org, private ux: UX) {}
+  public constructor(private options: CommunityPublishResourceOptions) {}
 
   public async fetchRelativeConnectUrl(): Promise<string> {
     return `/connect/communities/${await this.fetchCommunityId()}/publish`;
@@ -37,31 +39,21 @@ export class CommunityPublishResource implements ConnectResource<CommunityPublis
     return 'POST';
   }
 
-  // eslint-disable-next-line @typescript-eslint/require-await, class-methods-use-this
-  public async fetchPostParams(): Promise<string> {
-    return JSON.stringify({});
+  // eslint-disable-next-line class-methods-use-this
+  public fetchPostParams(): Promise<string> {
+    return Promise.resolve(JSON.stringify({}));
   }
 
   public handleSuccess(
     result: JsonCollection & { id?: string; name?: string; url?: string }
   ): CommunityPublishResponse {
-    const response: CommunityPublishResponse = {
+    return {
       id: result.id,
       message: messages.getMessage('response.message'),
       name: result.name,
       status: this.info.status,
       url: new URL(result.url).toString(),
     };
-    const columns = {
-      id: { header: 'Id' },
-      message: { header: 'Message' },
-      name: { header: 'Name' },
-      status: { header: 'Status' },
-      url: { header: 'Url' },
-    };
-    this.ux.styledHeader(messages.getMessage('response.styleHeader'));
-    this.ux.table([response], columns);
-    return response;
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -70,10 +62,9 @@ export class CommunityPublishResource implements ConnectResource<CommunityPublis
   }
 
   public async fetchCommunityId(): Promise<string> {
-    this.info = await CommunitiesServices.fetchCommunityInfoFromName(this.org, this.flags.name as string);
+    this.info = await CommunitiesServices.fetchCommunityInfoFromName(this.options.org, this.options.name);
     if (!this.info) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      throw messages.createError('error.communityNotExists', [this.flags.name as string]);
+      throw messages.createError('error.communityNotExists', [this.options.name]);
     }
     return this.info.id;
   }

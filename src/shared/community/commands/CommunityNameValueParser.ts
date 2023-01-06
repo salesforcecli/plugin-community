@@ -5,9 +5,9 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { isEmpty } from 'lodash';
 import { JsonMap } from '@salesforce/ts-types';
 import { Messages } from '@salesforce/core';
+import { isEmpty } from '@salesforce/kit';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');
@@ -29,7 +29,7 @@ export class CommunityNameValueParser {
    * parser.parse([ "thename=Demo" ]); // fails
    * parser.parse([ "Name=Demo" ]); // fails
    *
-   * The patterns are joined between a /^(...)$/ RegExp enclosure so it only accepts exact matches that are case sensitive. (See validate().)
+   * The patterns are joined between a /^(...)$/ RegExp enclosure, so it only accepts exact matches that are case sensitive. (See validate().)
    *
    * However, you can use regular expressions to allow for pattern matches.
    *
@@ -53,12 +53,10 @@ export class CommunityNameValueParser {
     const pattern = new RegExp('^(' + this.patterns.join('|') + ')$');
 
     const errors: string[] = parsedArgs
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      .filter(([key, value]) => !pattern.test(key))
+      .filter(([key]) => !pattern.test(key))
       .map(([key, value]) => `${key}="${value}"`);
 
     if (!isEmpty(errors)) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       throw messages.createError('error.invalidVarargs', errors);
     }
   }

@@ -6,20 +6,23 @@
   "bugs": "https://github.com/forcedotcom/cli/issues",
   "dependencies": {
     "@oclif/core": "^1.23.0",
-    "@salesforce/command": "^5.2.35",
+    "@oclif/parser": "^3.8.9",
     "@salesforce/core": "^3.32.9",
+    "@salesforce/kit": "^1.8.0",
+    "@salesforce/sf-plugins-core": "^1.21.3",
     "tslib": "^2"
   },
   "devDependencies": {
-    "@oclif/plugin-command-snapshot": "^3.2.11",
-    "@salesforce/cli-plugins-testkit": "^3.2.14",
+    "@oclif/plugin-command-snapshot": "^3.2.15",
+    "@salesforce/cli-plugins-testkit": "^3.2.15",
     "@salesforce/dev-config": "^3.0.1",
     "@salesforce/dev-scripts": "^3.1.0",
-    "@salesforce/plugin-command-reference": "^1.5.10",
+    "@salesforce/plugin-command-reference": "^2.2.8",
     "@salesforce/prettier-config": "^0.0.2",
     "@salesforce/ts-sinon": "1.4.2",
+    "@salesforce/ts-types": "^1.7.1",
     "@swc/core": "^1.3.24",
-    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/eslint-plugin": "5.44.0",
     "@typescript-eslint/parser": "^5.47.1",
     "chai": "^4.3.7",
     "eslint": "^8.30.0",
@@ -30,11 +33,12 @@
     "eslint-plugin-header": "^3.1.1",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsdoc": "^39.6.4",
+    "eslint-plugin-sf-plugin": "^1.3.1",
     "husky": "^7.0.4",
     "jsforce": "^2.0.0-beta.18",
     "mocha": "^9.2.2",
     "nyc": "^15.1.0",
-    "oclif": "^3.4.2",
+    "oclif": "^3.4.3",
     "prettier": "^2.8.1",
     "pretty-quick": "^3.1.3",
     "shx": "0.3.4",
@@ -69,17 +73,12 @@
       "@salesforce/plugin-command-reference"
     ],
     "topics": {
-      "force": {
-        "description": "tools for the Salesforce developer",
+      "community": {
+        "description": "create and publish an Experience Cloud site",
+        "longDescription": "Use the community commands to create and publish an Experience Cloud site, and view a list of available templates in you org.",
         "subtopics": {
-          "community": {
-            "description": "create and publish an Experience Cloud site",
-            "longDescription": "Use the community commands to create and publish an Experience Cloud site, and view a list of available templates in you org.",
-            "subtopics": {
-              "template": {
-                "description": "fetch available community templates"
-              }
-            }
+          "list": {
+            "description": "list components in a community"
           }
         }
       }
@@ -96,14 +95,15 @@
     "format": "sf-format",
     "lint": "sf-lint",
     "postpack": "shx rm -f oclif.manifest.json",
-    "posttest": "yarn lint && yarn test:deprecation-policy && yarn test:command-reference",
+    "posttest": "yarn lint && yarn test:deprecation-policy && yarn test:command-reference && yarn test:json-schema",
     "prepack": "sf-prepack",
     "prepare": "sf-install",
     "pretest": "sf-compile-test",
     "test": "sf-test",
     "test:command-reference": "./bin/dev commandreference:generate --erroronwarnings",
     "test:deprecation-policy": "./bin/dev snapshot:compare",
-    "test:nuts": "nyc mocha \"**/*.nut.ts\" --slow 4500 --timeout 600000 --parallel",
+    "test:json-schema": "./bin/dev schema:compare",
+    "test:nuts": "nyc mocha \"**/*.nut.ts\" --slow 4500 --timeout 600000",
     "version": "oclif-dev readme"
   },
   "publishConfig": {
