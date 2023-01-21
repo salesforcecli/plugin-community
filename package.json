@@ -7,7 +7,7 @@
   "dependencies": {
     "@oclif/core": "^1.23.0",
     "@oclif/parser": "^3.8.9",
-    "@salesforce/core": "^3.32.9",
+    "@salesforce/core": "^3.33.0",
     "@salesforce/kit": "^1.8.0",
     "@salesforce/sf-plugins-core": "^1.21.5",
     "tslib": "^2"
