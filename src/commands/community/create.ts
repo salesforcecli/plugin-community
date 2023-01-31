@@ -82,7 +82,7 @@ export class CommunityCreateCommand extends SfCommand<CommunityCreateResponse> {
   public async run(): Promise<CommunityCreateResponse> {
     this.logger = Logger.childFromRoot(this.constructor.name);
     const { flags, argv } = await this.parse(CommunityCreateCommand);
-    const varargs = this.parseVarargs(argv);
+    const varargs = this.parseVarargs(argv as string[]);
     const createCommand = new CommunityCreateResource({
       name: flags.name,
       urlPathPrefix: flags['url-path-prefix'],
