@@ -25,6 +25,7 @@ const messages = Messages.loadMessages('@salesforce/plugin-community', 'template
  * the get available community templates connect endpoint
  */
 export class CommunityListTemplatesCommand extends SfCommand<CommunityTemplatesListResponse> {
+  public static readonly deprecateAliases = true;
   public static readonly aliases = ['force:community:template:list'];
   public static readonly summary = messages.getMessage('summary');
   public static readonly description = messages.getMessage('description');

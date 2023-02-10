@@ -7,7 +7,6 @@
 
 import { JsonMap } from '@salesforce/ts-types';
 import { Messages } from '@salesforce/core';
-import { isEmpty } from '@salesforce/kit';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');
@@ -56,7 +55,7 @@ export class CommunityNameValueParser {
       .filter(([key]) => !pattern.test(key))
       .map(([key, value]) => `${key}="${value}"`);
 
-    if (!isEmpty(errors)) {
+    if (errors.length) {
       throw messages.createError('error.invalidVarargs', errors);
     }
   }

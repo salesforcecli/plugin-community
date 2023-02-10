@@ -54,7 +54,7 @@ describe('CommunityPublishResource', () => {
         await communityPublishResource.fetchRelativeConnectUrl();
       } catch (err) {
         const error = err as Error;
-        const errorMessage = util.format(messages.getMessage('error.communityNotExists'), communityName);
+        const errorMessage = util.format(messages.getMessage('error.communityNotExists', [communityName]));
         expect(error.name).to.equal('CommunityNotExistsError');
         expect(error.message).to.equal(errorMessage);
       }
@@ -121,7 +121,7 @@ describe('CommunityPublishResource', () => {
 
   describe('handleError', () => {
     it('should throw an error', () => {
-      const errorMsg = 'An Error Occured';
+      const errorMsg = 'An Error Occurred';
       expect(() => communityPublishResource.handleError(new Error(errorMsg))).to.throw(errorMsg);
     });
   });

@@ -32,6 +32,7 @@ const ACTION_KEY = 'action';
  * This is just an sfdx wrapper around the community create connect endpoint
  */
 export class CommunityCreateCommand extends SfCommand<CommunityCreateResponse> {
+  public static readonly deprecateAliases = true;
   public static readonly aliases = ['force:community:create'];
   public static readonly summary = messages.getMessage('summary');
   public static readonly description = messages.getMessage('description');
@@ -48,6 +49,7 @@ export class CommunityCreateCommand extends SfCommand<CommunityCreateResponse> {
       summary: messages.getMessage('flags.templateName.summary'),
       description: messages.getMessage('flags.templateName.description'),
       required: true,
+      deprecateAliases: true,
       aliases: ['templatename'],
     }),
     'url-path-prefix': Flags.string({
@@ -55,6 +57,7 @@ export class CommunityCreateCommand extends SfCommand<CommunityCreateResponse> {
       summary: messages.getMessage('flags.urlPathPrefix.summary'),
       description: messages.getMessage('flags.urlPathPrefix.description'),
       required: true,
+      deprecateAliases: true,
       aliases: ['urlpathprefix'],
     }),
     description: Flags.string({
