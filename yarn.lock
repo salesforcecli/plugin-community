@@ -740,10 +740,10 @@
     widest-line "^3.1.0"
     wrap-ansi "^7.0.0"
 
-"@oclif/core@^2.0.10", "@oclif/core@^2.0.3", "@oclif/core@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@oclif/core/-/core-2.1.0.tgz#0dc60cdc70c9c260637ca36b748bffe27e9fcdc4"
-  integrity sha512-ixEPJHU/3BzX+4BnHg2jdb8twDWC0fkG9N6XhxbczjApX/M4XHqtoy+TU5qtHoJ7IjUn8nth964FFx9Kx0F3Cg==
+"@oclif/core@^2.0.10", "@oclif/core@^2.0.3", "@oclif/core@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@oclif/core/-/core-2.1.1.tgz#8ffa83fe39f43bd66fb6f0731527b17911fc937e"
+  integrity sha512-t0zez9ydn3eveZM2vsMbrL2hNKzlHSfwEl4A29VlIimOxpQDB9AKZXX02lhTB3BSKbVF24UOlkzYiX7n9Bdc0A==
   dependencies:
     "@types/cli-progress" "^3.11.0"
     ansi-escapes "^4.3.2"
@@ -3275,10 +3275,10 @@ eslint-plugin-jsdoc@^35.1.2:
     semver "^7.3.5"
     spdx-expression-parse "^3.0.1"
 
-eslint-plugin-jsdoc@^39.6.9:
-  version "39.6.9"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jsdoc/-/eslint-plugin-jsdoc-39.6.9.tgz#f9c6f43fb31def89bbf86c1dcd0367983a062fa5"
-  integrity sha512-GrESRfjT1jOaK1LC2DldMuh+Ajmex9OnRIVSKMXJ1t7lNDB+J2MA11afLPXfkTKWJpplxZohjo8prT8s5LOPgQ==
+eslint-plugin-jsdoc@^39.8.0:
+  version "39.8.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jsdoc/-/eslint-plugin-jsdoc-39.8.0.tgz#9ca38ae31fb6e6de6268c5c041fa175fe1190469"
+  integrity sha512-ZwGmk0jJoJD/NILeDRBKrpq/PCgddUdATjeU5JGTqTzKsOWfeaHOnaAwZjuOh7T8EB4hSoZ/9pR4+Qns2ldQVg==
   dependencies:
     "@es-joy/jsdoccomment" "~0.36.1"
     comment-parser "1.3.1"
@@ -3293,7 +3293,7 @@ eslint-plugin-prefer-arrow@^1.2.1:
   resolved "https://registry.yarnpkg.com/eslint-plugin-prefer-arrow/-/eslint-plugin-prefer-arrow-1.2.3.tgz#e7fbb3fa4cd84ff1015b9c51ad86550e55041041"
   integrity sha512-J9I5PKCOJretVuiZRGvPQxCbllxGAV/viI20JO3LYblAodofBxyMnZAJ+WGeClHgANnSJberTNoFWWjrWKBuXQ==
 
-eslint-plugin-sf-plugin@^1.8.1:
+eslint-plugin-sf-plugin@^1.6.2:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-sf-plugin/-/eslint-plugin-sf-plugin-1.8.1.tgz#a51ba1cf95f7d37510abe78960426bc68dece3f5"
   integrity sha512-SYM4rrkfXqemZXqdP8U/7CLzv/EZ3HXvC1MxT/8cmZ8IY+ubPyxE+cv3pkbIpLtqsZWszd57eee8GBVUQVtLfg==
