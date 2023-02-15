@@ -26,6 +26,7 @@ const messages = Messages.loadMessages('@salesforce/plugin-community', 'publish'
  * the community publish connect endpoint
  */
 export class CommunityPublishCommand extends SfCommand<CommunityPublishResponse> {
+  public static readonly deprecateAliases = true;
   public static readonly aliases = ['force:community:publish'];
   public static readonly summary = messages.getMessage('summary');
   public static readonly description = messages.getMessage('description');

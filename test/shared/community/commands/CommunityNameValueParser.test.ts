@@ -112,7 +112,9 @@ describe('CommunityNameValueParser (Unit Test)', () => {
       const input: string[] = ['name=Valid', 'invalid=Should Not Pass Validation', 'also.invalid=Should Fail'];
       const expectedErrorTokens: string[] = ['invalid="Should Not Pass Validation"', 'also.invalid="Should Fail"'];
 
-      expect(() => parser.parse(input)).to.throw(messages.getMessage('error.invalidVarargs', expectedErrorTokens));
+      expect(() => parser.parse(input)).to.throw(
+        messages.getMessage('error.invalidVarargs', [expectedErrorTokens.join(' ')])
+      );
     });
   });
 
@@ -167,7 +169,9 @@ describe('CommunityNameValueParser (Unit Test)', () => {
         'manyLevels="fail"',
       ];
 
-      expect(() => parser.parse(input)).to.throw(messages.getMessage('error.invalidVarargs', expectedTokens));
+      expect(() => parser.parse(input)).to.throw(
+        messages.getMessage('error.invalidVarargs', [expectedTokens.join(' ')])
+      );
     });
 
     it('Cannot clobber', async () => {
