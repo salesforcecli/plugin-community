@@ -34,4 +34,9 @@ export type CommunityPublishResponse = {
    * url to access the community
    */
   url: string;
+
+  /**
+   * id of the BackgroundOperation that runs the publish job
+   */
+  jobId: string;
 };
