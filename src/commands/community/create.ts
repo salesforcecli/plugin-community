@@ -24,6 +24,7 @@ const messages = Messages.loadMessages('@salesforce/plugin-community', 'create')
 
 const MESSAGE_KEY = 'message';
 const NAME_KEY = 'name';
+const JOBID_KEY = 'jobId';
 const ACTION_KEY = 'action';
 
 /**
@@ -94,6 +95,7 @@ export class CommunityCreateCommand extends SfCommand<CommunityCreateResponse> {
     const columns = {
       [NAME_KEY]: { header: 'Name' },
       [MESSAGE_KEY]: { header: 'Message' },
+      [JOBID_KEY]: { header: 'JobId' },
       [ACTION_KEY]: { header: 'Action' },
     };
     this.styledHeader(messages.getMessage('response.styleHeader'));
