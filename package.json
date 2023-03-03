@@ -5,15 +5,15 @@
   "author": "Salesforce",
   "bugs": "https://github.com/forcedotcom/cli/issues",
   "dependencies": {
-    "@oclif/core": "^2.1.1",
-    "@salesforce/core": "^3.33.1",
-    "@salesforce/kit": "^1.8.5",
-    "@salesforce/sf-plugins-core": "^2.1.1",
+    "@oclif/core": "^2.4.0",
+    "@salesforce/core": "^3.33.6",
+    "@salesforce/kit": "^1.9.0",
+    "@salesforce/sf-plugins-core": "^2.2.4",
     "tslib": "^2"
   },
   "devDependencies": {
     "@oclif/plugin-command-snapshot": "^3.3.5",
-    "@salesforce/cli-plugins-testkit": "^3.2.21",
+    "@salesforce/cli-plugins-testkit": "^3.2.23",
     "@salesforce/dev-config": "^3.0.1",
     "@salesforce/dev-scripts": "^3.1.1",
     "@salesforce/plugin-command-reference": "^2.2.10",
