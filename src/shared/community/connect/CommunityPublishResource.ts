@@ -26,7 +26,7 @@ export type CommunityPublishResourceOptions = {
 };
 
 export class CommunityPublishResource implements ConnectResource<CommunityPublishResponse> {
-  private info: CommunityInfo;
+  private info?: CommunityInfo;
 
   public constructor(private options: CommunityPublishResourceOptions) {}
 
@@ -51,7 +51,7 @@ export class CommunityPublishResource implements ConnectResource<CommunityPublis
       id: result.id,
       message: messages.getMessage('response.message'),
       name: result.name,
-      status: this.info.status,
+      status: this.info?.status,
       url: new URL(result.url).toString(),
     };
   }
