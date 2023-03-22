@@ -1,3 +1,12 @@
+## [2.2.8](https://github.com/salesforcecli/plugin-community/compare/2.2.7...2.2.8) (2023-03-22)
+
+
+### Bug Fixes
+
+* allow empty string for url-prefix ([7192645](https://github.com/salesforcecli/plugin-community/commit/71926453344f0b3b4e6b3993d0be9840775de979))
+
+
+
 ## [2.2.7](https://github.com/salesforcecli/plugin-community/compare/2.2.6...2.2.7) (2023-03-19)
 
 
