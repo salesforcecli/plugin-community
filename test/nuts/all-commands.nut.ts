@@ -63,6 +63,15 @@ describe('plugin-community commands', () => {
       expect(output.result.name).to.equal(siteName);
       expect(output.result.message).to.equal('Your Site is being created.');
     });
+
+    it('creates a new community without a url-prefix (empty string)', () => {
+      const cmd = `force:community:create --name "${siteName}-no-prefix" --template-name "Aloha" --json`;
+      const output = execCmd<CommunityCreateResponse>(cmd, { ensureExitCode: 0 }).jsonOutput;
+
+      expect(output.result).to.have.all.keys(['message', 'name', 'action']);
+      expect(output.result.name).to.equal(`${siteName}-no-prefix`);
+      expect(output.result.message).to.equal('Your Site is being created.');
+    });
   });
 
   describe('community:publish', () => {
