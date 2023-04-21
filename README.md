@@ -110,19 +110,29 @@ OPTIONS
                                                                                     this command invocation
 
 DESCRIPTION
-  Run the "community list template" command to see the templates available in your org. See 'Which Experience Cloud Template Should I Use?' in Salesforce Help for more information about the different template types available.
+  Run the "community list template" command to see the templates available in your org. See 'Which Experience Cloud
+  Template Should I Use?' in Salesforce Help for more information about the different template types available.
 
-  When you create a site with the Build Your Own (LWR) template, you must also specify the AuthenticationType value using the format templateParams.AuthenticationType=value, where value is AUTHENTICATED or AUTHENTICATED_WITH_PUBLIC_ACCESS_ENABLED. Name and values are case-sensitive. See 'DigitalExperienceBundle' in the Metadata API Developer Guide for more information.
+  When you create a site with the Build Your Own (LWR) template, you must also specify the AuthenticationType value
+  using the format templateParams.AuthenticationType=value, where value is AUTHENTICATED or
+  AUTHENTICATED_WITH_PUBLIC_ACCESS_ENABLED. Name and values are case-sensitive. See 'DigitalExperienceBundle' in the
+  Metadata API Developer Guide for more information.
 
-  The site creation process is an async job that generates a jobId. To check the site creation status, query the BackgroundOperation object and enter the jobId as the Id. See ‘BackgroundOperation’ in the Object Reference for the Salesforce Platform for more information.
+  The site creation process is an async job that generates a jobId. To check the site creation status, query the
+  BackgroundOperation object and enter the jobId as the Id. See ‘BackgroundOperation’ in the Object Reference for the
+  Salesforce Platform for more information.
 
-  If the job doesn’t complete within 10 minutes, it times out. You receive an error message and must restart the site creation process. Completed jobs expire after 24 hours and are removed from the database.
+  If the job doesn’t complete within 10 minutes, it times out. You receive an error message and must restart the site
+  creation process. Completed jobs expire after 24 hours and are removed from the database.
 
-  When you run this command, it creates the site in preview status, which means that the site isn't yet live. After you finish building your site, you can make it live.
+  When you run this command, it creates the site in preview status, which means that the site isn't yet live. After you
+  finish building your site, you can make it live.
 
   If you have an Experience Builder site, publish the site using the "community publish" command to make it live.
 
-  If you have a Salesforce Tabs + Visualforce site, to activate the site and make it live, update the status field of the Network type in Metadata API. Alternatively, in Experience Workspaces, go to Administration | Settings, and click Activate.
+  If you have a Salesforce Tabs + Visualforce site, to activate the site and make it live, update the status field of
+  the Network type in Metadata API. Alternatively, in Experience Workspaces, go to Administration | Settings, and click
+  Activate.
 
   For Experience Builder sites, activating the site sends a welcome email to site members.
 
@@ -161,13 +171,20 @@ OPTIONS
                                                                                     this command invocation
 
 DESCRIPTION
-  Each time you publish a site, you update the live site with the most recent updates. When you publish an Experience Builder site for the first time, you make the site's URL live and enable login access for site members.
+  Each time you publish a site, you update the live site with the most recent updates. When you publish an Experience
+  Builder site for the first time, you make the site's URL live and enable login access for site members.
 
-  In addition to publishing, you must activate a site to send a welcome email to all site members. Activation is also required to set up SEO for Experience Builder sites. To activate a site, update the status field of the Network type in Metadata API. Alternatively, in Experience Workspaces, go to Administration | Settings, and click Activate.
+  In addition to publishing, you must activate a site to send a welcome email to all site members. Activation is also
+  required to set up SEO for Experience Builder sites. To activate a site, update the status field of the Network type
+  in Metadata API. Alternatively, in Experience Workspaces, go to Administration | Settings, and click Activate.
 
-  An email notification informs you when your changes are live on the published site. The site publish process is an async job that generates a jobId. To check the site publish status manually, query the BackgroundOperation object and enter the jobId as the Id. See ‘BackgroundOperation’ in the Object Reference for the Salesforce Platform for more information.
+  An email notification informs you when your changes are live on the published site. The site publish process is an
+  async job that generates a jobId. To check the site publish status manually, query the BackgroundOperation object and
+  enter the jobId as the Id. See ‘BackgroundOperation’ in the Object Reference for the Salesforce Platform for more
+  information.
 
-  If the job doesn’t complete within 15 minutes, it times out. You receive an error message and must restart the site publish process. Completed jobs expire after 24 hours and are removed from the database.
+  If the job doesn’t complete within 15 minutes, it times out. You receive an error message and must restart the site
+  publish process. Completed jobs expire after 24 hours and are removed from the database.
 
 
 EXAMPLE
