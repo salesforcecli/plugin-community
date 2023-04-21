@@ -64,8 +64,7 @@ The description displays in Digital Experiences - All Sites in Setup and helps w
 
 # response.action
 
-We’re creating your site. Run sfdx force:org:open -p \_ui/networks/setup/SetupNetworksPage to view a list of your sites,
-and to confirm when this site is ready.
+Site creation is under way. To track its status, query the BackgroundOperation object and include the jobId.
 
 # response.styleHeader
 
