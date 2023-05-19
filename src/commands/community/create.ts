@@ -56,7 +56,8 @@ export class CommunityCreateCommand extends SfCommand<CommunityCreateResponse> {
       char: 'p',
       summary: messages.getMessage('flags.urlPathPrefix.summary'),
       description: messages.getMessage('flags.urlPathPrefix.description'),
-      required: true,
+      // The api requires you to pass this, it accepts an empty string
+      default: '',
       deprecateAliases: true,
       aliases: ['urlpathprefix'],
     }),
@@ -124,6 +125,6 @@ export class CommunityCreateCommand extends SfCommand<CommunityCreateResponse> {
       [ACTION_KEY]: { header: 'Action' },
     };
     this.styledHeader(messages.getMessage('response.styleHeader'));
-    this.table([results], columns);
+    this.table([results], columns, { 'no-truncate': true });
   }
 }

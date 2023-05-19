@@ -1,3 +1,51 @@
+## [2.2.11](https://github.com/salesforcecli/plugin-community/compare/2.2.10...2.2.11) (2023-04-23)
+
+### Bug Fixes
+
+- **deps:** bump @salesforce/sf-plugins-core from 2.2.7 to 2.2.9 ([95abc83](https://github.com/salesforcecli/plugin-community/commit/95abc83997c9600246c3720c83b698d590d14e0c))
+
+## [2.2.10](https://github.com/salesforcecli/plugin-community/compare/2.2.9...2.2.10) (2023-04-15)
+
+### Bug Fixes
+
+- **deps:** bump @salesforce/sf-plugins-core from 2.2.5 to 2.2.7 ([1ff86f1](https://github.com/salesforcecli/plugin-community/commit/1ff86f1dceeae97d36ea94c71ed390dfb333276b))
+
+## [2.2.9](https://github.com/salesforcecli/plugin-community/compare/2.2.8...2.2.9) (2023-03-25)
+
+### Bug Fixes
+
+- **deps:** bump @salesforce/sf-plugins-core from 2.2.4 to 2.2.5 ([51eb312](https://github.com/salesforcecli/plugin-community/commit/51eb312a3cf8788f69db8a7a79dd9e997d7b5350))
+
+## [2.2.8](https://github.com/salesforcecli/plugin-community/compare/2.2.7...2.2.8) (2023-03-22)
+
+### Bug Fixes
+
+- allow empty string for url-prefix ([7192645](https://github.com/salesforcecli/plugin-community/commit/71926453344f0b3b4e6b3993d0be9840775de979))
+
+## [2.2.7](https://github.com/salesforcecli/plugin-community/compare/2.2.6...2.2.7) (2023-03-19)
+
+### Bug Fixes
+
+- **deps:** bump @salesforce/core from 3.33.6 to 3.34.1 ([47b461f](https://github.com/salesforcecli/plugin-community/commit/47b461f45977ca24680aca45e92863f784be1cd9))
+
+## [2.2.6](https://github.com/salesforcecli/plugin-community/compare/2.2.5...2.2.6) (2023-03-18)
+
+### Bug Fixes
+
+- **deps:** bump @oclif/core from 2.6.2 to 2.6.4 ([536d78d](https://github.com/salesforcecli/plugin-community/commit/536d78d5594ce978cf163a4c0f430b151e0d1ed3))
+
+## [2.2.5](https://github.com/salesforcecli/plugin-community/compare/2.2.4...2.2.5) (2023-03-12)
+
+### Bug Fixes
+
+- **deps:** bump @oclif/core from 2.4.0 to 2.6.2 ([925a240](https://github.com/salesforcecli/plugin-community/commit/925a240ede66b594d901e7fbf1e5edcbdb646a10))
+
+## [2.2.4](https://github.com/salesforcecli/plugin-community/compare/2.2.3...2.2.4) (2023-03-03)
+
+### Bug Fixes
+
+- bump core libs and testkit ([#289](https://github.com/salesforcecli/plugin-community/issues/289)) ([bb593cd](https://github.com/salesforcecli/plugin-community/commit/bb593cd42ce5cbf4c248c52aa91cd7948e525dc4))
+
 ## [2.2.3](https://github.com/salesforcecli/plugin-community/compare/2.2.2...2.2.3) (2023-02-12)
 
 ### Bug Fixes

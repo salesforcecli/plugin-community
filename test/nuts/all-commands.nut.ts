@@ -39,10 +39,15 @@ describe('plugin-community commands', () => {
   });
 
   describe('community:template:list', () => {
-    it('ensures templates:list, uh, lists... templates', () => {
+    it('ensures templates:list lists templates', () => {
       // locally --user is set with the `TESTKIT_HUB_USERNAME` env var.
       const cmd = 'force:community:template:list --json';
-      const output = execCmd<CommunityTemplatesListResponse>(cmd, { ensureExitCode: 0 }).jsonOutput;
+      let output = execCmd<CommunityTemplatesListResponse>(cmd, { ensureExitCode: 0 }).jsonOutput;
+
+      // There seems to be a race condition where this will sometimes fail on the first try.
+      if (!output) {
+        output = execCmd<CommunityTemplatesListResponse>(cmd, { ensureExitCode: 0 }).jsonOutput;
+      }
 
       expect(output.result).to.have.all.keys(['templates', 'total']);
       expect(output.result.templates[0]).to.have.all.keys(['publisher', 'templateName']);
@@ -56,6 +61,15 @@ describe('plugin-community commands', () => {
 
       expect(output.result).to.have.all.keys(['message', 'name', 'action']);
       expect(output.result.name).to.equal(siteName);
+      expect(output.result.message).to.equal('Your Site is being created.');
+    });
+
+    it('creates a new community without a url-prefix (empty string)', () => {
+      const cmd = `force:community:create --name "${siteName}-no-prefix" --template-name "Aloha" --json`;
+      const output = execCmd<CommunityCreateResponse>(cmd, { ensureExitCode: 0 }).jsonOutput;
+
+      expect(output.result).to.have.all.keys(['message', 'name', 'action']);
+      expect(output.result.name).to.equal(`${siteName}-no-prefix`);
       expect(output.result.message).to.equal('Your Site is being created.');
     });
   });
