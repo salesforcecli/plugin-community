@@ -7,8 +7,7 @@
 
 import * as util from 'util';
 import * as sinon from 'sinon';
-import { expect } from 'chai';
-import { JsonCollection } from '@salesforce/ts-types';
+import { assert, expect } from 'chai';
 import { Messages, Org } from '@salesforce/core';
 import { SfCommand } from '@salesforce/sf-plugins-core';
 import { CommunitiesServices } from '../../../../src/shared/community/service/CommunitiesServices';
@@ -27,7 +26,7 @@ describe('CommunityPublishResource', () => {
   let styledHeader: sinon.SinonStub;
 
   before(() => {
-    org = new Org(null);
+    org = new Org(undefined);
     table = sinon.stub(SfCommand.prototype, 'table');
     styledHeader = sinon.stub(SfCommand.prototype, 'styledHeader');
     communityPublishResource = getCommunityPublishResource();
@@ -53,10 +52,10 @@ describe('CommunityPublishResource', () => {
       try {
         await communityPublishResource.fetchRelativeConnectUrl();
       } catch (err) {
-        const error = err as Error;
+        assert(err instanceof Error);
         const errorMessage = util.format(messages.getMessage('error.communityNotExists', [communityName]));
-        expect(error.name).to.equal('CommunityNotExistsError');
-        expect(error.message).to.equal(errorMessage);
+        expect(err.name).to.equal('CommunityNotExistsError');
+        expect(err.message).to.equal(errorMessage);
       }
     });
 
@@ -100,7 +99,7 @@ describe('CommunityPublishResource', () => {
           status: 'UnderConstruction',
         })
       );
-      const connectResponse: JsonCollection = {
+      const connectResponse = {
         id: validCommunityId,
         message: 'message',
         name: communityName,

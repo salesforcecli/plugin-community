@@ -5,7 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { JsonCollection } from '@salesforce/ts-types';
-import { Messages, Org, SfError } from '@salesforce/core';
+import { Connection, Messages, SfError } from '@salesforce/core';
 import { HttpRequest } from 'jsforce';
 import { ConnectResource } from './ConnectResource';
 
@@ -16,14 +16,13 @@ const messages = Messages.loadMessages('@salesforce/plugin-community', 'connect-
  * An executor which calls a connect api for the given org
  */
 export class ConnectExecutor<T> {
-  public constructor(private connectService: ConnectResource<T>, private org: Org) {}
+  public constructor(private connectService: ConnectResource<T>, private connection: Connection) {}
 
   /**
    * Call the connect resource as defined by the given ConnectResource for the given org
    */
   public async callConnectApi(): Promise<T> {
-    return this.org
-      .getConnection()
+    return this.connection
       .request(await this.fetchRequestInfo())
       .then((result) => this.connectService.handleSuccess(result as JsonCollection))
       .catch((err) => this.connectService.handleError(err as Error));

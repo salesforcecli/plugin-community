@@ -14,8 +14,6 @@ import { ConnectResource } from '../../connect/services/ConnectResource';
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');
 
-const NAME_KEY = 'name';
-
 /**
  * A connect api resource for creating a community
  */
@@ -24,10 +22,10 @@ export class CommunityCreateResource implements ConnectResource<CommunityCreateR
   public constructor(private options: CommunityCreateParams) {}
 
   // eslint-disable-next-line class-methods-use-this
-  public handleSuccess(result: JsonCollection & { [NAME_KEY]?: string }): CommunityCreateResponse {
+  public handleSuccess(result: JsonCollection & { name: string }): CommunityCreateResponse {
     const response: CommunityCreateResponse = {
       message: messages.getMessage('response.createMessage'),
-      name: result[NAME_KEY],
+      name: result.name,
       action: messages.getMessage('response.action'),
     };
     return response;
@@ -48,16 +46,15 @@ export class CommunityCreateResource implements ConnectResource<CommunityCreateR
     return 'POST';
   }
 
-  // eslint-disable-next-line @typescript-eslint/require-await
   public async fetchPostParams(): Promise<string> {
     const params: CommunityCreateParams = {
       name: this.options.name,
       urlPathPrefix: this.options.urlPathPrefix,
       templateName: this.options.templateName,
-      description: this.options.description as string,
+      description: this.options.description,
       templateParams: this.options['templateParams'],
     };
 
-    return JSON.stringify(params);
+    return Promise.resolve(JSON.stringify(params));
   }
 }

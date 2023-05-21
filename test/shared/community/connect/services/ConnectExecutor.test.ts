@@ -9,9 +9,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
 import * as sinon from 'sinon';
-import { expect } from 'chai';
+import { assert, expect } from 'chai';
 import { stubMethod } from '@salesforce/ts-sinon';
-import { Connection, Org } from '@salesforce/core';
+import { Connection } from '@salesforce/core';
 import { HttpMethods, HttpRequest } from 'jsforce';
 import { ConnectExecutor } from '../../../../../src/shared/connect/services/ConnectExecutor';
 import { ConnectResource } from '../../../../../src/shared/connect/services/ConnectResource';
@@ -77,8 +77,9 @@ describe('ConnectExecutor', () => {
   }
 
   describe('fetchRequestInfo', () => {
+    const connectionStub = sinon.createStubInstance(Connection);
     it('should not call fetchPostParams for a GET call', async () => {
-      const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyGetConnectResource(), new Org(null));
+      const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyGetConnectResource(), connectionStub);
       // If fetchPostParams was called, it will throw an exception
       const ri: HttpRequest = await executor.fetchRequestInfo();
       expect(ri).to.exist;
@@ -89,7 +90,7 @@ describe('ConnectExecutor', () => {
     });
 
     it('should call fetchPostParams for a POST call', async () => {
-      const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyPostConnectResource(), new Org(null));
+      const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyPostConnectResource(), connectionStub);
       const ri: HttpRequest = await executor.fetchRequestInfo();
       expect(ri).to.exist;
       expect(ri.url).to.be.equal(relativeUrl + 'POST');
@@ -103,12 +104,12 @@ describe('ConnectExecutor', () => {
     });
 
     it('should throw for unsupported method calls', async () => {
-      const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyPatchConnectResource(), new Org(null));
+      const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyPatchConnectResource(), connectionStub);
 
       try {
         await executor.fetchRequestInfo();
-      } catch (err) {
-        const error = err as Error;
+      } catch (error) {
+        assert(error instanceof Error);
         expect(error.name).to.equal('UNSUPPORTED_OPERATION');
         expect(error.message).to.equal('Unsupported method is given: PATCH');
       }
@@ -120,8 +121,7 @@ describe('ConnectExecutor', () => {
     const connectionStub = sinon.createStubInstance(Connection);
 
     beforeEach(() => {
-      stubMethod(sandbox, Org, 'create').resolves(Org.prototype);
-      stubMethod(sandbox, Org.prototype, 'getConnection').returns(connectionStub);
+      stubMethod(sandbox, Connection, 'create').returns(connectionStub);
     });
 
     afterEach(() => {
@@ -131,7 +131,7 @@ describe('ConnectExecutor', () => {
     it('should call handleSuccess on success response', async () => {
       connectionStub.request.resolves('yay');
 
-      const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyGetConnectResource(), Org.prototype);
+      const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyGetConnectResource(), connectionStub);
       const response: Result = await executor.callConnectApi();
       expect(response.data).to.be.equal('success');
     });
@@ -139,13 +139,13 @@ describe('ConnectExecutor', () => {
     it('should call handleError on error response', async () => {
       connectionStub.request.rejects('nay');
 
-      const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyGetConnectResource(), Org.prototype);
+      const executor: ConnectExecutor<Result> = new ConnectExecutor(new DummyGetConnectResource(), connectionStub);
 
       try {
         await executor.callConnectApi();
         expect('uh oh...').to.equal('this code should not be reached');
-      } catch (err) {
-        const error = err as Error;
+      } catch (error) {
+        assert(error instanceof Error);
         expect(error.name).to.equal('Error');
         expect(error.message).to.equal('handleError is called');
       }

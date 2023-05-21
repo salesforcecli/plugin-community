@@ -6,19 +6,18 @@
  */
 
 import { JsonMap } from '@salesforce/ts-types';
-import { Logger, Messages } from '@salesforce/core';
+import { Messages, SfError } from '@salesforce/core';
 import {
   Flags,
   loglevel,
   orgApiVersionFlagWithDeprecations,
   requiredOrgFlagWithDeprecations,
   SfCommand,
+  parseVarArgs,
 } from '@salesforce/sf-plugins-core';
-import { CommunityNameValueParser } from '../../shared/community/commands/CommunityNameValueParser';
 import { ConnectExecutor } from '../../shared/connect/services/ConnectExecutor';
 import { CommunityCreateResource } from '../../shared/community/connect/CommunityCreateResource';
 import { CommunityCreateResponse } from '../../shared/community/defs/CommunityCreateResponse';
-import { applyApiVersionToOrg } from '../../shared/utils';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');
@@ -71,51 +70,25 @@ export class CommunityCreateCommand extends SfCommand<CommunityCreateResponse> {
     'api-version': orgApiVersionFlagWithDeprecations,
   };
 
-  public static readonly validationPatterns: string[] = [
-    // Exact matches
-    'name',
-    'urlPathPrefix',
-    'templateName',
-    'description',
-
-    // templateParams.*, but must be only word characters (e.g. no spaces, special chars)
-    'templateParams(\\.\\w+)+',
-  ];
-  private logger: Logger;
-
   public async run(): Promise<CommunityCreateResponse> {
-    this.logger = Logger.childFromRoot(this.constructor.name);
-    const { flags, argv } = await this.parse(CommunityCreateCommand);
-    const varargs = this.parseVarargs(argv as string[]);
+    const { flags, argv, args } = await this.parse(CommunityCreateCommand);
+
+    const templateParams = getTemplateParamObjectFromArgs(parseVarArgs(args, argv as string[]));
+
+    // const varargs = this.parseVarargs(argv as string[]);
     const createCommand = new CommunityCreateResource({
       name: flags.name,
       urlPathPrefix: flags['url-path-prefix'],
       templateName: flags['template-name'],
       description: flags.description,
-      templateParams: varargs['templateParams'] as JsonMap,
+      templateParams,
     });
-    return new ConnectExecutor(createCommand, await applyApiVersionToOrg(flags['target-org'], flags['api-version']))
+    return new ConnectExecutor(createCommand, flags['target-org'].getConnection(flags['api-version']))
       .callConnectApi()
       .then((results) => {
         this.displayResults(results);
         return results;
       });
-  }
-
-  protected parseVarargs(args?: string[]): JsonMap {
-    this.logger.debug(`parseVarargs([${args.join(', ')}])`);
-
-    // It never looks like args is ever undefined as long as varargs is turned on for the command...
-    // But since the signature says it's optional, we should probably gate this even though it's unnecessary right now.
-    if (args === undefined) {
-      return {};
-    }
-
-    const parser = new CommunityNameValueParser(CommunityCreateCommand.validationPatterns);
-    const values: JsonMap = parser.parse(args);
-
-    this.logger.debug('parseVarargs result:' + JSON.stringify(values));
-    return values;
   }
 
   private displayResults(results: CommunityCreateResponse): void {
@@ -128,3 +101,19 @@ export class CommunityCreateCommand extends SfCommand<CommunityCreateResponse> {
     this.table([results], columns, { 'no-truncate': true });
   }
 }
+
+export const getTemplateParamObjectFromArgs = (args: Record<string, string | undefined>): JsonMap => {
+  // make sure there's nothing bad
+  const badArgs = Object.keys(args).filter((key) => !key.startsWith('templateParams'));
+  if (badArgs.length) {
+    throw new SfError(`Invalid argument(s): ${badArgs.join(', ')}`, 'InvalidArgument', [
+      'Arguments should start with templateParams, like templateParams.AuthenticationType=UNAUTHENTICATED',
+    ]);
+  }
+  // construct the return object
+  const templateParams = Object.fromEntries(
+    Object.entries(args).map(([key, value]) => [key.replace('templateParams.', ''), value])
+  );
+
+  return templateParams;
+};

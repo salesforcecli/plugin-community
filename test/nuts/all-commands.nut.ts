@@ -5,7 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import * as path from 'path';
-import { expect } from 'chai';
+import { assert, expect } from 'chai';
 import { Duration, sleep } from '@salesforce/kit';
 
 import { execCmd, TestSession } from '@salesforce/cli-plugins-testkit';
@@ -27,15 +27,13 @@ describe('plugin-community commands', () => {
       devhubAuthStrategy: 'AUTO',
       scratchOrgs: [
         {
-          executable: 'sfdx',
-          duration: 1,
           setDefault: true,
           config: path.join('config', 'project-scratch-def.json'),
         },
       ],
     });
 
-    execCmd('force:source:push', { cli: 'sfdx' });
+    execCmd('force:source:push');
   });
 
   describe('community:template:list', () => {
@@ -48,6 +46,7 @@ describe('plugin-community commands', () => {
       if (!output) {
         output = execCmd<CommunityTemplatesListResponse>(cmd, { ensureExitCode: 0 }).jsonOutput;
       }
+      assert(output);
 
       expect(output.result).to.have.all.keys(['templates', 'total']);
       expect(output.result.templates[0]).to.have.all.keys(['publisher', 'templateName']);
@@ -58,6 +57,7 @@ describe('plugin-community commands', () => {
     it('creates a new community', () => {
       const cmd = `force:community:create --name "${siteName}" --template-name "Aloha" --url-path-prefix "myprefix" --json`;
       const output = execCmd<CommunityCreateResponse>(cmd, { ensureExitCode: 0 }).jsonOutput;
+      assert(output);
 
       expect(output.result).to.have.all.keys(['message', 'name', 'action']);
       expect(output.result.name).to.equal(siteName);
@@ -67,6 +67,7 @@ describe('plugin-community commands', () => {
     it('creates a new community without a url-prefix (empty string)', () => {
       const cmd = `force:community:create --name "${siteName}-no-prefix" --template-name "Aloha" --json`;
       const output = execCmd<CommunityCreateResponse>(cmd, { ensureExitCode: 0 }).jsonOutput;
+      assert(output);
 
       expect(output.result).to.have.all.keys(['message', 'name', 'action']);
       expect(output.result.name).to.equal(`${siteName}-no-prefix`);
@@ -78,6 +79,8 @@ describe('plugin-community commands', () => {
     it('throws an error if published too early', () => {
       const cmd = `force:community:publish --name "${siteName}" --json`;
       const output = execCmd<CommunityPublishResponse>(cmd, { ensureExitCode: 1 }).jsonOutput;
+      assert(output);
+
       expect(output.status).to.equal(1);
       expect(output.name).to.equal('CommunityNotExistsError');
       expect(output.message).to.equal(
@@ -91,13 +94,13 @@ describe('plugin-community commands', () => {
       let sleepFor = 4;
       const retryRate = 1.5;
 
-      async function poll(retry): Promise<CommunityPublishResponse> {
+      async function poll(retry: number): Promise<CommunityPublishResponse> {
         const cmd = `force:community:publish --name "${siteName}" --json`;
         const output = execCmd<CommunityPublishResponse>(cmd).jsonOutput;
 
-        if (output.result) {
+        if (output?.result) {
           return output.result;
-        } else if (output.name === 'CommunityNotExistsError') {
+        } else if (output?.name === 'CommunityNotExistsError') {
           if (retry <= 0) {
             throw new Error(`Max retries (${maxRetries}) reached attempting to run 'force:community:publish'`);
           }
@@ -106,7 +109,7 @@ describe('plugin-community commands', () => {
           return sleep(Duration.seconds(sleepFor)).then(() => poll(retry - 1));
         }
 
-        throw new Error(`Unexpected error occur while running 'force:community:publish': ${output.message}`);
+        throw new Error(`Unexpected error occur while running 'force:community:publish': ${output?.message}`);
       }
 
       const result = await poll(maxRetries);

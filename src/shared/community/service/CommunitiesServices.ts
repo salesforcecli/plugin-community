@@ -5,7 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { Org } from '@salesforce/core';
-import { QueryResult } from 'jsforce';
+import { QueryResult, Record } from 'jsforce';
 import { CommunityInfo } from '../defs/CommunityInfo';
 import { CommunityStatus } from '../defs/CommunityStatusEnum';
 
@@ -21,12 +21,12 @@ export class CommunitiesServices {
    *
    * @returns - the community id for the given name
    */
-  public static async fetchCommunityInfoFromName(org: Org, name: string): Promise<CommunityInfo | undefined> {
+  public static async fetchCommunityInfoFromName(org: Org, name?: string): Promise<CommunityInfo | undefined> {
     if (!name) {
       return undefined;
     }
 
-    const result: QueryResult<{ Id: string; Status: CommunityStatus }> = await CommunitiesServices.runQuery(
+    const result: QueryResult<{ Id: string; Status: CommunityStatus }> = await runQuery(
       org,
       `SELECT Id, Status FROM NETWORK WHERE NAME = '${name}'`
     );
@@ -39,11 +39,7 @@ export class CommunitiesServices {
       };
     }
   }
-
-  public static async runQuery<T>(org: Org, query: string): Promise<QueryResult<T>> {
-    if (!query) {
-      return;
-    }
-    return org.getConnection().query<T>(query);
-  }
 }
+
+export const runQuery = async <T extends Record>(org: Org, query: string): Promise<QueryResult<T>> =>
+  org.getConnection().query<T>(query);
