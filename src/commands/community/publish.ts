@@ -16,7 +16,6 @@ import {
 import { CommunityPublishResource } from '../../shared/community/connect/CommunityPublishResource';
 import { ConnectExecutor } from '../../shared/connect/services/ConnectExecutor';
 import { CommunityPublishResponse } from '../../shared/community/defs/CommunityPublishResponse';
-import { applyApiVersionToOrg } from '../../shared/utils';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'publish');
@@ -48,7 +47,7 @@ export class CommunityPublishCommand extends SfCommand<CommunityPublishResponse>
       name: flags.name,
       org: flags['target-org'],
     });
-    return new ConnectExecutor(publishCommand, await applyApiVersionToOrg(flags['target-org'], flags['api-version']))
+    return new ConnectExecutor(publishCommand, flags['target-org'].getConnection(flags['api-version']))
       .callConnectApi()
       .then((results: CommunityPublishResponse) => {
         this.displayResults(results);

@@ -29,7 +29,7 @@ export type CommunityCreateParams = {
   /**
    * the description for the community
    */
-  description;
+  description?: string;
 
   /**
    * template parameters for the template used to create the community

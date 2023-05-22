@@ -5,8 +5,8 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import * as sinon from 'sinon';
-import { AnyJson, JsonCollection, JsonMap } from '@salesforce/ts-types';
-import { expect } from 'chai';
+import { JsonMap } from '@salesforce/ts-types';
+import { assert, expect } from 'chai';
 import { Messages } from '@salesforce/core';
 import { SfCommand } from '@salesforce/sf-plugins-core';
 import { CommunityCreateParams } from '../../../../src/shared/community/defs/CommunityCreateParams';
@@ -68,7 +68,7 @@ describe('CommunityCreateResource', () => {
 
   describe('handleSuccess', () => {
     it('should return community info', () => {
-      const connectResponse: JsonCollection = {
+      const connectResponse = {
         message: 'message',
         name: communityName,
       };
@@ -82,13 +82,13 @@ describe('CommunityCreateResource', () => {
 
   describe('handleError', () => {
     it('should throw an error', () => {
-      const errorMsg = 'An Error Occured';
+      const errorMsg = 'An Error Occurred';
       try {
         communityCreateResource.handleError(new Error(errorMsg));
         throw new Error('Should have thrown an error here');
       } catch (err) {
-        const error = err as Error;
-        expect(error.message).to.equal(errorMsg);
+        assert(err instanceof Error);
+        expect(err.message).to.equal(errorMsg);
       }
     });
   });
@@ -164,7 +164,7 @@ describe('CommunityCreateResource with templateParams', () => {
     });
   });
 
-  function getCommunityCreateResourceWithParams(params: AnyJson): CommunityCreateResource {
+  function getCommunityCreateResourceWithParams(params: JsonMap): CommunityCreateResource {
     return new CommunityCreateResource({
       name: communityName,
       urlPathPrefix,

@@ -15,7 +15,6 @@ import {
 import { CommunityTemplatesResource } from '../../../shared/community/connect/CommunityTemplatesResource';
 import { ConnectExecutor } from '../../../shared/connect/services/ConnectExecutor';
 import { CommunityTemplatesListResponse } from '../../../shared/community/defs/CommunityTemplatesListResponse';
-import { applyApiVersionToOrg } from '../../../shared/utils';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'template.list');
@@ -39,10 +38,7 @@ export class CommunityListTemplatesCommand extends SfCommand<CommunityTemplatesL
   public async run(): Promise<CommunityTemplatesListResponse> {
     const { flags } = await this.parse(CommunityListTemplatesCommand);
     const listTemplateCommand = new CommunityTemplatesResource();
-    return new ConnectExecutor(
-      listTemplateCommand,
-      await applyApiVersionToOrg(flags['target-org'], flags['api-version'])
-    )
+    return new ConnectExecutor(listTemplateCommand, flags['target-org'].getConnection(flags['api-version']))
       .callConnectApi()
       .then((results: CommunityTemplatesListResponse) => {
         this.displayResults(results);

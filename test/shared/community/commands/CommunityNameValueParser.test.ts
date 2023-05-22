@@ -7,177 +7,61 @@
 /* eslint-disable @typescript-eslint/require-await */
 
 import { expect } from 'chai';
+import { Config } from '@oclif/core';
+import { SfError } from '@salesforce/core';
+import { assert } from '@salesforce/ts-types';
+import { parseVarArgs } from '@salesforce/sf-plugins-core';
+import { MockTestOrgData, TestContext } from '@salesforce/core/lib/testSetup';
+import { getTemplateParamObjectFromArgs, CommunityCreateCommand } from '../../../../src/commands/community/create';
 
-import { Messages } from '@salesforce/core';
-import { JsonMap } from '@salesforce/ts-types';
+class Wrapper extends CommunityCreateCommand {
+  public async getParsedArgs(): Promise<Record<string, string | undefined>> {
+    const { args, argv } = await this.parse(CommunityCreateCommand);
+    return parseVarArgs(args, argv as string[]);
+  }
+}
 
-import { CommunityNameValueParser } from '../../../../src/shared/community/commands/CommunityNameValueParser';
+const getParsedVarArgs = async (args: string[]): Promise<Record<string, string | undefined>> => {
+  const wrapper = new Wrapper(args, {} as Config);
+  return wrapper.getParsedArgs();
+};
 
-Messages.importMessagesDirectory(__dirname);
-const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');
+const baseFlags = ['--name', 'foo', '--template-name', 'bar'];
 
-describe('CommunityNameValueParser (Unit Test)', () => {
+describe('getTemplateParamObjectFromArgs (Unit Test)', () => {
+  const $$ = new TestContext();
+  const org = new MockTestOrgData();
+
+  beforeEach(async () => {
+    await $$.stubAuths(org);
+    await $$.stubConfig({ 'target-org': org.username });
+  });
+
   describe('Using the default validation pattern', () => {
     it('Empty input should result in empty result', async () => {
-      const parser = new CommunityNameValueParser();
-      expect(parser.parse([])).to.eql({});
+      const varArgs = await getParsedVarArgs(baseFlags);
+      expect(getTemplateParamObjectFromArgs(varArgs)).to.eql({});
+    });
+
+    it('handle template params', async () => {
+      const varArgs = await getParsedVarArgs(baseFlags.concat(['templateParams.foo=bar']));
+      expect(getTemplateParamObjectFromArgs(varArgs)).to.deep.equal({ foo: 'bar' });
+    });
+
+    it('handle 2 template params', async () => {
+      const varArgs = await getParsedVarArgs(baseFlags.concat(['templateParams.foo=bar', 'templateParams.baz=qux']));
+      expect(getTemplateParamObjectFromArgs(varArgs)).to.deep.equal({ foo: 'bar', baz: 'qux' });
     });
 
     it('Any name=value input should validate and return map with all values', async () => {
-      const input: string[] = ['Astro=is', 'the=best mascot!', 'even.better=than SaaSy'];
-      const expected: JsonMap = {
-        Astro: 'is',
-        the: 'best mascot!',
-        even: {
-          better: 'than SaaSy',
-        },
-      };
-
-      const parser = new CommunityNameValueParser();
-      expect(parser.parse(input)).to.eql(expected);
-    });
-
-    describe('Handles invalid/odd name=value inputs robustly', () => {
-      it('single space value', async () => {
-        const input: string[] = ['space= '];
-        const expected: JsonMap = { space: ' ' };
-
-        const parser = new CommunityNameValueParser();
-        expect(parser.parse(input)).to.eql(expected);
-      });
-
-      it('"name =value" keeps space after name', async () => {
-        const input: string[] = ['spaceAfter =value'];
-        const expected: JsonMap = { 'spaceAfter ': 'value' };
-
-        const parser = new CommunityNameValueParser();
-        expect(parser.parse(input)).to.eql(expected);
-      });
-
-      it('"name=", value becomes empty string', async () => {
-        const input: string[] = ['missing='];
-        const expected: JsonMap = { missing: '' };
-
-        const parser = new CommunityNameValueParser();
-        expect(parser.parse(input)).to.eql(expected);
-      });
-
-      // Do we want it be undefined or empty string??
-      it('"nameByItself" becomes undefined', async () => {
-        const input: string[] = ['byMyself'];
-        const expected: JsonMap = { byMyself: undefined };
-
-        const parser = new CommunityNameValueParser();
-        expect(parser.parse(input)).to.eql(expected);
-      });
-
-      it('"many=equals=equals=equals" will parse properly into name and value', async () => {
-        const input: string[] = ['many=equals=with=more=equals'];
-        const expected: JsonMap = { many: 'equals=with=more=equals' };
-
-        const parser = new CommunityNameValueParser();
-        expect(parser.parse(input)).to.eql(expected);
-      });
-    });
-  });
-
-  describe('Using simple validation patterns', () => {
-    const pattern: string[] = ['name', 'template', 'path', 'param.sub'];
-    let parser: CommunityNameValueParser;
-
-    before(() => {
-      parser = new CommunityNameValueParser(pattern);
-    });
-
-    it('Parses and validates all accepted patterns', async () => {
-      const input: string[] = [
-        'name=My Name',
-        'template=Some Template',
-        'path=/path/to/me',
-        'param.sub=Some Sub Param',
-      ];
-      const expected: JsonMap = {
-        name: 'My Name',
-        template: 'Some Template',
-        path: '/path/to/me',
-        param: {
-          sub: 'Some Sub Param',
-        },
-      };
-
-      expect(parser.parse(input)).to.eql(expected);
-    });
-
-    it('Invalidates non-valid patterns', async () => {
-      const input: string[] = ['name=Valid', 'invalid=Should Not Pass Validation', 'also.invalid=Should Fail'];
-      const expectedErrorTokens: string[] = ['invalid="Should Not Pass Validation"', 'also.invalid="Should Fail"'];
-
-      expect(() => parser.parse(input)).to.throw(
-        messages.getMessage('error.invalidVarargs', [expectedErrorTokens.join(' ')])
-      );
-    });
-  });
-
-  describe('Using complex validation patterns', () => {
-    const pattern: string[] = ['specific.one', 'singleLevel\\.\\w+', 'prefix\\w+', 'manyLevels(\\.\\w+)+'];
-    let parser: CommunityNameValueParser;
-
-    before(() => {
-      parser = new CommunityNameValueParser(pattern);
-    });
-
-    it('Parses and validates all accepted patterns', async () => {
-      const input: string[] = [
-        'specific.one=This is Nested',
-        'singleLevel.a=A',
-        'singleLevel.1=One',
-        'prefix1=P1',
-        'prefixMoreThanOne=PMany',
-        'manyLevels.okayAtOne=Just One',
-        'manyLevels.More.Than=One',
-      ];
-      const expected: JsonMap = {
-        specific: {
-          one: 'This is Nested',
-        },
-        singleLevel: {
-          a: 'A',
-          '1': 'One',
-        },
-        prefix1: 'P1',
-        prefixMoreThanOne: 'PMany',
-        manyLevels: {
-          okayAtOne: 'Just One',
-          More: {
-            Than: 'One',
-          },
-        },
-      };
-
-      expect(parser.parse(input)).to.eql(expected);
-    });
-
-    it('Invalid patterns are rejected', async () => {
-      const input: string[] = [
-        'singleLevel.more.than.one.level=Too deep',
-        'prefix.sub.values=Also Not Allowed',
-        'manyLevels=fail',
-      ];
-      const expectedTokens: string[] = [
-        'singleLevel.more.than.one.level="Too deep"',
-        'prefix.sub.values="Also Not Allowed"',
-        'manyLevels="fail"',
-      ];
-
-      expect(() => parser.parse(input)).to.throw(
-        messages.getMessage('error.invalidVarargs', [expectedTokens.join(' ')])
-      );
-    });
-
-    it('Cannot clobber', async () => {
-      const input: string[] = ['manyLevels.immortal=Immortal', 'manyLevels.immortal.attemptToClobber=Will Fail'];
-
-      expect(() => parser.parse(input)).to.throw("Cannot create property 'attemptToClobber' on string 'Immortal'");
+      const varArgs = await getParsedVarArgs(baseFlags.concat(['bad=throw']));
+      try {
+        getTemplateParamObjectFromArgs(varArgs);
+        throw new Error('Should have thrown');
+      } catch (e) {
+        assert(e instanceof SfError);
+        expect(e.name).to.equal('InvalidArgument');
+      }
     });
   });
 });

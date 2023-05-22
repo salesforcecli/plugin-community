@@ -26,7 +26,7 @@ export type CommunityPublishResourceOptions = {
 };
 
 export class CommunityPublishResource implements ConnectResource<CommunityPublishResponse> {
-  private info: CommunityInfo;
+  private info?: CommunityInfo;
 
   public constructor(private options: CommunityPublishResourceOptions) {}
 
@@ -44,14 +44,12 @@ export class CommunityPublishResource implements ConnectResource<CommunityPublis
     return Promise.resolve(JSON.stringify({}));
   }
 
-  public handleSuccess(
-    result: JsonCollection & { id?: string; name?: string; url?: string }
-  ): CommunityPublishResponse {
+  public handleSuccess(result: JsonCollection & { id: string; name: string; url: string }): CommunityPublishResponse {
     return {
       id: result.id,
       message: messages.getMessage('response.message'),
       name: result.name,
-      status: this.info.status,
+      status: this.info?.status,
       url: new URL(result.url).toString(),
     };
   }

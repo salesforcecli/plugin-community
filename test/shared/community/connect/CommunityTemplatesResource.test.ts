@@ -5,7 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { expect } from 'chai';
+import { assert, expect } from 'chai';
 import { CommunityTemplatesResource } from '../../../../src/shared/community/connect/CommunityTemplatesResource';
 
 describe('CommunityTemplatesResource', () => {
@@ -30,8 +30,8 @@ describe('CommunityTemplatesResource', () => {
       try {
         communityTemplatesResource.handleError(new Error(errorMsg));
         throw new Error('Should have thrown an error here');
-      } catch (err) {
-        const error = err as Error;
+      } catch (error) {
+        assert(error instanceof Error);
         expect(error.message).to.equal(errorMsg);
       }
     });
