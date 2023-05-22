@@ -75,7 +75,6 @@ export class CommunityCreateCommand extends SfCommand<CommunityCreateResponse> {
 
     const templateParams = getTemplateParamObjectFromArgs(parseVarArgs(args, argv as string[]));
 
-    // const varargs = this.parseVarargs(argv as string[]);
     const createCommand = new CommunityCreateResource({
       name: flags.name,
       urlPathPrefix: flags['url-path-prefix'],
