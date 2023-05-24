@@ -14,18 +14,15 @@ import { ConnectResource } from '../../connect/services/ConnectResource';
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');
 
-<<<<<<< HEAD
-=======
 const NAME_KEY = 'name';
 const JOBID_KEY = 'jobId';
 
->>>>>>> ba5156f (feat(create): adding job id to the creaet command)
 /**
  * A connect api resource for creating a community
  */
 export class CommunityCreateResource implements ConnectResource<CommunityCreateResponse> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public constructor(private options: CommunityCreateParams) { }
+  public constructor(private options: CommunityCreateParams) {}
 
   // eslint-disable-next-line class-methods-use-this
   public handleSuccess(
