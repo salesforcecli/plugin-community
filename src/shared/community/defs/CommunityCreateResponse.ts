@@ -22,7 +22,7 @@ export type CommunityCreateResponse = {
   /**
    * id of the BackgroundOperation that runs the create job
    */
-  jobId: string;
+  jobId?: string;
 
   /**
    * the next actions that user can do to check, if community is created or not.

@@ -38,5 +38,5 @@ export type CommunityPublishResponse = {
   /**
    * id of the BackgroundOperation that runs the publish job
    */
-  jobId: string;
+  jobId?: string;
 };

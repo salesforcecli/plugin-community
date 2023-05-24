@@ -69,7 +69,7 @@ describe('CommunityCreateResource', () => {
 
   describe('handleSuccess', () => {
     it('should return community info', () => {
-      const connectResponse: JsonMap = {
+      const connectResponse = {
         name: communityName,
         jobId,
       };
