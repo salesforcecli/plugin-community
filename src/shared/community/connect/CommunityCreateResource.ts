@@ -25,9 +25,7 @@ export class CommunityCreateResource implements ConnectResource<CommunityCreateR
   public constructor(private options: CommunityCreateParams) {}
 
   // eslint-disable-next-line class-methods-use-this
-  public handleSuccess(
-    result: JsonCollection & { [NAME_KEY]?: string; [JOBID_KEY]?: string }
-  ): CommunityCreateResponse {
+  public handleSuccess(result: JsonCollection & { [NAME_KEY]: string; [JOBID_KEY]: string }): CommunityCreateResponse {
     const response: CommunityCreateResponse = {
       message: messages.getMessage('response.createMessage'),
       name: result[NAME_KEY],

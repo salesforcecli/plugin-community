@@ -28,7 +28,7 @@ export type CommunityPublishResourceOptions = {
 export class CommunityPublishResource implements ConnectResource<CommunityPublishResponse> {
   private info?: CommunityInfo;
 
-  public constructor(private options: CommunityPublishResourceOptions) { }
+  public constructor(private options: CommunityPublishResourceOptions) {}
 
   public async fetchRelativeConnectUrl(): Promise<string> {
     return `/connect/communities/${await this.fetchCommunityId()}/publish`;
@@ -45,7 +45,7 @@ export class CommunityPublishResource implements ConnectResource<CommunityPublis
   }
 
   public handleSuccess(
-    result: JsonCollection & { id?: string; name?: string; url?: string; jobId?: string }
+    result: JsonCollection & { id: string; name: string; url: string; jobId: string }
   ): CommunityPublishResponse {
     return {
       id: result.id,
