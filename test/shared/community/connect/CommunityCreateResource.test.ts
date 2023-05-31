@@ -22,6 +22,7 @@ describe('CommunityCreateResource', () => {
   const urlPathPrefix = 'urlPathPrefix';
   const templateName = 'templateName';
   const description = 'description';
+  const jobId = '000xx0000000000000';
   let table: sinon.SinonStub;
   let styledHeader: sinon.SinonStub;
 
@@ -69,13 +70,14 @@ describe('CommunityCreateResource', () => {
   describe('handleSuccess', () => {
     it('should return community info', () => {
       const connectResponse = {
-        message: 'message',
         name: communityName,
+        jobId,
       };
 
       const result: CommunityCreateResponse = communityCreateResource.handleSuccess(connectResponse);
       expect(result.message).to.equal(messages.getMessage('response.createMessage'));
       expect(result.name).to.equal(communityName);
+      expect(result.jobId).to.equal(jobId);
       expect(result.action).to.equal(messages.getMessage('response.action'));
     });
   });

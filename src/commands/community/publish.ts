@@ -62,6 +62,7 @@ export class CommunityPublishCommand extends SfCommand<CommunityPublishResponse>
       name: { header: 'Name' },
       status: { header: 'Status' },
       url: { header: 'Url' },
+      jobId: { header: 'JobId' },
     };
     this.styledHeader(messages.getMessage('response.styleHeader'));
     this.table([results], columns);

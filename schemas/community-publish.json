@@ -24,6 +24,10 @@
         "url": {
           "type": "string",
           "description": "url to access the community"
+        },
+        "jobId": {
+          "type": "string",
+          "description": "id of the BackgroundOperation that runs the publish job"
         }
       },
       "required": ["id", "message", "name", "url"],

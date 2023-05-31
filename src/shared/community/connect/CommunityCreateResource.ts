@@ -14,6 +14,9 @@ import { ConnectResource } from '../../connect/services/ConnectResource';
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');
 
+const NAME_KEY = 'name';
+const JOBID_KEY = 'jobId';
+
 /**
  * A connect api resource for creating a community
  */
@@ -22,10 +25,11 @@ export class CommunityCreateResource implements ConnectResource<CommunityCreateR
   public constructor(private options: CommunityCreateParams) {}
 
   // eslint-disable-next-line class-methods-use-this
-  public handleSuccess(result: JsonCollection & { name: string }): CommunityCreateResponse {
+  public handleSuccess(result: JsonCollection & { [NAME_KEY]: string; [JOBID_KEY]: string }): CommunityCreateResponse {
     const response: CommunityCreateResponse = {
       message: messages.getMessage('response.createMessage'),
-      name: result.name,
+      name: result[NAME_KEY],
+      jobId: result[JOBID_KEY],
       action: messages.getMessage('response.action'),
     };
     return response;

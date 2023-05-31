@@ -20,6 +20,11 @@ export type CommunityCreateResponse = {
   name: string;
 
   /**
+   * id of the BackgroundOperation that runs the create job
+   */
+  jobId?: string;
+
+  /**
    * the next actions that user can do to check, if community is created or not.
    */
   action: string;

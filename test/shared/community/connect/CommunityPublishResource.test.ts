@@ -21,6 +21,7 @@ describe('CommunityPublishResource', () => {
   let org: Org;
   let communityPublishResource: CommunityPublishResource;
   const communityName = 'communityName';
+  const jobId = '000xx0000000000000';
   const validCommunityId = '0DB0000000000';
   let table: sinon.SinonStub;
   let styledHeader: sinon.SinonStub;
@@ -104,6 +105,7 @@ describe('CommunityPublishResource', () => {
         message: 'message',
         name: communityName,
         url: 'http://someurl.com/s',
+        jobId,
       };
       // This sets up CommunityInfo
       await communityPublishResource.fetchCommunityId();
@@ -115,6 +117,7 @@ describe('CommunityPublishResource', () => {
       expect(result.name).to.equal(communityName);
       expect(result.status).to.equal('UnderConstruction');
       expect(result.url.toString()).to.equal('http://someurl.com/s');
+      expect(result.jobId).to.equal(jobId);
     });
   });
 

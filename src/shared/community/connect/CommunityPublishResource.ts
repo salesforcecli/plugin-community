@@ -44,13 +44,16 @@ export class CommunityPublishResource implements ConnectResource<CommunityPublis
     return Promise.resolve(JSON.stringify({}));
   }
 
-  public handleSuccess(result: JsonCollection & { id: string; name: string; url: string }): CommunityPublishResponse {
+  public handleSuccess(
+    result: JsonCollection & { id: string; name: string; url: string; jobId: string }
+  ): CommunityPublishResponse {
     return {
       id: result.id,
       message: messages.getMessage('response.message'),
       name: result.name,
       status: this.info?.status,
       url: new URL(result.url).toString(),
+      jobId: result.jobId,
     };
   }
 

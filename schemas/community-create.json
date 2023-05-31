@@ -13,6 +13,10 @@
           "type": "string",
           "description": "name of the community"
         },
+        "jobId": {
+          "type": "string",
+          "description": "id of the BackgroundOperation that runs the create job"
+        },
         "action": {
           "type": "string",
           "description": "the next actions that user can do to check, if community is created or not."
