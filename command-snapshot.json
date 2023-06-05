@@ -12,18 +12,24 @@
       "template-name",
       "url-path-prefix"
     ],
-    "alias": ["force:community:create"]
+    "alias": ["force:community:create"],
+    "flagChars": ["d", "n", "o", "p", "t"],
+    "flagAliases": ["apiversion", "targetusername", "templatename", "u", "urlpathprefix"]
   },
   {
     "command": "community:list:template",
     "plugin": "@salesforce/plugin-community",
     "flags": ["api-version", "json", "loglevel", "target-org"],
-    "alias": ["force:community:template:list"]
+    "alias": ["force:community:template:list"],
+    "flagChars": ["o"],
+    "flagAliases": ["apiversion", "targetusername", "u"]
   },
   {
     "command": "community:publish",
     "plugin": "@salesforce/plugin-community",
     "flags": ["api-version", "json", "loglevel", "name", "target-org"],
-    "alias": ["force:community:publish"]
+    "alias": ["force:community:publish"],
+    "flagChars": ["n", "o"],
+    "flagAliases": ["apiversion", "targetusername", "u"]
   }
 ]
