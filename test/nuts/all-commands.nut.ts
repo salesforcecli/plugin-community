@@ -54,12 +54,13 @@ describe('plugin-community commands', () => {
   });
 
   describe('community:create', () => {
+    const createResultProps = ['message', 'name', 'action', 'jobId'];
     it('creates a new community', () => {
       const cmd = `force:community:create --name "${siteName}" --template-name "Aloha" --url-path-prefix "myprefix" --json`;
       const output = execCmd<CommunityCreateResponse>(cmd, { ensureExitCode: 0 }).jsonOutput;
       assert(output);
 
-      expect(output.result).to.have.all.keys(['message', 'name', 'action']);
+      expect(output.result).to.have.all.keys(createResultProps);
       expect(output.result.name).to.equal(siteName);
       expect(output.result.message).to.equal('Your Site is being created.');
     });
@@ -69,7 +70,7 @@ describe('plugin-community commands', () => {
       const output = execCmd<CommunityCreateResponse>(cmd, { ensureExitCode: 0 }).jsonOutput;
       assert(output);
 
-      expect(output.result).to.have.all.keys(['message', 'name', 'action']);
+      expect(output.result).to.have.all.keys(createResultProps);
       expect(output.result.name).to.equal(`${siteName}-no-prefix`);
       expect(output.result.message).to.equal('Your Site is being created.');
     });
