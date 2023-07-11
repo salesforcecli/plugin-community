@@ -1,3 +1,12 @@
+## [2.3.8](https://github.com/salesforcecli/plugin-community/compare/2.3.7...2.3.8) (2023-07-11)
+
+
+### Bug Fixes
+
+* **deps:** bump semver from 5.7.1 to 5.7.2 ([9ddda5b](https://github.com/salesforcecli/plugin-community/commit/9ddda5b2bc1ec522bae57a9254599f4edc40b326))
+
+
+
 ## [2.3.7](https://github.com/salesforcecli/plugin-community/compare/2.3.6...2.3.7) (2023-07-08)
 
 
