@@ -54,7 +54,8 @@
   "files": [
     "/lib",
     "/messages",
-    "/oclif.manifest.json"
+    "/oclif.manifest.json",
+    "/oclif.lock"
   ],
   "homepage": "https://github.com/salesforcecli/plugin-community",
   "keywords": [
