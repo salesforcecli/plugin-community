@@ -959,14 +959,6 @@
     "@salesforce/ts-types" "^2.0.8"
     tslib "^2.6.2"
 
-"@salesforce/kit@^3.0.12":
-  version "3.0.13"
-  resolved "https://registry.yarnpkg.com/@salesforce/kit/-/kit-3.0.13.tgz#10b47ad6e0e27c3a9f97eb6a5cdcfffa9ba1f163"
-  integrity sha512-HLQ5L5bBi0tsMeH5ZHJAhHUpvNUNPQoNJt2O82Jf6C60GGsrlzwzQ5ONAHGNBgKSZ7HLr0UGL5xaA+hE9uOcgw==
-  dependencies:
-    "@salesforce/ts-types" "^2.0.8"
-    tslib "^2.6.2"
-
 "@salesforce/plugin-command-reference@^3.0.33":
   version "3.0.33"
   resolved "https://registry.yarnpkg.com/@salesforce/plugin-command-reference/-/plugin-command-reference-3.0.33.tgz#61b430affc84f7c9bd618923bd50dee792195d1d"
@@ -1249,10 +1241,10 @@
   resolved "https://registry.yarnpkg.com/@types/http-cache-semantics/-/http-cache-semantics-4.0.1.tgz#0ea7b61496902b95890dc4c3a116b60cb8dae812"
   integrity sha512-SZs7ekbP8CN0txVG2xVRH6EgKmEm31BOxA07vkFaETzZz1xh+cbt8BcI0slpymvwhx5dlFnQG2rTlPVQn+iRPQ==
 
-"@types/inquirer@^9.0.3":
-  version "9.0.3"
-  resolved "https://registry.yarnpkg.com/@types/inquirer/-/inquirer-9.0.3.tgz#dc99da4f2f6de9d26c284b4f6aaab4d98c456db1"
-  integrity sha512-CzNkWqQftcmk2jaCWdBTf9Sm7xSw4rkI1zpU/Udw3HX5//adEZUIm9STtoRP1qgWj0CWQtJ9UTvqmO2NNjhMJw==
+"@types/inquirer@^9.0.4":
+  version "9.0.4"
+  resolved "https://registry.yarnpkg.com/@types/inquirer/-/inquirer-9.0.4.tgz#f20d6bce87c2aef4fabe8de9e3a397e80aea309f"
+  integrity sha512-x8UgutCLm5tsp995aeYB8dlT+sGBCtv0zE43tHvo7OljtlA2Rn4+COyLKe9+YjB20uy0G14y0C9vCD2KtNtyGA==
   dependencies:
     "@types/through" "*"
     rxjs "^7.2.0"
