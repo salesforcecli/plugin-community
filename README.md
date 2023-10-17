@@ -72,55 +72,46 @@ sfdx plugins
 
 <!-- commands -->
 
-- [`sfdx force:community:create [name=value...] -n <string> -t <string> -p <string> [-d <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-forcecommunitycreate-namevalue--n-string--t-string--p-string--d-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
-- [`sfdx force:community:publish -n <string> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-forcecommunitypublish--n-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
-- [`sfdx force:community:template:list [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-forcecommunitytemplatelist--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
+- [`sfdx community:create`](#sfdx-communitycreate)
+- [`sfdx community:list:template`](#sfdx-communitylisttemplate)
+- [`sfdx community:publish`](#sfdx-communitypublish)
 
-## `sfdx force:community:create [name=value...] -n <string> -t <string> -p <string> [-d <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
+## `sfdx community:create`
 
-creates an Experience Cloud site using a template
+Create an Experience Cloud site using a template.
 
 ```
 USAGE
-  $ sfdx force:community:create [name=value...] -n <string> -t <string> -p <string> [-d <string>] [-u <string>]
-  [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
+  $ sfdx community:create -n <value> -t <value> -o <value> [--json] [-p <value>] [-d <value>] [--api-version <value>]
 
-OPTIONS
-  -d, --description=description                                                     description of the site
+FLAGS
+  -d, --description=<value>      Description of the site.
+  -n, --name=<value>             (required) Name of the site to create.
+  -o, --target-org=<value>       (required) Username or alias of the target org.
+  -p, --url-path-prefix=<value>  URL to append to the domain created when Digital Experiences was enabled for this org.
+  -t, --template-name=<value>    (required) Template to use to create a site.
+  --api-version=<value>          Override the api version used for api requests made by this command
 
-  -n, --name=name                                                                   (required) name of the site to
-                                                                                    create
-
-  -p, --urlpathprefix=urlpathprefix                                                 (required) URL to append to the
-                                                                                    domain created when Digital
-                                                                                    Experiences was enabled for this org
-
-  -t, --templatename=templatename                                                   (required) template to use to create
-                                                                                    a site
-
-  -u, --targetusername=targetusername                                               username or alias for the target
-                                                                                    org; overrides default target org
-
-  --apiversion=apiversion                                                           override the api version used for
-                                                                                    api requests made by this command
-
-  --json                                                                            format output as json
-
-  --loglevel=(trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL)  [default: warn] logging level for
-                                                                                    this command invocation
+GLOBAL FLAGS
+  --json  Format output as json.
 
 DESCRIPTION
+  Create an Experience Cloud site using a template.
+
   Run the "community list template" command to see the templates available in your org. See 'Which Experience Cloud
   Template Should I Use?' in Salesforce Help for more information about the different template types available.
+  (https://help.salesforce.com/s/articleView?id=sf.siteforce_commtemp_intro.htm&type=5)
 
   When you create a site with the Build Your Own (LWR) template, you must also specify the AuthenticationType value
   using the format templateParams.AuthenticationType=value, where value is AUTHENTICATED or
   AUTHENTICATED_WITH_PUBLIC_ACCESS_ENABLED. Name and values are case-sensitive. See 'DigitalExperienceBundle' in the
   Metadata API Developer Guide for more information.
+  (https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_digitalexperiencebundle.htm)
 
   The site creation process is an async job that generates a jobId. To check the site creation status, query the
   BackgroundOperation object and enter the jobId as the Id. See ‘BackgroundOperation’ in the Object Reference for the
-  Salesforce Platform for more information.
+  Salesforce Platform for more information. (https://developer.salesforce.com/docs/atlas.en-us.object_reference.meta/obj
+  ect_reference/sforce_api_objects_backgroundoperation.htm)
 
   If the job doesn’t complete within 10 minutes, it times out. You receive an error message and must restart the site
   creation process. Completed jobs expire after 24 hours and are removed from the database.
@@ -131,97 +122,127 @@ DESCRIPTION
   If you have an Experience Builder site, publish the site using the "community publish" command to make it live.
 
   If you have a Salesforce Tabs + Visualforce site, to activate the site and make it live, update the status field of
-  the Network type in Metadata API. Alternatively, in Experience Workspaces, go to Administration | Settings, and click
-  Activate.
+  the Network type in Metadata API.
+  (https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_network.htm) Alternatively, in
+  Experience Workspaces, go to Administration | Settings, and click Activate.
 
   For Experience Builder sites, activating the site sends a welcome email to site members.
 
+ALIASES
+  $ sfdx force:community:create
+
 EXAMPLES
-  $ sfdx force:community:create --name 'My Customer Site' --templatename 'Customer Service' --urlpathprefix customers
-  --description 'My customer site'
-  $ sfdx force:community:create -n partnercentral -t 'Partner Central' -p partners
-  $ sfdx force:community:create -n lwrsite -t 'Build Your Own (LWR)' -p lwrsite
-  templateParams.AuthenticationType=UNAUTHENTICATED
+  Create an Experience Cloud site using template 'Customer Service' and URL path prefix 'customers':
+
+    $ sfdx community:create --name 'My Customer Site' --template-name 'Customer Service' --url-path-prefix customers \
+      --description 'My customer site'
+
+  Create a site using 'Partner Central' template:
+
+    $ sfdx community:create --name partnercentral --template-name 'Partner Central' --url-path-prefix partners
+
+  Create a site using the 'Build Your Own (LWR)' template with authentication type of UNAUTHENTICATED:
+
+    $ sfdx community:create --name lwrsite --template-name 'Build Your Own (LWR)' --url-path-prefix lwrsite \
+      templateParams.AuthenticationType=UNAUTHENTICATED
+
+FLAG DESCRIPTIONS
+  -d, --description=<value>  Description of the site.
+
+    The description displays in Digital Experiences - All Sites in Setup and helps with site identification.
+
+  -p, --url-path-prefix=<value>  URL to append to the domain created when Digital Experiences was enabled for this org.
+
+    For example, if your domain name is https://MyDomainName.my.site.com and you create a customer site, enter
+    'customers' to create the unique URL https://MyDomainName.my.site.com/customers.
+
+  -t, --template-name=<value>  Template to use to create a site.
+
+    An example of a template is Customer Service. Run the "community template list" command to see which templates are
+    available in your org.
 ```
 
-_See code: [src/commands/force/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/v2.0.0/src/commands/force/community/create.ts)_
+_See code: [src/commands/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/2.4.6/src/commands/community/create.ts)_
 
-## `sfdx force:community:publish -n <string> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
+## `sfdx community:list:template`
 
-publishes an Experience Builder site to make it live
+Retrieve the list of templates available in your org.
 
 ```
 USAGE
-  $ sfdx force:community:publish -n <string> [-u <string>] [--apiversion <string>] [--json] [--loglevel
-  trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
+  $ sfdx community:list:template -o <value> [--json] [--api-version <value>]
 
-OPTIONS
-  -n, --name=name                                                                   (required) name of the Experience
-                                                                                    Builder site to publish
+FLAGS
+  -o, --target-org=<value>  (required) Username or alias of the target org.
+  --api-version=<value>     Override the api version used for api requests made by this command
 
-  -u, --targetusername=targetusername                                               username or alias for the target
-                                                                                    org; overrides default target org
-
-  --apiversion=apiversion                                                           override the api version used for
-                                                                                    api requests made by this command
-
-  --json                                                                            format output as json
-
-  --loglevel=(trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL)  [default: warn] logging level for
-                                                                                    this command invocation
+GLOBAL FLAGS
+  --json  Format output as json.
 
 DESCRIPTION
+  Retrieve the list of templates available in your org.
+
+  See 'Which Experience Cloud Template Should I Use?'
+  (https://help.salesforce.com/s/articleView?id=sf.siteforce_commtemp_intro.htm&type=5) in Salesforce Help for more
+  information about the different template types available for Experience Cloud.
+
+ALIASES
+  $ sfdx force:community:template:list
+
+EXAMPLES
+  Retrieve the template list from an org with alias my-scratch-org:
+
+    $ sfdx community:list:template --target-org my-scratch-org
+```
+
+_See code: [src/commands/community/list/template.ts](https://github.com/salesforcecli/plugin-community/blob/2.4.6/src/commands/community/list/template.ts)_
+
+## `sfdx community:publish`
+
+Publish an Experience Builder site to make it live.
+
+```
+USAGE
+  $ sfdx community:publish -n <value> -o <value> [--json] [--api-version <value>]
+
+FLAGS
+  -n, --name=<value>        (required) Name of the Experience Builder site to publish.
+  -o, --target-org=<value>  (required) Username or alias of the target org.
+  --api-version=<value>     Override the api version used for api requests made by this command
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Publish an Experience Builder site to make it live.
+
   Each time you publish a site, you update the live site with the most recent updates. When you publish an Experience
   Builder site for the first time, you make the site's URL live and enable login access for site members.
 
   In addition to publishing, you must activate a site to send a welcome email to all site members. Activation is also
   required to set up SEO for Experience Builder sites. To activate a site, update the status field of the Network type
-  in Metadata API. Alternatively, in Experience Workspaces, go to Administration | Settings, and click Activate.
+  in Metadata API.
+  (https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_network.htm)Alternatively, in
+  Experience Workspaces, go to Administration | Settings, and click Activate.
 
   An email notification informs you when your changes are live on the published site. The site publish process is an
   async job that generates a jobId. To check the site publish status manually, query the BackgroundOperation object and
   enter the jobId as the Id. See ‘BackgroundOperation’ in the Object Reference for the Salesforce Platform for more
-  information.
+  information. (https://developer.salesforce.com/docs/atlas.en-us.object_reference.meta/object_reference/sforce_api_obje
+  cts_backgroundoperation.htm)
 
   If the job doesn’t complete within 15 minutes, it times out. You receive an error message and must restart the site
   publish process. Completed jobs expire after 24 hours and are removed from the database.
 
+ALIASES
+  $ sfdx force:community:publish
 
-EXAMPLE
-  $ sfdx force:community:publish --name 'My Customer Site'
+EXAMPLES
+  Publish the Experience Builder site with name "My Customer Site':
+
+    $ sfdx community:publish --name 'My Customer Site'
 ```
 
-_See code: [src/commands/force/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/v2.0.0/src/commands/force/community/publish.ts)_
-
-## `sfdx force:community:template:list [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
-
-retrieves the list of templates available in your org
-
-```
-USAGE
-  $ sfdx force:community:template:list [-u <string>] [--apiversion <string>] [--json] [--loglevel
-  trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
-
-OPTIONS
-  -u, --targetusername=targetusername                                               username or alias for the target
-                                                                                    org; overrides default target org
-
-  --apiversion=apiversion                                                           override the api version used for
-                                                                                    api requests made by this command
-
-  --json                                                                            format output as json
-
-  --loglevel=(trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL)  [default: warn] logging level for
-                                                                                    this command invocation
-
-DESCRIPTION
-  See 'Which Experience Cloud Template Should I Use?' in Salesforce Help for more information about the different
-  template types available for Experience Cloud.
-
-EXAMPLE
-  $ sfdx force:community:template:list
-```
-
-_See code: [src/commands/force/community/template/list.ts](https://github.com/salesforcecli/plugin-community/blob/v2.0.0/src/commands/force/community/template/list.ts)_
+_See code: [src/commands/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/2.4.6/src/commands/community/publish.ts)_
 
 <!-- commandsstop -->
