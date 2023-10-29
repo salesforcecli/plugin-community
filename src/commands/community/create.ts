@@ -46,16 +46,16 @@ export class CommunityCreateCommand extends SfCommand<CommunityCreateResponse> {
     }),
     'template-name': Flags.string({
       char: 't',
-      summary: messages.getMessage('flags.templateName.summary'),
-      description: messages.getMessage('flags.templateName.description'),
+      summary: messages.getMessage('flags.template-name.summary'),
+      description: messages.getMessage('flags.template-name.description'),
       required: true,
       deprecateAliases: true,
       aliases: ['templatename'],
     }),
     'url-path-prefix': Flags.string({
       char: 'p',
-      summary: messages.getMessage('flags.urlPathPrefix.summary'),
-      description: messages.getMessage('flags.urlPathPrefix.description'),
+      summary: messages.getMessage('flags.url-path-prefix.summary'),
+      description: messages.getMessage('flags.url-path-prefix.description'),
       // The api requires you to pass this, it accepts an empty string
       default: '',
       deprecateAliases: true,
