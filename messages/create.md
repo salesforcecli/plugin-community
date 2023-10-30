@@ -38,19 +38,19 @@ For Experience Builder sites, activating the site sends a welcome email to site 
 
 Name of the site to create.
 
-# flags.templateName.summary
+# flags.template-name.summary
 
 Template to use to create a site.
 
-# flags.templateName.description
+# flags.template-name.description
 
 An example of a template is Customer Service. Run the "community template list" command to see which templates are available in your org.
 
-# flags.urlPathPrefix.summary
+# flags.url-path-prefix.summary
 
 URL to append to the domain created when Digital Experiences was enabled for this org.
 
-# flags.urlPathPrefix.description
+# flags.url-path-prefix.description
 
 For example, if your domain name is https://MyDomainName.my.site.com and you create a customer site, enter 'customers' to create the unique URL https://MyDomainName.my.site.com/customers.
 
