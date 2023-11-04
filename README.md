@@ -162,7 +162,7 @@ FLAG DESCRIPTIONS
     available in your org.
 ```
 
-_See code: [src/commands/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/2.4.8/src/commands/community/create.ts)_
+_See code: [src/commands/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/2.4.9/src/commands/community/create.ts)_
 
 ## `sfdx community:list:template`
 
@@ -195,7 +195,7 @@ EXAMPLES
     $ sfdx community:list:template --target-org my-scratch-org
 ```
 
-_See code: [src/commands/community/list/template.ts](https://github.com/salesforcecli/plugin-community/blob/2.4.8/src/commands/community/list/template.ts)_
+_See code: [src/commands/community/list/template.ts](https://github.com/salesforcecli/plugin-community/blob/2.4.9/src/commands/community/list/template.ts)_
 
 ## `sfdx community:publish`
 
@@ -243,6 +243,6 @@ EXAMPLES
     $ sfdx community:publish --name 'My Customer Site'
 ```
 
-_See code: [src/commands/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/2.4.8/src/commands/community/publish.ts)_
+_See code: [src/commands/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/2.4.9/src/commands/community/publish.ts)_
 
 <!-- commandsstop -->
