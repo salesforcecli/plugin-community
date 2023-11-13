@@ -8,13 +8,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-import * as sinon from 'sinon';
+import sinon from 'sinon';
 import { assert, expect } from 'chai';
 import { stubMethod } from '@salesforce/ts-sinon';
 import { Connection } from '@salesforce/core';
 import { HttpMethods, HttpRequest } from 'jsforce';
-import { ConnectExecutor } from '../../../../../src/shared/connect/services/ConnectExecutor';
-import { ConnectResource } from '../../../../../src/shared/connect/services/ConnectResource';
+import { ConnectExecutor } from '../../../../../src/shared/connect/services/ConnectExecutor.js';
+import { ConnectResource } from '../../../../../src/shared/connect/services/ConnectResource.js';
 
 type Result = {
   data: string;

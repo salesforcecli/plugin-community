@@ -11,8 +11,8 @@ import { Config } from '@oclif/core';
 import { SfError } from '@salesforce/core';
 import { assert } from '@salesforce/ts-types';
 import { parseVarArgs } from '@salesforce/sf-plugins-core';
-import { MockTestOrgData, TestContext } from '@salesforce/core/lib/testSetup';
-import { getTemplateParamObjectFromArgs, CommunityCreateCommand } from '../../../../src/commands/community/create';
+import { MockTestOrgData, TestContext } from '@salesforce/core/lib/testSetup.js';
+import { getTemplateParamObjectFromArgs, CommunityCreateCommand } from '../../../../src/commands/community/create.js';
 
 class Wrapper extends CommunityCreateCommand {
   public async getParsedArgs(): Promise<Record<string, string | undefined>> {

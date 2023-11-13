@@ -5,8 +5,8 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { HttpMethods } from 'jsforce';
-import { ConnectResource } from '../../connect/services/ConnectResource';
-import { CommunityTemplatesListResponse } from '../defs/CommunityTemplatesListResponse';
+import { ConnectResource } from '../../connect/services/ConnectResource.js';
+import { CommunityTemplatesListResponse } from '../defs/CommunityTemplatesListResponse.js';
 
 /**
  * A connect api resource for fetching community templates available to context user

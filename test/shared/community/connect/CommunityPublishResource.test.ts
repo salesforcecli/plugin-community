@@ -5,16 +5,18 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import * as util from 'node:util';
-import * as sinon from 'sinon';
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import util from 'node:util';
+import sinon from 'sinon';
 import { assert, expect } from 'chai';
 import { Messages, Org } from '@salesforce/core';
 import { SfCommand } from '@salesforce/sf-plugins-core';
-import { CommunitiesServices } from '../../../../src/shared/community/service/CommunitiesServices';
-import { CommunityPublishResource } from '../../../../src/shared/community/connect/CommunityPublishResource';
-import { CommunityPublishResponse } from '../../../../src/shared/community/defs/CommunityPublishResponse';
+import CommunitiesServices from '../../../../src/shared/community/service/CommunitiesServices.js';
+import { CommunityPublishResource } from '../../../../src/shared/community/connect/CommunityPublishResource.js';
+import { CommunityPublishResponse } from '../../../../src/shared/community/defs/CommunityPublishResponse.js';
 
-Messages.importMessagesDirectory(__dirname);
+Messages.importMessagesDirectory(dirname(fileURLToPath(import.meta.url)));
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'publish');
 
 describe('CommunityPublishResource', () => {
