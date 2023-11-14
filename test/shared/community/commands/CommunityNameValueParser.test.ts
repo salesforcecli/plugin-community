@@ -6,10 +6,9 @@
  */
 /* eslint-disable @typescript-eslint/require-await */
 
-import { expect } from 'chai';
+import { expect, assert } from 'chai';
 import { Config } from '@oclif/core';
 import { SfError } from '@salesforce/core';
-import { assert } from '@salesforce/ts-types';
 import { parseVarArgs } from '@salesforce/sf-plugins-core';
 import { MockTestOrgData, TestContext } from '@salesforce/core/lib/testSetup.js';
 import { getTemplateParamObjectFromArgs, CommunityCreateCommand } from '../../../../src/commands/community/create.js';
