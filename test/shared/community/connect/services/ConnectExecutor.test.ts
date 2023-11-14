@@ -10,7 +10,6 @@
 
 import sinon from 'sinon';
 import { assert, expect } from 'chai';
-import { stubMethod } from '@salesforce/ts-sinon';
 import { Connection } from '@salesforce/core';
 import { HttpMethods, HttpRequest } from 'jsforce';
 import { ConnectExecutor } from '../../../../../src/shared/connect/services/ConnectExecutor.js';
@@ -121,7 +120,8 @@ describe('ConnectExecutor', () => {
     const connectionStub = sinon.createStubInstance(Connection);
 
     beforeEach(() => {
-      stubMethod(sandbox, Connection, 'create').returns(connectionStub);
+      // @ts-expect-error stub instance only
+      sandbox.stub(Connection, 'create').returns(connectionStub);
     });
 
     afterEach(() => {
