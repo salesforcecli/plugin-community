@@ -5,6 +5,8 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { Messages } from '@salesforce/core';
 import {
   loglevel,
@@ -12,11 +14,11 @@ import {
   requiredOrgFlagWithDeprecations,
   SfCommand,
 } from '@salesforce/sf-plugins-core';
-import { CommunityTemplatesResource } from '../../../shared/community/connect/CommunityTemplatesResource';
-import { ConnectExecutor } from '../../../shared/connect/services/ConnectExecutor';
-import { CommunityTemplatesListResponse } from '../../../shared/community/defs/CommunityTemplatesListResponse';
+import { CommunityTemplatesResource } from '../../../shared/community/connect/CommunityTemplatesResource.js';
+import { ConnectExecutor } from '../../../shared/connect/services/ConnectExecutor.js';
+import { CommunityTemplatesListResponse } from '../../../shared/community/defs/CommunityTemplatesListResponse.js';
 
-Messages.importMessagesDirectory(__dirname);
+Messages.importMessagesDirectory(dirname(fileURLToPath(import.meta.url)));
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'template.list');
 
 /**

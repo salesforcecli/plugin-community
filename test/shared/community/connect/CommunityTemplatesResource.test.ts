@@ -6,7 +6,7 @@
  */
 
 import { assert, expect } from 'chai';
-import { CommunityTemplatesResource } from '../../../../src/shared/community/connect/CommunityTemplatesResource';
+import { CommunityTemplatesResource } from '../../../../src/shared/community/connect/CommunityTemplatesResource.js';
 
 describe('CommunityTemplatesResource', () => {
   let communityTemplatesResource: CommunityTemplatesResource;

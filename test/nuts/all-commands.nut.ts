@@ -4,15 +4,15 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import * as path from 'node:path';
+import path from 'node:path';
 import { assert, expect } from 'chai';
 import { Duration, sleep } from '@salesforce/kit';
 
 import { execCmd, TestSession } from '@salesforce/cli-plugins-testkit';
 
-import { CommunityCreateResponse } from '../../src/shared/community/defs/CommunityCreateResponse';
-import { CommunityPublishResponse } from '../../src/shared/community/defs/CommunityPublishResponse';
-import { CommunityTemplatesListResponse } from '../../src/shared/community/defs/CommunityTemplatesListResponse';
+import { CommunityCreateResponse } from '../../src/shared/community/defs/CommunityCreateResponse.js';
+import { CommunityPublishResponse } from '../../src/shared/community/defs/CommunityPublishResponse.js';
+import { CommunityTemplatesListResponse } from '../../src/shared/community/defs/CommunityTemplatesListResponse.js';
 
 let session: TestSession;
 

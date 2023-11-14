@@ -4,12 +4,14 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { JsonCollection } from '@salesforce/ts-types';
 import { Connection, Messages, SfError } from '@salesforce/core';
 import { HttpRequest } from 'jsforce';
-import { ConnectResource } from './ConnectResource';
+import { ConnectResource } from './ConnectResource.js';
 
-Messages.importMessagesDirectory(__dirname);
+Messages.importMessagesDirectory(dirname(fileURLToPath(import.meta.url)));
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'connect-executor');
 
 /**

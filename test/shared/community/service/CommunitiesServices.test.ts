@@ -4,11 +4,10 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import * as sinon from 'sinon';
+import sinon from 'sinon';
 import { assert, expect } from 'chai';
 import { Org } from '@salesforce/core';
-import { CommunitiesServices } from '../../../../src/shared/community/service/CommunitiesServices';
-import * as CommunitiesServicesStubs from '../../../../src/shared/community/service/CommunitiesServices';
+import CommunitiesServices from '../../../../src/shared/community/service/CommunitiesServices.js';
 
 describe('CommunitiesServices', () => {
   describe('fetchCommunityInfoFromName', () => {
@@ -18,8 +17,7 @@ describe('CommunitiesServices', () => {
     });
 
     it('should return CommunityInfo when valid community name is passed', async () => {
-      const runQueryStub = sinon.stub(CommunitiesServicesStubs, 'runQuery');
-      runQueryStub.returns(
+      const runQueryStub = sinon.stub(CommunitiesServices, 'runQuery').returns(
         Promise.resolve({
           totalSize: 1,
           records: [
@@ -31,6 +29,7 @@ describe('CommunitiesServices', () => {
           done: true,
         })
       );
+
       const info = await CommunitiesServices.fetchCommunityInfoFromName(new Org(undefined), 'communityName');
       assert(info);
       expect(info.id).to.equal('0D5000000000000');
@@ -41,8 +40,7 @@ describe('CommunitiesServices', () => {
     });
 
     it('should return undefined when invalid community name is passed', async () => {
-      const runQueryStub = sinon.stub(CommunitiesServicesStubs, 'runQuery');
-      runQueryStub.returns(
+      const runQueryStub = sinon.stub(CommunitiesServices, 'runQuery').returns(
         Promise.resolve({
           totalSize: 0,
           records: [],

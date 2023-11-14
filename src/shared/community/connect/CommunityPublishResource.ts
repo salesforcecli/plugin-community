@@ -4,16 +4,17 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { URL } from 'node:url';
+import { URL, fileURLToPath } from 'node:url';
+import { dirname } from 'node:path';
 import { JsonCollection } from '@salesforce/ts-types';
 import { Messages, Org } from '@salesforce/core';
 import { HttpMethods } from 'jsforce';
-import { CommunityPublishResponse } from '../defs/CommunityPublishResponse';
-import { CommunityInfo } from '../defs/CommunityInfo';
-import { CommunitiesServices } from '../service/CommunitiesServices';
-import { ConnectResource } from '../../connect/services/ConnectResource';
+import { CommunityPublishResponse } from '../defs/CommunityPublishResponse.js';
+import { CommunityInfo } from '../defs/CommunityInfo.js';
+import CommunitiesServices from '../service/CommunitiesServices.js';
+import { ConnectResource } from '../../connect/services/ConnectResource.js';
 
-Messages.importMessagesDirectory(__dirname);
+Messages.importMessagesDirectory(dirname(fileURLToPath(import.meta.url)));
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'publish');
 
 /**

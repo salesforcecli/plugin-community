@@ -6,13 +6,13 @@
  */
 import { Org } from '@salesforce/core';
 import { QueryResult, Record } from 'jsforce';
-import { CommunityInfo } from '../defs/CommunityInfo';
-import { CommunityStatus } from '../defs/CommunityStatusEnum';
+import { CommunityInfo } from '../defs/CommunityInfo.js';
+import { CommunityStatus } from '../defs/CommunityStatusEnum.js';
 
 /**
  * Helper services for Communities
  */
-export class CommunitiesServices {
+export default class CommunitiesServices {
   /**
    * Get community name from the given id
    *
@@ -26,7 +26,7 @@ export class CommunitiesServices {
       return undefined;
     }
 
-    const result: QueryResult<{ Id: string; Status: CommunityStatus }> = await runQuery(
+    const result: QueryResult<{ Id: string; Status: CommunityStatus }> = await CommunitiesServices.runQuery(
       org,
       `SELECT Id, Status FROM NETWORK WHERE NAME = '${name}'`
     );
@@ -39,7 +39,8 @@ export class CommunitiesServices {
       };
     }
   }
-}
 
-export const runQuery = async <T extends Record>(org: Org, query: string): Promise<QueryResult<T>> =>
-  org.getConnection().query<T>(query);
+  public static async runQuery<T extends Record>(org: Org, query: string): Promise<QueryResult<T>> {
+    return org.getConnection().query<T>(query);
+  }
+}
