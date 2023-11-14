@@ -72,17 +72,17 @@ sfdx plugins
 
 <!-- commands -->
 
-- [`sfdx community:create`](#sfdx-communitycreate)
-- [`sfdx community:list:template`](#sfdx-communitylisttemplate)
-- [`sfdx community:publish`](#sfdx-communitypublish)
+- [`sf community create`](#sf-community-create)
+- [`sf community list template`](#sf-community-list-template)
+- [`sf community publish`](#sf-community-publish)
 
-## `sfdx community:create`
+## `sf community create`
 
 Create an Experience Cloud site using a template.
 
 ```
 USAGE
-  $ sfdx community:create -n <value> -t <value> -o <value> [--json] [-p <value>] [-d <value>] [--api-version <value>]
+  $ sf community create -n <value> -t <value> -o <value> [--json] [-p <value>] [-d <value>] [--api-version <value>]
 
 FLAGS
   -d, --description=<value>      Description of the site.
@@ -90,7 +90,7 @@ FLAGS
   -o, --target-org=<value>       (required) Username or alias of the target org.
   -p, --url-path-prefix=<value>  URL to append to the domain created when Digital Experiences was enabled for this org.
   -t, --template-name=<value>    (required) Template to use to create a site.
-  --api-version=<value>          Override the api version used for api requests made by this command
+      --api-version=<value>      Override the api version used for api requests made by this command
 
 GLOBAL FLAGS
   --json  Format output as json.
@@ -129,21 +129,21 @@ DESCRIPTION
   For Experience Builder sites, activating the site sends a welcome email to site members.
 
 ALIASES
-  $ sfdx force:community:create
+  $ sf force community create
 
 EXAMPLES
   Create an Experience Cloud site using template 'Customer Service' and URL path prefix 'customers':
 
-    $ sfdx community:create --name 'My Customer Site' --template-name 'Customer Service' --url-path-prefix customers \
+    $ sf community create --name 'My Customer Site' --template-name 'Customer Service' --url-path-prefix customers \
       --description 'My customer site'
 
   Create a site using 'Partner Central' template:
 
-    $ sfdx community:create --name partnercentral --template-name 'Partner Central' --url-path-prefix partners
+    $ sf community create --name partnercentral --template-name 'Partner Central' --url-path-prefix partners
 
   Create a site using the 'Build Your Own (LWR)' template with authentication type of UNAUTHENTICATED:
 
-    $ sfdx community:create --name lwrsite --template-name 'Build Your Own (LWR)' --url-path-prefix lwrsite \
+    $ sf community create --name lwrsite --template-name 'Build Your Own (LWR)' --url-path-prefix lwrsite \
       templateParams.AuthenticationType=UNAUTHENTICATED
 
 FLAG DESCRIPTIONS
@@ -162,19 +162,19 @@ FLAG DESCRIPTIONS
     available in your org.
 ```
 
-_See code: [src/commands/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/2.4.9/src/commands/community/create.ts)_
+_See code: [src/commands/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/2.4.10/src/commands/community/create.ts)_
 
-## `sfdx community:list:template`
+## `sf community list template`
 
 Retrieve the list of templates available in your org.
 
 ```
 USAGE
-  $ sfdx community:list:template -o <value> [--json] [--api-version <value>]
+  $ sf community list template -o <value> [--json] [--api-version <value>]
 
 FLAGS
-  -o, --target-org=<value>  (required) Username or alias of the target org.
-  --api-version=<value>     Override the api version used for api requests made by this command
+  -o, --target-org=<value>   (required) Username or alias of the target org.
+      --api-version=<value>  Override the api version used for api requests made by this command
 
 GLOBAL FLAGS
   --json  Format output as json.
@@ -187,28 +187,28 @@ DESCRIPTION
   information about the different template types available for Experience Cloud.
 
 ALIASES
-  $ sfdx force:community:template:list
+  $ sf force community template list
 
 EXAMPLES
   Retrieve the template list from an org with alias my-scratch-org:
 
-    $ sfdx community:list:template --target-org my-scratch-org
+    $ sf community list template --target-org my-scratch-org
 ```
 
-_See code: [src/commands/community/list/template.ts](https://github.com/salesforcecli/plugin-community/blob/2.4.9/src/commands/community/list/template.ts)_
+_See code: [src/commands/community/list/template.ts](https://github.com/salesforcecli/plugin-community/blob/2.4.10/src/commands/community/list/template.ts)_
 
-## `sfdx community:publish`
+## `sf community publish`
 
 Publish an Experience Builder site to make it live.
 
 ```
 USAGE
-  $ sfdx community:publish -n <value> -o <value> [--json] [--api-version <value>]
+  $ sf community publish -n <value> -o <value> [--json] [--api-version <value>]
 
 FLAGS
-  -n, --name=<value>        (required) Name of the Experience Builder site to publish.
-  -o, --target-org=<value>  (required) Username or alias of the target org.
-  --api-version=<value>     Override the api version used for api requests made by this command
+  -n, --name=<value>         (required) Name of the Experience Builder site to publish.
+  -o, --target-org=<value>   (required) Username or alias of the target org.
+      --api-version=<value>  Override the api version used for api requests made by this command
 
 GLOBAL FLAGS
   --json  Format output as json.
@@ -235,14 +235,14 @@ DESCRIPTION
   publish process. Completed jobs expire after 24 hours and are removed from the database.
 
 ALIASES
-  $ sfdx force:community:publish
+  $ sf force community publish
 
 EXAMPLES
   Publish the Experience Builder site with name "My Customer Site':
 
-    $ sfdx community:publish --name 'My Customer Site'
+    $ sf community publish --name 'My Customer Site'
 ```
 
-_See code: [src/commands/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/2.4.9/src/commands/community/publish.ts)_
+_See code: [src/commands/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/2.4.10/src/commands/community/publish.ts)_
 
 <!-- commandsstop -->
