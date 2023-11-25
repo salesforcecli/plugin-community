@@ -87,7 +87,8 @@ USAGE
 FLAGS
   -d, --description=<value>      Description of the site.
   -n, --name=<value>             (required) Name of the site to create.
-  -o, --target-org=<value>       (required) Username or alias of the target org.
+  -o, --target-org=<value>       (required) Username or alias of the target org. Not required if the `target-org`
+                                 configuration variable is already set.
   -p, --url-path-prefix=<value>  URL to append to the domain created when Digital Experiences was enabled for this org.
   -t, --template-name=<value>    (required) Template to use to create a site.
       --api-version=<value>      Override the api version used for api requests made by this command
@@ -162,7 +163,7 @@ FLAG DESCRIPTIONS
     available in your org.
 ```
 
-_See code: [src/commands/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/3.0.2/src/commands/community/create.ts)_
+_See code: [src/commands/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/3.0.3/src/commands/community/create.ts)_
 
 ## `sf community list template`
 
@@ -173,7 +174,8 @@ USAGE
   $ sf community list template -o <value> [--json] [--api-version <value>]
 
 FLAGS
-  -o, --target-org=<value>   (required) Username or alias of the target org.
+  -o, --target-org=<value>   (required) Username or alias of the target org. Not required if the `target-org`
+                             configuration variable is already set.
       --api-version=<value>  Override the api version used for api requests made by this command
 
 GLOBAL FLAGS
@@ -195,7 +197,7 @@ EXAMPLES
     $ sf community list template --target-org my-scratch-org
 ```
 
-_See code: [src/commands/community/list/template.ts](https://github.com/salesforcecli/plugin-community/blob/3.0.2/src/commands/community/list/template.ts)_
+_See code: [src/commands/community/list/template.ts](https://github.com/salesforcecli/plugin-community/blob/3.0.3/src/commands/community/list/template.ts)_
 
 ## `sf community publish`
 
@@ -207,7 +209,8 @@ USAGE
 
 FLAGS
   -n, --name=<value>         (required) Name of the Experience Builder site to publish.
-  -o, --target-org=<value>   (required) Username or alias of the target org.
+  -o, --target-org=<value>   (required) Username or alias of the target org. Not required if the `target-org`
+                             configuration variable is already set.
       --api-version=<value>  Override the api version used for api requests made by this command
 
 GLOBAL FLAGS
@@ -243,6 +246,6 @@ EXAMPLES
     $ sf community publish --name 'My Customer Site'
 ```
 
-_See code: [src/commands/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/3.0.2/src/commands/community/publish.ts)_
+_See code: [src/commands/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/3.0.3/src/commands/community/publish.ts)_
 
 <!-- commandsstop -->
