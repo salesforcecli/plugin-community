@@ -12,6 +12,7 @@ import sinon from 'sinon';
 import { assert, expect } from 'chai';
 import { Connection } from '@salesforce/core';
 import type { HttpMethods, HttpRequest } from 'jsforce';
+import type { JsonCollection } from '@salesforce/ts-types';
 import { ConnectExecutor } from '../../../../../src/shared/connect/services/ConnectExecutor.js';
 import { ConnectResource } from '../../../../../src/shared/connect/services/ConnectResource.js';
 
@@ -42,7 +43,7 @@ describe('ConnectExecutor', () => {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public handleSuccess(result: import('@salesforce/ts-types').JsonCollection): Result {
+    public handleSuccess(result: JsonCollection): Result {
       return {
         data: 'success',
       };

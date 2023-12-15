@@ -7,7 +7,7 @@
 
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { JsonMap } from '@salesforce/ts-types';
+import type { JsonMap } from '@salesforce/ts-types';
 import { Messages, SfError } from '@salesforce/core';
 import {
   Flags,

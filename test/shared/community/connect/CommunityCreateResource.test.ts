@@ -7,7 +7,7 @@
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sinon from 'sinon';
-import { JsonMap } from '@salesforce/ts-types';
+import type { JsonMap } from '@salesforce/ts-types';
 import { assert, expect } from 'chai';
 import { Messages } from '@salesforce/core';
 import { SfCommand } from '@salesforce/sf-plugins-core';

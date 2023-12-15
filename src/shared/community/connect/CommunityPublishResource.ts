@@ -6,7 +6,7 @@
  */
 import { URL, fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
-import { JsonCollection } from '@salesforce/ts-types';
+import type { JsonCollection } from '@salesforce/ts-types';
 import { Messages, Org } from '@salesforce/core';
 import type { HttpMethods } from 'jsforce';
 import { CommunityPublishResponse } from '../defs/CommunityPublishResponse.js';

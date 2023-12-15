@@ -6,7 +6,7 @@
  */
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { JsonCollection } from '@salesforce/ts-types';
+import type { JsonCollection } from '@salesforce/ts-types';
 import { Connection, Messages, SfError } from '@salesforce/core';
 import type { HttpRequest } from 'jsforce';
 import { ConnectResource } from './ConnectResource.js';
