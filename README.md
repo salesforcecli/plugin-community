@@ -225,7 +225,7 @@ DESCRIPTION
   In addition to publishing, you must activate a site to send a welcome email to all site members. Activation is also
   required to set up SEO for Experience Builder sites. To activate a site, update the status field of the Network type
   in Metadata API.
-  (https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_network.htm)Alternatively, in
+  (https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_network.htm) Alternatively, in
   Experience Workspaces, go to Administration | Settings, and click Activate.
 
   An email notification informs you when your changes are live on the published site. The site publish process is an

@@ -8,7 +8,7 @@ import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { JsonCollection } from '@salesforce/ts-types';
 import { Messages } from '@salesforce/core';
-import { HttpMethods } from 'jsforce';
+import type { HttpMethods } from 'jsforce';
 import { CommunityCreateResponse } from '../defs/CommunityCreateResponse.js';
 import { CommunityCreateParams } from '../defs/CommunityCreateParams.js';
 import { ConnectResource } from '../../connect/services/ConnectResource.js';
