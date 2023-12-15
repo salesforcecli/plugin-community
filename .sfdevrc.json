@@ -1,0 +1,9 @@
+{
+  "wireit": {
+    "link-check": {
+      "command": "node -e \"process.exit(process.env.CI ? 0 : 1)\" || linkinator \"**/*.md\" --skip \"CHANGELOG.md|node_modules|test/|confluence.internal.salesforce.com|mydomainname|%s\" --markdown --retry --directory-listing --verbosity error",
+      "files": ["./*.md", "./!(CHANGELOG).md", "messages/**/*.md"],
+      "output": []
+    }
+  }
+}
