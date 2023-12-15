@@ -5,7 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { JsonCollection } from '@salesforce/ts-types';
-import { HttpMethods } from 'jsforce';
+import type { HttpMethods } from 'jsforce';
 
 /**
  * Describe of a connect api resource

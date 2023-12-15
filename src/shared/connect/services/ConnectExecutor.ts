@@ -8,7 +8,7 @@ import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { JsonCollection } from '@salesforce/ts-types';
 import { Connection, Messages, SfError } from '@salesforce/core';
-import { HttpRequest } from 'jsforce';
+import type { HttpRequest } from 'jsforce';
 import { ConnectResource } from './ConnectResource.js';
 
 Messages.importMessagesDirectory(dirname(fileURLToPath(import.meta.url)));
