@@ -163,7 +163,7 @@ FLAG DESCRIPTIONS
     available in your org.
 ```
 
-_See code: [src/commands/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/3.0.5/src/commands/community/create.ts)_
+_See code: [src/commands/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/3.0.6/src/commands/community/create.ts)_
 
 ## `sf community list template`
 
@@ -197,7 +197,7 @@ EXAMPLES
     $ sf community list template --target-org my-scratch-org
 ```
 
-_See code: [src/commands/community/list/template.ts](https://github.com/salesforcecli/plugin-community/blob/3.0.5/src/commands/community/list/template.ts)_
+_See code: [src/commands/community/list/template.ts](https://github.com/salesforcecli/plugin-community/blob/3.0.6/src/commands/community/list/template.ts)_
 
 ## `sf community publish`
 
@@ -224,9 +224,8 @@ DESCRIPTION
 
   In addition to publishing, you must activate a site to send a welcome email to all site members. Activation is also
   required to set up SEO for Experience Builder sites. To activate a site, update the status field of the Network type
-  in Metadata API.
-  (https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_network.htm) Alternatively, in
-  Experience Workspaces, go to Administration | Settings, and click Activate.
+  in Metadata API. (https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_network.htm)
+  Alternatively, in Experience Workspaces, go to Administration | Settings, and click Activate.
 
   An email notification informs you when your changes are live on the published site. The site publish process is an
   async job that generates a jobId. To check the site publish status manually, query the BackgroundOperation object and
@@ -246,6 +245,6 @@ EXAMPLES
     $ sf community publish --name 'My Customer Site'
 ```
 
-_See code: [src/commands/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/3.0.5/src/commands/community/publish.ts)_
+_See code: [src/commands/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/3.0.6/src/commands/community/publish.ts)_
 
 <!-- commandsstop -->
