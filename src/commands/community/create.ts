@@ -5,8 +5,8 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+
+
 import type { JsonMap } from '@salesforce/ts-types';
 import { Messages, SfError } from '@salesforce/core';
 import {
@@ -21,7 +21,7 @@ import { ConnectExecutor } from '../../shared/connect/services/ConnectExecutor.j
 import { CommunityCreateResource } from '../../shared/community/connect/CommunityCreateResource.js';
 import { CommunityCreateResponse } from '../../shared/community/defs/CommunityCreateResponse.js';
 
-Messages.importMessagesDirectory(dirname(fileURLToPath(import.meta.url)));
+Messages.importMessagesDirectoryFromMetaUrl(import.meta.url)
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');
 
 const MESSAGE_KEY = 'message';

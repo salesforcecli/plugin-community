@@ -4,8 +4,8 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+
+
 import sinon from 'sinon';
 import type { JsonMap } from '@salesforce/ts-types';
 import { assert, expect } from 'chai';
@@ -15,7 +15,7 @@ import { CommunityCreateParams } from '../../../../src/shared/community/defs/Com
 import { CommunityCreateResource } from '../../../../src/shared/community/connect/CommunityCreateResource.js';
 import { CommunityCreateResponse } from '../../../../src/shared/community/defs/CommunityCreateResponse.js';
 
-Messages.importMessagesDirectory(dirname(fileURLToPath(import.meta.url)));
+Messages.importMessagesDirectoryFromMetaUrl(import.meta.url)
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');
 
 describe('CommunityCreateResource', () => {

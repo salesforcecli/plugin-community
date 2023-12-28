@@ -4,8 +4,8 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+
+
 import type { JsonCollection } from '@salesforce/ts-types';
 import { Messages } from '@salesforce/core';
 import type { HttpMethods } from 'jsforce';
@@ -13,7 +13,7 @@ import { CommunityCreateResponse } from '../defs/CommunityCreateResponse.js';
 import { CommunityCreateParams } from '../defs/CommunityCreateParams.js';
 import { ConnectResource } from '../../connect/services/ConnectResource.js';
 
-Messages.importMessagesDirectory(dirname(fileURLToPath(import.meta.url)));
+Messages.importMessagesDirectoryFromMetaUrl(import.meta.url)
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');
 
 const NAME_KEY = 'name';
