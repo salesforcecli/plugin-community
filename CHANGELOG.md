@@ -1,3 +1,9 @@
+## [3.0.21](https://github.com/salesforcecli/plugin-community/compare/3.0.20...3.0.21) (2024-02-21)
+
+### Bug Fixes
+
+- **deps:** bump ip from 2.0.0 to 2.0.1 ([1266d0a](https://github.com/salesforcecli/plugin-community/commit/1266d0a1bee9b501fb4f8c5a0bd8f831bdb992c8))
+
 ## [3.0.20](https://github.com/salesforcecli/plugin-community/compare/3.0.19...3.0.20) (2024-02-17)
 
 ### Bug Fixes
