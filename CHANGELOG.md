@@ -1,3 +1,9 @@
+## [3.0.27](https://github.com/salesforcecli/plugin-community/compare/3.0.26...3.0.27) (2024-03-16)
+
+### Bug Fixes
+
+- **deps:** bump @salesforce/core from 6.7.0 to 6.7.1 ([18a7210](https://github.com/salesforcecli/plugin-community/commit/18a7210c579bc1de393b508f0761d3148d0f511b))
+
 ## [3.0.26](https://github.com/salesforcecli/plugin-community/compare/3.0.25...3.0.26) (2024-03-16)
 
 ### Bug Fixes
