@@ -20,7 +20,7 @@
     "jsforce": "^2.0.0-beta.29",
     "oclif": "^4.5.4",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.3"
   },
   "config": {},
   "engines": {
