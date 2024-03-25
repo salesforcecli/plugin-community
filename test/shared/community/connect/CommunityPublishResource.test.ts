@@ -5,8 +5,6 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-
-
 import util from 'node:util';
 import sinon from 'sinon';
 import { assert, expect } from 'chai';
@@ -16,7 +14,7 @@ import CommunitiesServices from '../../../../src/shared/community/service/Commun
 import { CommunityPublishResource } from '../../../../src/shared/community/connect/CommunityPublishResource.js';
 import { CommunityPublishResponse } from '../../../../src/shared/community/defs/CommunityPublishResponse.js';
 
-Messages.importMessagesDirectoryFromMetaUrl(import.meta.url)
+Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'publish');
 
 describe('CommunityPublishResource', () => {

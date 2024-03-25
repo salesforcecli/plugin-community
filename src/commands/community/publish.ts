@@ -5,8 +5,6 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-
-
 import { Messages } from '@salesforce/core';
 import {
   Flags,
@@ -19,7 +17,7 @@ import { CommunityPublishResource } from '../../shared/community/connect/Communi
 import { ConnectExecutor } from '../../shared/connect/services/ConnectExecutor.js';
 import { CommunityPublishResponse } from '../../shared/community/defs/CommunityPublishResponse.js';
 
-Messages.importMessagesDirectoryFromMetaUrl(import.meta.url)
+Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'publish');
 
 /**
