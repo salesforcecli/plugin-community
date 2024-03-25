@@ -154,9 +154,7 @@ FLAG DESCRIPTIONS
 
     The description displays in Digital Experiences - All Sites in Setup and helps with site identification.
 
-  -p, --url-path-prefix=<value>
-
-    URL to append to the domain created when Digital Experiences was enabled for this org.
+  -p, --url-path-prefix=<value>  URL to append to the domain created when Digital Experiences was enabled for this org.
 
     For example, if your domain name is https://MyDomainName.my.site.com and you create a customer site, enter
     'customers' to create the unique URL https://MyDomainName.my.site.com/customers.
@@ -167,7 +165,7 @@ FLAG DESCRIPTIONS
     available in your org.
 ```
 
-_See code: [src/commands/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/3.0.28/src/commands/community/create.ts)_
+_See code: [src/commands/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/3.1.0/src/commands/community/create.ts)_
 
 ## `sf community list template`
 
@@ -202,7 +200,7 @@ EXAMPLES
     $ sf community list template --target-org my-scratch-org
 ```
 
-_See code: [src/commands/community/list/template.ts](https://github.com/salesforcecli/plugin-community/blob/3.0.28/src/commands/community/list/template.ts)_
+_See code: [src/commands/community/list/template.ts](https://github.com/salesforcecli/plugin-community/blob/3.1.0/src/commands/community/list/template.ts)_
 
 ## `sf community publish`
 
@@ -251,6 +249,6 @@ EXAMPLES
     $ sf community publish --name 'My Customer Site'
 ```
 
-_See code: [src/commands/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/3.0.28/src/commands/community/publish.ts)_
+_See code: [src/commands/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/3.1.0/src/commands/community/publish.ts)_
 
 <!-- commandsstop -->
