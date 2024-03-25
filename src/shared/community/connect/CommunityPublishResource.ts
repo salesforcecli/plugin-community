@@ -14,7 +14,7 @@ import { CommunityInfo } from '../defs/CommunityInfo.js';
 import CommunitiesServices from '../service/CommunitiesServices.js';
 import { ConnectResource } from '../../connect/services/ConnectResource.js';
 
-Messages.importMessagesDirectoryFromMetaUrl(import.meta.url)
+Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'publish');
 
 /**

@@ -1,10 +1,13 @@
 [
   {
+    "alias": ["force:community:create"],
     "command": "community:create",
-    "plugin": "@salesforce/plugin-community",
+    "flagAliases": ["apiversion", "targetusername", "templatename", "u", "urlpathprefix"],
+    "flagChars": ["d", "n", "o", "p", "t"],
     "flags": [
       "api-version",
       "description",
+      "flags-dir",
       "json",
       "loglevel",
       "name",
@@ -12,24 +15,22 @@
       "template-name",
       "url-path-prefix"
     ],
-    "alias": ["force:community:create"],
-    "flagChars": ["d", "n", "o", "p", "t"],
-    "flagAliases": ["apiversion", "targetusername", "templatename", "u", "urlpathprefix"]
+    "plugin": "@salesforce/plugin-community"
   },
   {
-    "command": "community:list:template",
-    "plugin": "@salesforce/plugin-community",
-    "flags": ["api-version", "json", "loglevel", "target-org"],
     "alias": ["force:community:template:list"],
+    "command": "community:list:template",
+    "flagAliases": ["apiversion", "targetusername", "u"],
     "flagChars": ["o"],
-    "flagAliases": ["apiversion", "targetusername", "u"]
+    "flags": ["api-version", "flags-dir", "json", "loglevel", "target-org"],
+    "plugin": "@salesforce/plugin-community"
   },
   {
-    "command": "community:publish",
-    "plugin": "@salesforce/plugin-community",
-    "flags": ["api-version", "json", "loglevel", "name", "target-org"],
     "alias": ["force:community:publish"],
+    "command": "community:publish",
+    "flagAliases": ["apiversion", "targetusername", "u"],
     "flagChars": ["n", "o"],
-    "flagAliases": ["apiversion", "targetusername", "u"]
+    "flags": ["api-version", "flags-dir", "json", "loglevel", "name", "target-org"],
+    "plugin": "@salesforce/plugin-community"
   }
 ]

@@ -5,8 +5,6 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-
-
 import { Messages } from '@salesforce/core';
 import {
   loglevel,
@@ -18,7 +16,7 @@ import { CommunityTemplatesResource } from '../../../shared/community/connect/Co
 import { ConnectExecutor } from '../../../shared/connect/services/ConnectExecutor.js';
 import { CommunityTemplatesListResponse } from '../../../shared/community/defs/CommunityTemplatesListResponse.js';
 
-Messages.importMessagesDirectoryFromMetaUrl(import.meta.url)
+Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'template.list');
 
 /**
