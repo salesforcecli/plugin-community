@@ -1,1 +1,36 @@
-[]
+[
+  {
+    "alias": ["force:community:create"],
+    "command": "community:create",
+    "flagAliases": ["apiversion", "targetusername", "templatename", "u", "urlpathprefix"],
+    "flagChars": ["d", "n", "o", "p", "t"],
+    "flags": [
+      "api-version",
+      "description",
+      "flags-dir",
+      "json",
+      "loglevel",
+      "name",
+      "target-org",
+      "template-name",
+      "url-path-prefix"
+    ],
+    "plugin": "@salesforce/plugin-community"
+  },
+  {
+    "alias": ["force:community:template:list"],
+    "command": "community:list:template",
+    "flagAliases": ["apiversion", "targetusername", "u"],
+    "flagChars": ["o"],
+    "flags": ["api-version", "flags-dir", "json", "loglevel", "target-org"],
+    "plugin": "@salesforce/plugin-community"
+  },
+  {
+    "alias": ["force:community:publish"],
+    "command": "community:publish",
+    "flagAliases": ["apiversion", "targetusername", "u"],
+    "flagChars": ["n", "o"],
+    "flags": ["api-version", "flags-dir", "json", "loglevel", "name", "target-org"],
+    "plugin": "@salesforce/plugin-community"
+  }
+]
