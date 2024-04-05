@@ -11,7 +11,7 @@ import type { HttpMethods } from 'jsforce';
  * Describe of a connect api resource
  * T - type of return type for success/failure
  */
-export interface ConnectResource<T> {
+export type ConnectResource<T> = {
   /**
    * Fetch the relative url of the connect end point
    */
