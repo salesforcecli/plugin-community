@@ -1,3 +1,9 @@
+## [3.2.1](https://github.com/salesforcecli/plugin-community/compare/3.2.0...3.2.1) (2024-04-10)
+
+### Bug Fixes
+
+- **deps:** bump tar from 6.1.13 to 6.2.1 ([#612](https://github.com/salesforcecli/plugin-community/issues/612)) ([170a715](https://github.com/salesforcecli/plugin-community/commit/170a715f2f6b2acc999d97e2f3d5549f73441f7e))
+
 # [3.2.0](https://github.com/salesforcecli/plugin-community/compare/3.1.0...3.2.0) (2024-04-10)
 
 ### Features
