@@ -8,9 +8,9 @@
 
 import { expect, assert } from 'chai';
 import { Config } from '@oclif/core';
-import { SfError } from '@salesforce/core';
+import { SfError } from '@salesforce/core/sfError';
 import { parseVarArgs } from '@salesforce/sf-plugins-core';
-import { MockTestOrgData, TestContext } from '@salesforce/core/lib/testSetup.js';
+import { MockTestOrgData, TestContext } from '@salesforce/core/testSetup';
 import { getTemplateParamObjectFromArgs, CommunityCreateCommand } from '../../../../src/commands/community/create.js';
 
 class Wrapper extends CommunityCreateCommand {
@@ -21,7 +21,7 @@ class Wrapper extends CommunityCreateCommand {
 }
 
 const getParsedVarArgs = async (args: string[]): Promise<Record<string, string | undefined>> => {
-  const wrapper = new Wrapper(args, {} as Config);
+  const wrapper = new Wrapper(args, { runHook: async () => ({ successes: [], failures: [] }) } as unknown as Config);
   return wrapper.getParsedArgs();
 };
 
