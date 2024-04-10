@@ -6,8 +6,8 @@
  */
 
 import type { JsonCollection } from '@salesforce/ts-types';
-import { Messages } from '@salesforce/core';
-import type { HttpMethods } from 'jsforce';
+import { Messages } from '@salesforce/core/messages';
+import type { HttpMethods } from '@jsforce/jsforce-node';
 import { CommunityCreateResponse } from '../defs/CommunityCreateResponse.js';
 import { CommunityCreateParams } from '../defs/CommunityCreateParams.js';
 import { ConnectResource } from '../../connect/services/ConnectResource.js';

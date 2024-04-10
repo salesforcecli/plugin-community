@@ -5,7 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import type { JsonCollection } from '@salesforce/ts-types';
-import type { HttpMethods } from 'jsforce';
+import type { HttpMethods } from '@jsforce/jsforce-node';
 
 /**
  * Describe of a connect api resource
@@ -41,4 +41,4 @@ export type ConnectResource<T> = {
    * @param error - the corresponding error
    */
   handleError(error: Error): T;
-}
+};

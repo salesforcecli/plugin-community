@@ -4,7 +4,7 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import type { HttpMethods } from 'jsforce';
+import type { HttpMethods } from '@jsforce/jsforce-node';
 import { ConnectResource } from '../../connect/services/ConnectResource.js';
 import { CommunityTemplatesListResponse } from '../defs/CommunityTemplatesListResponse.js';
 
