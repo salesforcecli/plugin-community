@@ -5,7 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { Org } from '@salesforce/core';
-import type { QueryResult, Record } from 'jsforce';
+import type { QueryResult, Record } from '@jsforce/jsforce-node';
 import { CommunityInfo } from '../defs/CommunityInfo.js';
 import { CommunityStatus } from '../defs/CommunityStatusEnum.js';
 

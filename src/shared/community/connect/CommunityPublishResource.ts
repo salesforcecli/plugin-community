@@ -8,7 +8,7 @@ import { URL } from 'node:url';
 
 import type { JsonCollection } from '@salesforce/ts-types';
 import { Messages, Org } from '@salesforce/core';
-import type { HttpMethods } from 'jsforce';
+import type { HttpMethods } from '@jsforce/jsforce-node';
 import { CommunityPublishResponse } from '../defs/CommunityPublishResponse.js';
 import { CommunityInfo } from '../defs/CommunityInfo.js';
 import CommunitiesServices from '../service/CommunitiesServices.js';

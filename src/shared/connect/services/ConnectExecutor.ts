@@ -7,7 +7,7 @@
 
 import type { JsonCollection } from '@salesforce/ts-types';
 import { Connection, Messages, SfError } from '@salesforce/core';
-import type { HttpRequest } from 'jsforce';
+import type { HttpRequest } from '@jsforce/jsforce-node';
 import { ConnectResource } from './ConnectResource.js';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
