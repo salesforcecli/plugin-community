@@ -1,3 +1,9 @@
+# [3.2.0](https://github.com/salesforcecli/plugin-community/compare/3.1.0...3.2.0) (2024-04-10)
+
+### Features
+
+- use jsforce-node via core7 ([90105e5](https://github.com/salesforcecli/plugin-community/commit/90105e58c67b8ba1acd06c8d3025c777dc6aab1f))
+
 # [3.1.0](https://github.com/salesforcecli/plugin-community/compare/3.0.28...3.1.0) (2024-03-25)
 
 ### Features
