@@ -1,7 +1,7 @@
 {
   "name": "@salesforce/plugin-community",
   "description": "Community commands to create and publish an Experience Cloud site, and view a list of available templates in you org.",
-  "version": "3.2.15",
+  "version": "3.2.16",
   "author": "Salesforce",
   "bugs": "https://github.com/forcedotcom/cli/issues",
   "dependencies": {
