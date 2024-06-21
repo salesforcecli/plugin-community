@@ -1,3 +1,9 @@
+## [3.2.21](https://github.com/salesforcecli/plugin-community/compare/3.2.20...3.2.21) (2024-06-21)
+
+### Bug Fixes
+
+- **deps:** oclif-core is dev-dep, use jsforce-node ([#676](https://github.com/salesforcecli/plugin-community/issues/676)) ([c5f2b61](https://github.com/salesforcecli/plugin-community/commit/c5f2b619e99068c26328b2e68548dfd7ffbd9f94))
+
 ## [3.2.20](https://github.com/salesforcecli/plugin-community/compare/3.2.19...3.2.20) (2024-06-20)
 
 ### Bug Fixes
