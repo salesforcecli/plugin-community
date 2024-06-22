@@ -167,7 +167,7 @@ FLAG DESCRIPTIONS
     available in your org.
 ```
 
-_See code: [src/commands/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/3.2.21/src/commands/community/create.ts)_
+_See code: [src/commands/community/create.ts](https://github.com/salesforcecli/plugin-community/blob/3.2.22/src/commands/community/create.ts)_
 
 ## `sf community list template`
 
@@ -202,7 +202,7 @@ EXAMPLES
     $ sf community list template --target-org my-scratch-org
 ```
 
-_See code: [src/commands/community/list/template.ts](https://github.com/salesforcecli/plugin-community/blob/3.2.21/src/commands/community/list/template.ts)_
+_See code: [src/commands/community/list/template.ts](https://github.com/salesforcecli/plugin-community/blob/3.2.22/src/commands/community/list/template.ts)_
 
 ## `sf community publish`
 
@@ -251,6 +251,6 @@ EXAMPLES
     $ sf community publish --name 'My Customer Site'
 ```
 
-_See code: [src/commands/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/3.2.21/src/commands/community/publish.ts)_
+_See code: [src/commands/community/publish.ts](https://github.com/salesforcecli/plugin-community/blob/3.2.22/src/commands/community/publish.ts)_
 
 <!-- commandsstop -->
