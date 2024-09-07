@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@jsforce/jsforce-node": "^3.4.1",
-    "@oclif/core": "^4.0.18",
+    "@oclif/core": "^4.0.20",
     "@oclif/plugin-command-snapshot": "^5.2.10",
     "@salesforce/cli-plugins-testkit": "^5.3.28",
     "@salesforce/dev-scripts": "^10.2.10",
