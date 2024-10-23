@@ -1,3 +1,9 @@
+# [3.3.0](https://github.com/salesforcecli/plugin-community/compare/3.2.35...3.3.0) (2024-10-23)
+
+### Features
+
+- update table ([#775](https://github.com/salesforcecli/plugin-community/issues/775)) ([1df04dd](https://github.com/salesforcecli/plugin-community/commit/1df04ddcf451fc82861c75e33111af29d105e96a))
+
 ## [3.2.35](https://github.com/salesforcecli/plugin-community/compare/3.2.34...3.2.35) (2024-10-13)
 
 ### Bug Fixes
