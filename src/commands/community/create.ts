@@ -22,11 +22,6 @@ import { CommunityCreateResponse } from '../../shared/community/defs/CommunityCr
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 const messages = Messages.loadMessages('@salesforce/plugin-community', 'create');
 
-const MESSAGE_KEY = 'message';
-const NAME_KEY = 'name';
-const JOBID_KEY = 'jobId';
-const ACTION_KEY = 'action';
-
 /**
  * A command to create a community.
  * This is just an sfdx wrapper around the community create connect endpoint
@@ -92,14 +87,12 @@ export class CommunityCreateCommand extends SfCommand<CommunityCreateResponse> {
   }
 
   private displayResults(results: CommunityCreateResponse): void {
-    const columns = {
-      [NAME_KEY]: { header: 'Name' },
-      [MESSAGE_KEY]: { header: 'Message' },
-      [JOBID_KEY]: { header: 'JobId' },
-      [ACTION_KEY]: { header: 'Action' },
-    };
-    this.styledHeader(messages.getMessage('response.styleHeader'));
-    this.table([results], columns, { 'no-truncate': true });
+    this.table({
+      data: [results],
+      columns: ['message', 'name', 'jobId', 'action'],
+      title: messages.getMessage('response.styleHeader'),
+      overflow: 'wrap',
+    });
   }
 }
 

@@ -47,13 +47,11 @@ export class CommunityListTemplatesCommand extends SfCommand<CommunityTemplatesL
   }
 
   private displayResults(results: CommunityTemplatesListResponse): void {
-    const columns = {
-      templateName: { header: 'Template Name' },
-      publisher: { header: 'Publisher' },
-    };
-    this.styledHeader(messages.getMessage('response.styledHeader'));
-    this.table(results.templates, columns);
-    this.log();
+    this.table({
+      data: results.templates,
+      columns: [{ key: 'templateName', name: 'Template Name' }, 'publisher'],
+      title: messages.getMessage('response.styledHeader'),
+    });
     this.log(messages.getMessage('response.TotalField'), results.total.toString());
   }
 }
