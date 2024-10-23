@@ -56,15 +56,10 @@ export class CommunityPublishCommand extends SfCommand<CommunityPublishResponse>
   }
 
   private displayResults(results: CommunityPublishResponse): void {
-    const columns = {
-      id: { header: 'Id' },
-      message: { header: 'Message' },
-      name: { header: 'Name' },
-      status: { header: 'Status' },
-      url: { header: 'Url' },
-      jobId: { header: 'JobId' },
-    };
-    this.styledHeader(messages.getMessage('response.styleHeader'));
-    this.table([results], columns);
+    this.table({
+      data: [results],
+      columns: ['id', 'message', 'name', 'status', 'url', 'jobId'],
+      title: messages.getMessage('response.styleHeader'),
+    });
   }
 }
