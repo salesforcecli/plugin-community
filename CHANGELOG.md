@@ -1,3 +1,9 @@
+## [3.3.47](https://github.com/salesforcecli/plugin-community/compare/3.3.46...3.3.47) (2025-12-05)
+
+### Bug Fixes
+
+- **deps:** bump jws from 3.2.2 to 3.2.3 ([3b8928b](https://github.com/salesforcecli/plugin-community/commit/3b8928b1c00d929a194b6719f9489cf8810abbec))
+
 ## [3.3.46](https://github.com/salesforcecli/plugin-community/compare/3.3.45...3.3.46) (2025-11-29)
 
 ### Bug Fixes
