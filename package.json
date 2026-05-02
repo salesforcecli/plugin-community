@@ -7,7 +7,7 @@
   "dependencies": {
     "@salesforce/core": "^8.28.4",
     "@salesforce/kit": "^3.2.6",
-    "@salesforce/sf-plugins-core": "^12.2.6"
+    "@salesforce/sf-plugins-core": "^12.2.10"
   },
   "devDependencies": {
     "@jsforce/jsforce-node": "^3.10.10",
