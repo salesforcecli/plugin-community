@@ -1,3 +1,11 @@
+# [4.0.0](https://github.com/salesforcecli/plugin-community/compare/3.3.78...4.0.0) (2026-07-30)
+
+- feat!: require Node >=22, drop EOL Node versions @W-23480655@ ([be7eaf6](https://github.com/salesforcecli/plugin-community/commit/be7eaf6bdbe578e6981de4b925c44463713b9e52))
+
+### BREAKING CHANGES
+
+- Drop support for Node 18 and Node 20. Node >=22.0.0 is now required.
+
 ## [3.3.78](https://github.com/salesforcecli/plugin-community/compare/3.3.77...3.3.78) (2026-07-26)
 
 ### Bug Fixes
