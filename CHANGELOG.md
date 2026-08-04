@@ -1,3 +1,9 @@
+## [4.0.1](https://github.com/salesforcecli/plugin-community/compare/4.0.0...4.0.1) (2026-08-04)
+
+### Bug Fixes
+
+- **deps:** bump undici from 8.5.0 to 8.10.0 ([8c358ce](https://github.com/salesforcecli/plugin-community/commit/8c358ceac81b2c3bfe25ac042ff140b274740d10))
+
 # [4.0.0](https://github.com/salesforcecli/plugin-community/compare/3.3.78...4.0.0) (2026-07-30)
 
 - feat!: require Node >=22, drop EOL Node versions @W-23480655@ ([be7eaf6](https://github.com/salesforcecli/plugin-community/commit/be7eaf6bdbe578e6981de4b925c44463713b9e52))
