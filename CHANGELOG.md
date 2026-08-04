@@ -1,3 +1,9 @@
+## [4.0.2](https://github.com/salesforcecli/plugin-community/compare/4.0.1...4.0.2) (2026-08-04)
+
+### Bug Fixes
+
+- **deps:** bump fast-uri from 3.1.4 to 3.1.5 ([e216f27](https://github.com/salesforcecli/plugin-community/commit/e216f27aae58f2cfd0fbea1da2a6605d6bd2a6e0))
+
 ## [4.0.1](https://github.com/salesforcecli/plugin-community/compare/4.0.0...4.0.1) (2026-08-04)
 
 ### Bug Fixes
