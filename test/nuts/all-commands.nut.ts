@@ -52,9 +52,7 @@ describe('plugin-community commands', () => {
       let output = execCmd<CommunityTemplatesListResponse>(cmd, { ensureExitCode: 0 }).jsonOutput;
 
       // There seems to be a race condition where this will sometimes fail on the first try.
-      if (!output) {
-        output = execCmd<CommunityTemplatesListResponse>(cmd, { ensureExitCode: 0 }).jsonOutput;
-      }
+      output ??= execCmd<CommunityTemplatesListResponse>(cmd, { ensureExitCode: 0 }).jsonOutput;
       assert(output);
 
       expect(output.result).to.have.all.keys(['templates', 'total']);
