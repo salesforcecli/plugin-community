@@ -31,7 +31,7 @@ const JOBID_KEY = 'jobId';
  * A connect api resource for creating a community
  */
 export class CommunityCreateResource implements ConnectResource<CommunityCreateResponse> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   
   public constructor(private options: CommunityCreateParams) {}
 
   // eslint-disable-next-line class-methods-use-this
