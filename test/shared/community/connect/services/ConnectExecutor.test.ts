@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 /* eslint-disable class-methods-use-this */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+ 
+ 
 
 import sinon from 'sinon';
 import { assert, expect } from 'chai';
@@ -34,11 +34,11 @@ describe('ConnectExecutor', () => {
 
   class DummyPostConnectResource implements ConnectResource<Result> {
     public fetchRelativeConnectUrl(): Promise<string> {
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+       
       return Promise.resolve(`${relativeUrl}${this.getRequestMethod()}`);
     }
 
-    // eslint-disable-next-line class-methods-use-this
+     
     public getRequestMethod(): HttpMethods {
       return 'POST';
     }
@@ -58,7 +58,7 @@ describe('ConnectExecutor', () => {
       };
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars, class-methods-use-this
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public handleError(error: Error): Result {
       throw new Error('handleError is called');
     }

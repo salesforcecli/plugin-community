@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/* eslint-disable @typescript-eslint/require-await */
 
 import { expect, assert } from 'chai';
 import { Config } from '@oclif/core';
