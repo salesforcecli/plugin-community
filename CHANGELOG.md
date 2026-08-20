@@ -1,3 +1,9 @@
+## [4.0.5](https://github.com/salesforcecli/plugin-community/compare/4.0.4...4.0.5) (2026-08-20)
+
+### Bug Fixes
+
+- rejiggered eslint.config.mjs (W-23928423) ([#1135](https://github.com/salesforcecli/plugin-community/issues/1135)) ([69c0eb3](https://github.com/salesforcecli/plugin-community/commit/69c0eb3adb9893dcd8550260d2028e892ed16575))
+
 ## [4.0.4](https://github.com/salesforcecli/plugin-community/compare/4.0.3...4.0.4) (2026-08-16)
 
 ### Bug Fixes
