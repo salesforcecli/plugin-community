@@ -1,3 +1,9 @@
+## [4.0.6](https://github.com/salesforcecli/plugin-community/compare/4.0.5...4.0.6) (2026-09-01)
+
+### Bug Fixes
+
+- bump oclif to V5 ([#1144](https://github.com/salesforcecli/plugin-community/issues/1144)) ([dbe97fe](https://github.com/salesforcecli/plugin-community/commit/dbe97fe0785e92ad98b692f48562ac472d9b099a))
+
 ## [4.0.5](https://github.com/salesforcecli/plugin-community/compare/4.0.4...4.0.5) (2026-08-20)
 
 ### Bug Fixes
