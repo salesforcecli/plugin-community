@@ -35,8 +35,6 @@
   "files": [
     "/lib",
     "/messages",
-    "/npm-shrinkwrap.json",
-    "/oclif.lock",
     "/oclif.manifest.json"
   ],
   "homepage": "https://github.com/salesforcecli/plugin-community",
