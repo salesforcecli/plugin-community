@@ -10,7 +10,7 @@
     "@salesforce/sf-plugins-core": "^13.0.5"
   },
   "devDependencies": {
-    "@jsforce/jsforce-node": "^3.10.24",
+    "@jsforce/jsforce-node": "^3.10.29",
     "@oclif/core": "^5.0.0",
     "@oclif/plugin-command-snapshot": "^6.0.2",
     "@salesforce/cli-plugins-testkit": "^5.3.66",
