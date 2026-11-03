@@ -1,3 +1,11 @@
+## [4.0.22](https://github.com/salesforcecli/plugin-community/compare/4.0.21...4.0.22) (2026-11-03)
+
+### Bug Fixes
+
+- update md files ([c2d0305](https://github.com/salesforcecli/plugin-community/commit/c2d03058c9aff08fdccf29d6414601a345889a8a))
+- update readme ([e68ed18](https://github.com/salesforcecli/plugin-community/commit/e68ed182175a9c4da4a55a603ba56df7b91b9cb7))
+- Update Yarn installation instructions ([cb727ab](https://github.com/salesforcecli/plugin-community/commit/cb727ab96e4437181e98df5944cfc851f483abaf))
+
 ## [4.0.21](https://github.com/salesforcecli/plugin-community/compare/4.0.20...4.0.21) (2026-11-01)
 
 ### Bug Fixes
