@@ -1,3 +1,9 @@
+## [4.0.25](https://github.com/salesforcecli/plugin-community/compare/4.0.24...4.0.25) (2026-11-07)
+
+### Bug Fixes
+
+- **deps:** bump picomatch from 2.3.1 to 2.3.2 ([a4de7c7](https://github.com/salesforcecli/plugin-community/commit/a4de7c7f07680f8f158d4c9db5812831677d2c38))
+
 ## [4.0.24](https://github.com/salesforcecli/plugin-community/compare/4.0.23...4.0.24) (2026-11-07)
 
 ### Bug Fixes
