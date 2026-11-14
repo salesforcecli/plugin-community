@@ -1,3 +1,9 @@
+## [4.0.26](https://github.com/salesforcecli/plugin-community/compare/4.0.25...4.0.26) (2026-11-14)
+
+### Bug Fixes
+
+- **deps:** bump @salesforce/core from 9.4.4 to 9.4.5 ([53c248e](https://github.com/salesforcecli/plugin-community/commit/53c248eb32da59dafa9605a2cef25c0d6bdb113a))
+
 ## [4.0.25](https://github.com/salesforcecli/plugin-community/compare/4.0.24...4.0.25) (2026-11-07)
 
 ### Bug Fixes
