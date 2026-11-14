@@ -1,3 +1,9 @@
+## [4.0.27](https://github.com/salesforcecli/plugin-community/compare/4.0.26...4.0.27) (2026-11-14)
+
+### Bug Fixes
+
+- **deps:** bump @salesforce/kit from 4.0.9 to 4.0.10 ([2e9264f](https://github.com/salesforcecli/plugin-community/commit/2e9264fc8f815374b841b5ce7dca4c96b12ff5ea))
+
 ## [4.0.26](https://github.com/salesforcecli/plugin-community/compare/4.0.25...4.0.26) (2026-11-14)
 
 ### Bug Fixes
